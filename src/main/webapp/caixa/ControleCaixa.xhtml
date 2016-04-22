@@ -1,0 +1,62 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo"> Controle de Caixa </ui:define>
+	<ui:define name="corpo">
+		<h1>Controle de Caixa</h1>
+		
+		<p:toolbar style="margin-top: 20px">
+			<p:toolbarGroup align="left" >
+				<p:commandButton value="Abrir Caixa" />
+				<p:separator/>
+				<p:commandButton value="Fechar Caixa" />
+			</p:toolbarGroup>
+		</p:toolbar>
+		
+					<p:dataTable id="pedidosTable"
+				value="#{pesquisaPedidosBean.pedidosFiltrados}" var="pedidos"
+				style="margin-top: 20px" emptyMessage="."
+				rows="20" paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom">
+
+				<p:column headerText="Id Pedido"
+					style="text-aling: center; width: 20px">
+				</p:column>
+
+				<p:column headerText="DataPedido"
+					style="text-aling: center; width: 20px">
+				</p:column>
+
+				<p:column headerText="Hora Pedido"
+					style="text-aling: center; width: 20px">
+				</p:column>
+
+				<p:column headerText="Funcionario"
+					style="text-aling: center; width: 40px">
+				</p:column>
+
+				<p:column headerText="Valor Pedido"
+					style="text-aling: center; width: 20px">
+				</p:column>
+
+				<p:column headerText="Status"
+					style="text-aling: center; width: 20px">
+				</p:column>
+
+			<p:columnGroup type="footer">
+				<p:row>
+					<p:column colspan="5" footerText="Subtotal" style="text-align: right"/>
+					<p:column footerText="50,00" style="text-aling: rigth" />
+				</p:row>
+				
+			</p:columnGroup>
+		
+		</p:dataTable>
+		
+	</ui:define>
+</ui:composition>
+	

@@ -1,0 +1,55 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo"> Cadastro de Funiconário </ui:define>
+	<ui:define name="corpo">
+		<h1>Cadastro de Funcionário</h1>
+
+		<p:toolbar style="margin-top 25px;">
+			<p:toolbarGroup>
+				<p:button value="Novo" outcome="/funcionario/CadastroFuncionario" />
+				<p:commandButton value="Salvar" id="botaoSalvar" />
+
+			</p:toolbarGroup>
+			<p:toolbarGroup align="right">
+				<p:button value="Pesquisa"
+					outcome="/funcionario/PesquisaFuncionario" />
+			</p:toolbarGroup>
+		</p:toolbar>
+
+		<p:panelGrid columns="2" id="painel"
+			style="width: 100%; margin-top:35px" columnClasses="rotulo, campo">
+
+			<p:outputLabel value="Nome" for="nome" />
+			<p:inputText id="nome" size="100" maxlenght="255" />
+
+			<p:outputLabel for="telefone" value="Telefone" />
+			<p:inputMask id="telefone" value="#{maskView.taxId}"
+				mask="(99)9999-9999?9" />
+
+			<p:outputLabel value="CPF" for="cpf" />
+			<p:inputMask id="cpf" value="#{maskView.taxId}" mask="999.999.999-99" />
+
+			<p:outputLabel value="Perfil" for="perfil" />
+			<p:selectOneMenu id="perfil">
+				<f:selectItem itemLabel="Selecione o Perfil" />
+				<f:selectItem itemLabel="Gerente" itemValue="Gerente" />
+				<f:selectItem itemLabel="Garçom" itemValue="Garçom" />
+				<f:selectItem itemLabel="Caixa" itemValue="Caixa" />
+                <f:selectItem itemLabel="Chef" itemValue="Chef" />	
+			</p:selectOneMenu>
+
+			<h:outputLabel value="Usuário" for="usuario" />
+			<p:inputText id="usuario" maxlenght="10" />
+
+			<p:outputLabel value="Senha" for="senha" />
+			<p:password id="senha" maxlenght="10"
+				value="#{passwordView.password2}" feedback="true" />
+
+		</p:panelGrid>
+	</ui:define>
+</ui:composition>

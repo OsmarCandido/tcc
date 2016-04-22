@@ -1,0 +1,40 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo"> Status Mesa </ui:define>
+	<ui:define name="corpo">
+		<h1>Status Mesa</h1>
+
+
+		<h:form id="form">
+			<p:dataGrid var="mesa" value="#{dataGridView.mesas}" columns="3"
+				layout="grid" rows="10" paginator="true" id="mesas"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="6,12,16">
+
+				<f:facet name="header">
+            Status Mesa
+        </f:facet>
+				<p:panel header="#{mesa.id}" style="text-align:center">
+					<h:panelGrid columns="1" style="width:100%">
+						<p:graphicImage name="resources/img/aberto/mesa.png" />
+
+						<h:outputText value="#{mesa.year}" />
+
+						<p:commandLink update=":form:mesaDetail"
+							oncomplete="PF('mesaDialog').show()" title="View Detail">
+							<h:outputText styleClass="ui-icon ui-icon-search"
+								style="margin:0 auto;" />
+							<f:setPropertyActionListener value="#{mesa}"
+								target="#{dataGridView.selectedMesa}" />
+						</p:commandLink>
+					</h:panelGrid>
+				</p:panel>
+			</p:dataGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	
+<p:panelGrid columns="4" style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo, rotulo, campo">
+	<p:outputLabel value="Id Pedido" />
+	<h:outputText value="1234" />
+	
+	<p:outputLabel value="Data Pedido" />
+	<h:outputText value="12/03/2014" />
+	
+	<p:outputLabel value="Status" />
+	<h:outputText value="Emitido" />
+	
+	<p:outputLabel value="Hora Pedido" />
+	<h:outputText value="12:03:34" />
+	
+	<p:outputLabel value="Funcionario" for="funcionario" />
+			<p:selectOneMenu id="funcionario">
+				<f:selectItem itemLabel="Selecione" />
+				<f:selectItem itemLabel="Garçom" itemValue="Garçom" />
+				<f:selectItem itemLabel="Balcão" itemValue="Balcão" />
+			</p:selectOneMenu>
+			
+	<p:outputLabel value="Forma de pagamento" for="formaPagamento"/>
+        <p:selectOneMenu id="formaPagamento">
+            <f:selectItem itemLabel="Selecione" />
+				<f:selectItem itemLabel="Cartão de Credito" itemValue="Cartão de Credito" />
+				<f:selectItem itemLabel="Dinheiro" itemValue="Dinheiro" />
+			</p:selectOneMenu>
+	
+	<p:outputLabel value="Subtotal" style="font-weigth: bold"/>
+	<h:outputText value="R$ 12,34" style="font-weigth: bold" id="subtotal"/> 
+	
+	<p:outputLabel value="Total do pedido" style="font-weight: bold; font-size: 1.1em"/>
+    <h:outputText value="R$ 0,00" style="font-weight: bold; font-size: 1.1em" id="totalPedido" />
+</p:panelGrid>
+</ui:composition>

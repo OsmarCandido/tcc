@@ -1,0 +1,94 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Pesquisa de Pedidos</ui:define>
+
+	<ui:define name="corpo">
+		<h:form>
+			<h1>Pesquisa de Pedidos</h1>
+
+			<p:toolbar style="margin-top 20px">
+				<p:toolbarGroup>
+					<p:commandButton value="Pesquisar" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:panelGrid columns="2" id="painel"
+				style="width: 100%; margin-top:20px" columnClasses="rotulo, campo">
+
+				<p:outputLabel value="Id Pedido" />
+				<h:panelGroup>
+					<p:inputText size="10" />
+					a
+					<p:inputText size="10" />
+				</h:panelGroup>
+
+				<p:outputLabel value="Data Pedido" />
+				<h:panelGroup>
+					<p:calendar size="10" pattern="dd/MM/yyyy" />
+					a
+					<p:calendar size="10" pattern="dd/MM/yyyy" />
+				</h:panelGroup>
+
+				<p:outputLabel value="Hora Pedido" />
+				<h:panelGroup>
+					<p:calendar size="10" pattern="HH/mm/ss" />
+					a
+					<p:calendar size="10" pattern="HH/mm/ss" />
+				</h:panelGroup>
+
+				<p:outputLabel value="Funcionario" />
+				<p:inputText size="40" />
+
+				<p:outputLabel value="Valor Total" />
+				<p:inputText size="40" />
+
+				<p:outputLabel value="Status" />
+				<p:selectManyCheckbox>
+					<f:selectItem itemLabel="Orcamento" />
+					<f:selectItem itemLabel="Pedido" />
+					<f:selectItem itemLabel="Cancelado" />
+				</p:selectManyCheckbox>
+			</p:panelGrid>
+
+			<p:dataTable id="pedidosTable"
+				value="#{pesquisaPedidosBean.pedidosFiltrados}" var="pedidos"
+				style="margin-top: 20px" emptyMessage="Nenhum pedido encontrado."
+				rows="20" paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom">
+
+				<p:column headerText="Id Pedido"
+					style="text-aling: center; width: 20px">
+				</p:column>
+
+				<p:column headerText="DataPedido"
+					style="text-aling: center; width: 20px">
+				</p:column>
+
+				<p:column headerText="Hora Pedido"
+					style="text-aling: center; width: 20px">
+				</p:column>
+
+				<p:column headerText="Funcionario"
+					style="text-aling: center; width: 40px">
+				</p:column>
+
+				<p:column headerText="Valor Pedido"
+					style="text-aling: center; width: 20px">
+				</p:column>
+
+				<p:column headerText="Status"
+					style="text-aling: center; width: 20px">
+				</p:column>
+
+				<p:column style="width: 50px; text-align:center">
+					<p:button icon="ui-icon-pencil" title="Editar" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

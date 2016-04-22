@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title><ui:insert name="titulo">Sistemas de Gerenciamento de Bar e Restaurante</ui:insert></title>
+	<h:outputStylesheet library="css" name="sistema.css" />
+	<h:outputScript library="js" name="jquery.maskMoney.js" />
+
+</h:head>
+<h:body>
+	<p:ajaxStatus styleClass="ajax-status" onsucess="configuraMoeda()">
+		<f:facet name="start">
+			<h:graphicImage library="img" name="loading.gif" />
+		</f:facet>
+		<f:facet name="complete">
+			<h:outputText value="" />
+		</f:facet>
+	</p:ajaxStatus>
+	<header>
+	<div>
+		<h:link>  
+			<h:graphicImage width="6%" library="img" name="logo.png" outcome="index.xhtml"/>
+		</h:link>
+		
+		<div style="float: right; margin-right: 110px">
+				<span style="float: left; height: 30px; line-height: 30px; margin-right: 60px">
+				Olá #{seguranca.nomeFuncionario}!
+				</span>
+				
+				<h:form style="display: inline-block">
+					<p:menubar styleClass="menu-sistema">
+				<p:menuitem value = "Caixa" outcome="/caixa/ControleCaixa.xhtml"/>
+				<p:submenu label="Cadastros">
+					<p:menuitem value="Funcionarios" outcome="/funcionario/CadastroFuncionario.xhtml"/>
+					<p:separator/>
+					<p:menuitem value="Produtos" outcome="/produtos/CadastroProduto.xhtml"/>
+					<p:separator/>
+					<p:menuitem value="Mesa" outcome="/mesa2/StatusMesa.xhtml"/>
+				</p:submenu>
+				<p:submenu label="Pedidos">
+					<p:menuitem value="Novo Pedido" outcome="/pedidos/CadastroPedido.xhtml"/>
+					<p:menuitem value="Pesquisa" outcome="/pedidos/PesquisaPedido.xhtml"/>
+				</p:submenu>
+				<p:menuitem value="Sair" outcome="/Login.xhtml"/>
+			</p:menubar>
+		</h:form>
+	</div>
+	<div style="clear: both"></div>
+</div>
+
+	</header>
+
+	<div id="conteudo">
+		<ui:insert name="corpo" />
+	</div>
+
+	<p:separator style="margin-top: 40px" />
+	<footer>Sistema de Gerenciamento de Bar e Restaurante <a href="www.sgbr.com.br"
+		target="_blanck">http://wwww.sgbr.com.br</a> </footer>
+		
+	<script>
+	function configuraMoeda(){
+		$(".moeda").maskMoney({decimal : "," , thousands : "." , allowZero : true})
+	};
+	$(document).ready(function(){
+		configuraMoeda();
+	});
+	</script>
+</h:body>
+</html>
