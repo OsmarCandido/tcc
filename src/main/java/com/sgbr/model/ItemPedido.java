@@ -34,7 +34,6 @@ public class ItemPedido implements Serializable {
 		this.idItem = IdItem;
 	}
 	
-	@ManyToOne
 	@JoinColumn(name = "descricao", nullable = false)
 	public String getDescricao() {
 		return descricao;
@@ -104,7 +103,7 @@ public class ItemPedido implements Serializable {
 	
 	@Transient
 	public boolean isProdutoAssociado() {
-		return this.getDescricao() != null && this.getDescricao().getIdItem() != null;
+	return this.getDescricao() != null && this.getDescricao().getIdItem() != null;
 	}
 	
 	@Transient
