@@ -6,16 +6,28 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table
 public class Pedido implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
+	
 	private Long idPedido;
 	private Date dataCriacao;
 	private String observacao;
 	private BigDecimal valorTotal;
 	private Status status;
 	private Funcionario funcionario;
+	
 	private List<ItemPedido> itens = new ArrayList<>();
-		
+
+	@Id
 	public Long getIdPedido() {
 		return idPedido;
 	}
@@ -40,6 +52,9 @@ public class Pedido implements Serializable {
 	public void setValorTotal(BigDecimal valorTotal) {
 		this.valorTotal = valorTotal;
 	}
+	
+	/**ABERTO, FECHADO, CANCELADO*/
+	@Enumerated (EnumType.STRING)
 	public Status getStatus() {
 		return status;
 	}

@@ -1,5 +1,6 @@
 package com.sgbr.model;
 
+import com.sgbr.model.Pedido;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -23,7 +24,8 @@ public class ItemPedido implements Serializable {
 	private Integer quantidade = 1;
 	private BigDecimal valorUnitario = BigDecimal.ZERO;
 	private Pedido pedido;
-
+	
+	 
 	@Id
 	@GeneratedValue
 	public Long getIdItem() {
@@ -63,6 +65,8 @@ public class ItemPedido implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "pedido_id", nullable = false)
+	private Pedido idPedido;
+	
 	public Pedido getPedido() {
 		return pedido;
 	}
@@ -96,25 +100,25 @@ public class ItemPedido implements Serializable {
 		return true;
 	}
 
-	@Transient
-	public BigDecimal getValorTotal() {
-		return this.getValorUnitario().multiply(new BigDecimal(this.getQuantidade()));
-	}
-	
-	@Transient
-	public boolean isProdutoAssociado() {
-	return this.getDescricao() != null && this.getDescricao().getIdItem() != null;
-	}
-	
-	@Transient
-	public boolean isEstoqueSuficiente() {
-		return this.getPedido().isFechado() || this.getDescricao().getIdItem() == null 
-			|| this.getDescricao().getQuantidadeEstoque() >= this.getQuantidade(); 
-	}
-	
-	@Transient
-	public boolean isEstoqueInsuficiente() {
-		return !this.isEstoqueSuficiente();
-	}
+//	@Transient
+//	public BigDecimal getValorTotal() {
+//		return this.getValorUnitario().multiply(new BigDecimal(this.getQuantidade()));
+//	}
+//	
+//	@Transient
+//	public boolean isProdutoAssociado() {
+//	return this.getDescricao() != null && this.getDescricao().getIdItem() != null;
+//	}
+//	
+//	@Transient
+//	public boolean isEstoqueSuficiente() {
+//		return this.getPedido().isFechado() || this.getDescricao().getIdItem() == null 
+//			|| this.getDescricao().getQuantidadeEstoque() >= this.getQuantidade(); 
+//	}
+//	
+//	@Transient
+//	public boolean isEstoqueInsuficiente() {
+//		return !this.isEstoqueSuficiente();
+//	}
 
 }

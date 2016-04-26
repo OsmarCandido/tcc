@@ -12,21 +12,23 @@
     </properties>
  
      <dependencies>
-         <!-- Implementacao do Bean Validation -->
-         <dependency>
+         
+    
+         <!-- Núcleo do Hibernate -->
+                  <dependency>
              <groupId>org.hibernate</groupId>
              <artifactId>hibernate-validator</artifactId>
              <version>5.0.1.Final</version>
              <scope>compile</scope>
          </dependency>
  
-         <!-- Núcleo do Hibernate -->
+    <!-- Implementacao do Bean Validation -->     
          <dependency>
-             <groupId>org.hibernate</groupId>
-             <artifactId>hibernate-core</artifactId>
-             <version>4.2.3.Final</version>
-             <scope>compile</scope>
-         </dependency>
+ <groupId>org.hibernate</groupId>
+ <artifactId>hibernate-validator</artifactId>
+ <version>4.3.0.Final</version>
+  <scope>compile</scope>
+</dependency>
  
          <!-- Implementação de EntityManager da JPA -->
          <dependency>

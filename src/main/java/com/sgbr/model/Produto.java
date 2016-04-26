@@ -4,13 +4,12 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import javax.annotation.Nonnull;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -19,15 +18,15 @@ import javax.validation.constraints.NotNull;
 import com.sgbr.service.NegocioException;
 
 @Entity
-@Table(name="produto")
+@Table(name = "produto")
 public class Produto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	private Long idProduto;
 	private String descricao;
-	private BigDecimal valorUnitario;
 	private Date dataValidade;
+	private BigDecimal valorUnitario;
 	private Categoria categoria;
 	private Integer quantidadeEstoque;
 
@@ -36,13 +35,13 @@ public class Produto implements Serializable {
 	public Long getIdProduto() {
 		return idProduto;
 	}
-		
+
 	public void setIdProduto(Long idProduto) {
 		this.idProduto = idProduto;
 	}
 
-	@Nonnull(message = "é obrigatório")
-	@Column(name="valor_unitario", nullable = false, precision = 10, scale = 2)
+	@NotNull(message = "é obrigatório")
+	@Column(name = "valor_unitario", nullable = false, precision = 10, scale = 2)
 	public BigDecimal getValorUnitario() {
 		return valorUnitario;
 	}
@@ -51,8 +50,10 @@ public class Produto implements Serializable {
 		this.valorUnitario = valorUnitario;
 	}
 
-	@NotNull @Min(0) @Max(value = 9999, message = "tem um valor muito alto")
-	@Column(name="quantidade_estoque", nullable = false, length = 5)
+	@NotNull
+	@Min(0)
+	@Max(value = 9999, message = "tem um valor muito alto")
+	@Column(name = "quantidade_estoque", nullable = false, length = 5)
 	public Integer getQuantidadeEstoque() {
 		return quantidadeEstoque;
 	}
@@ -60,16 +61,32 @@ public class Produto implements Serializable {
 	public void setQuantidadeEstoque(Integer quantidadeEstoque) {
 		this.quantidadeEstoque = quantidadeEstoque;
 	}
-
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name = "categoria_id", nullable = false)
+    
+	/**enumerated  (BEBIDA, COMIDA)  */
+	@Enumerated(EnumType.STRING)
 	public Categoria getCategoria() {
 		return categoria;
 	}
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+	
+	
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public Date getDataValidade() {
+		return dataValidade;
+	}
+
+	public void setDataValidade(Date dataValidade) {
+		this.dataValidade = dataValidade;
 	}
 
 	@Override
@@ -99,12 +116,12 @@ public class Produto implements Serializable {
 
 	public void baixarEstoque(Integer quantidade) {
 		int novaQuantidade = this.getQuantidadeEstoque() - quantidade;
-		
+
 		if (novaQuantidade < 0) {
-			throw new NegocioException("Não há disponibilidade no estoque de "
-					+ quantidade + " itens do produto " + this.getIdProduto() + ".");
+			throw new NegocioException("Não há disponibilidade no estoque de " + quantidade + " itens do produto "
+					+ this.getIdProduto() + ".");
 		}
-		
+
 		this.setQuantidadeEstoque(novaQuantidade);
 	}
 

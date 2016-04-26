@@ -3,6 +3,8 @@ package com.sgbr.model;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
@@ -80,7 +82,9 @@ public class Funcionario implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-
+    
+	/**enumerated  (GARCOM, GERENTE, CAIXA, CHEF)  */
+	@Enumerated (EnumType.STRING)
 	public Perfil getPerfil() {
 		return perfil;
 	}
@@ -88,6 +92,7 @@ public class Funcionario implements Serializable {
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
+	
 @Id
 @GeneratedValue
 	public int getIdFuncionario() {
