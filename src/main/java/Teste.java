@@ -22,7 +22,7 @@ public static void main(String[] args) {
 		funcionario.setNome("Osmar Candido Ribeiro Junior");
 		funcionario.setTelefone("21 998287195");
 		funcionario.setCpf ("11596720751");
-		funcionario.setPerfil(Perfil.GERENTE);
+		funcionario.setPerfil(Perfil.GARCOM);
 		
 		
 		manager.persist(funcionario);

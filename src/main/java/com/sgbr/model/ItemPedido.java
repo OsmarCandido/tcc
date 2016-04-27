@@ -58,7 +58,7 @@ public class ItemPedido implements Serializable {
 		this.idItem = IdItem;
 	}
 	
-	public void set(String descricao) {
+	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
 
