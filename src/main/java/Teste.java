@@ -20,8 +20,10 @@ public static void main(String[] args) {
 		
 		Funcionario funcionario = new Funcionario();
 		funcionario.setNome("Osmar Candidom Ribeiro Junior");
-		funcionario.setTelefone("21 998287195");
-		funcionario.setCpf ("11596720751");
+		funcionario.setTelefone("(99)9999-9999");
+		funcionario.setCpf ("115.967.207-51");
+		funcionario.setLogin("osmar");
+		funcionario.setSenha("123456");
 		funcionario.setPerfil(Perfil.GARCOM);
 		
 		

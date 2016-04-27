@@ -24,10 +24,10 @@ public class Funcionario implements Serializable {
 	@Column(name="Nome",length=100,nullable=false)
 	private String nome;
 	
-	@Column(name="Telefone",length=9,nullable=false)
+	@Column(name="Telefone",length=13,nullable=false)
 	private String telefone;
 	
-	@Column(name="Cpf",length=11,nullable=false)
+	@Column(name="Cpf",length=14,nullable=false)
 	private String cpf;
 	
 	@Column(name="Login",length=10,nullable=false)
@@ -37,6 +37,7 @@ public class Funcionario implements Serializable {
 	private String senha;
 	
 	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
 	private Perfil perfil;
 	
 	
