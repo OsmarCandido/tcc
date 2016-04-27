@@ -9,7 +9,9 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,7 +26,6 @@ public class Pedido implements Serializable {
 	private BigDecimal valorTotal;
 	private Status status;
 	private Funcionario funcionario;
-	
 	private List<ItemPedido> itens = new ArrayList<>();
 
 	@Id
@@ -67,6 +68,7 @@ public class Pedido implements Serializable {
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
+	@OneToMany ( targetEntity = ItemPedido.class , mappedBy = "itens" , fetch = FetchType . EAGER ) 
 	public List<ItemPedido> getItens() {
 		return itens;
 	}
