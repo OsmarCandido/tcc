@@ -9,7 +9,6 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -28,30 +27,19 @@ public class Pedido implements Serializable {
 	private Funcionario funcionario;
 	private List<ItemPedido> itens = new ArrayList<>();
 
+	
+	/** Gets */ 
 	@Id
 	public Long getIdPedido() {
 		return idPedido;
 	}
-	public void setIdPedido(Long idPedido) {
-		this.idPedido = idPedido;
-	}
+	
 	public Date getDataCriacao() {
 		return dataCriacao;
 	}
-	public void setDataCriacao(Date dataCriacao) {
-		this.dataCriacao = dataCriacao;
-	}
-	public String getObservacao() {
-		return observacao;
-	}
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
-	}
+	
 	public BigDecimal getValorTotal() {
 		return valorTotal;
-	}
-	public void setValorTotal(BigDecimal valorTotal) {
-		this.valorTotal = valorTotal;
 	}
 	
 	/**ABERTO, FECHADO, CANCELADO*/
@@ -59,22 +47,54 @@ public class Pedido implements Serializable {
 	public Status getStatus() {
 		return status;
 	}
-	public void setStatus(Status status) {
-		this.status = status;
+	
+	public String getObservacao() {
+		return observacao;
 	}
+	
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
-	}
-	@OneToMany ( targetEntity = ItemPedido.class , mappedBy = "itens" , fetch = FetchType . EAGER ) 
+	
+	@OneToMany 
 	public List<ItemPedido> getItens() {
 		return itens;
 	}
+	
+	
+	/** Sets*/
+	
+	public void setIdPedido(Long idPedido) {
+		this.idPedido = idPedido;
+	}
+	
+	public void setDataCriacao(Date dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
+	
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+	
+	public void setValorTotal(BigDecimal valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+	
+	
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+	
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+	
 	public void setItens(List<ItemPedido> itens) {
 		this.itens = itens;
 	}
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

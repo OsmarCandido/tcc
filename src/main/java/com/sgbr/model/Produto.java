@@ -30,14 +30,12 @@ public class Produto implements Serializable {
 	private Categoria categoria;
 	private Integer quantidadeEstoque;
 
+	
+	/** Gets*/
 	@Id
 	@GeneratedValue
 	public Long getIdProduto() {
 		return idProduto;
-	}
-
-	public void setIdProduto(Long idProduto) {
-		this.idProduto = idProduto;
 	}
 
 	@NotNull(message = "é obrigatório")
@@ -45,11 +43,7 @@ public class Produto implements Serializable {
 	public BigDecimal getValorUnitario() {
 		return valorUnitario;
 	}
-
-	public void setValorUnitario(BigDecimal valorUnitario) {
-		this.valorUnitario = valorUnitario;
-	}
-
+	
 	@NotNull
 	@Min(0)
 	@Max(value = 9999, message = "tem um valor muito alto")
@@ -57,38 +51,67 @@ public class Produto implements Serializable {
 	public Integer getQuantidadeEstoque() {
 		return quantidadeEstoque;
 	}
-
-	public void setQuantidadeEstoque(Integer quantidadeEstoque) {
-		this.quantidadeEstoque = quantidadeEstoque;
-	}
-    
+	
 	/**enumerated  (BEBIDA, COMIDA)  */
 	@Enumerated(EnumType.STRING)
 	public Categoria getCategoria() {
 		return categoria;
 	}
+	
+	public String getDescricao() {
+		return descricao;
+	}
+	
+	public Date getDataValidade() {
+		return dataValidade;
+	}
+	
+	
+	
+	
+	
+	/** Sets*/
+	
+	
+	public void setIdProduto(Long idProduto) {
+		this.idProduto = idProduto;
+	}
+
+	
+
+	public void setValorUnitario(BigDecimal valorUnitario) {
+		this.valorUnitario = valorUnitario;
+	}
+
+	
+
+	public void setQuantidadeEstoque(Integer quantidadeEstoque) {
+		this.quantidadeEstoque = quantidadeEstoque;
+	}
+    
+	
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 	
 	
-	public String getDescricao() {
-		return descricao;
-	}
+
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
 
-	public Date getDataValidade() {
-		return dataValidade;
-	}
+	
 
 	public void setDataValidade(Date dataValidade) {
 		this.dataValidade = dataValidade;
 	}
 
+	
+	
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

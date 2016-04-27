@@ -1,6 +1,5 @@
 package com.sgbr.model;
 
-import com.sgbr.model.Pedido;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -11,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "item_pedido")
@@ -24,57 +22,59 @@ public class ItemPedido implements Serializable {
 	private Integer quantidade = 1;
 	private BigDecimal valorUnitario = BigDecimal.ZERO;
 	private Pedido pedido;
+	@ManyToOne
+	@JoinColumn(name = "pedido_id", nullable = false)
+	private Pedido idPedido;
 	
-	 
+	 /**Gets */
 	@Id
 	@GeneratedValue
 	public Long getIdItem() {
 		return idItem;
 	}
-
-	public void setIdItem(Long IdItem) {
-		this.idItem = IdItem;
-	}
-	
 	@JoinColumn(name = "descricao", nullable = false)
 	public String getDescricao() {
 		return descricao;
-	}
-
-	public void set(String descricao) {
-		this.descricao = descricao;
 	}
 	
 	@Column(nullable = false, length = 3)
 	public Integer getQuantidade() {
 		return quantidade;
 	}
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
-
+	
 	@Column(name = "valor_unitario", nullable = false, precision = 10, scale = 2)
 	public BigDecimal getValorUnitario() {
 		return valorUnitario;
 	}
-
-	public void setValorUnitario(BigDecimal valorUnitario) {
-		this.valorUnitario = valorUnitario;
-	}
-
-	@ManyToOne
-	@JoinColumn(name = "pedido_id", nullable = false)
-	private Pedido idPedido;
-	
 	public Pedido getPedido() {
 		return pedido;
 	}
+	
+	
+	
+	/**Sets */ 
 
+	public void setIdItem(Long IdItem) {
+		this.idItem = IdItem;
+	}
+	
+	public void set(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
+	
+	public void setValorUnitario(BigDecimal valorUnitario) {
+		this.valorUnitario = valorUnitario;
+	}
+	
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
 
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

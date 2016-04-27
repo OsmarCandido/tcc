@@ -7,8 +7,10 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table
 public class Funcionario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -21,6 +23,72 @@ public class Funcionario implements Serializable {
 	private String senha;
 	private Perfil perfil;
 
+
+
+	/**Gets*/ 
+	public String getNome() {
+		return nome;
+	}
+	public String getTelefone() {
+		return telefone;
+	}
+	
+	public String getCpf() {
+		return cpf;
+	}
+	
+	public String getLogin() {
+		return login;
+	}
+	
+	public String getSenha() {
+		return senha;
+	}
+	
+	/**enumerated  (GARCOM, GERENTE, CAIXA, CHEF)  */
+	@Enumerated (EnumType.STRING)
+	public Perfil getPerfil() {
+		return perfil;
+	}
+	
+	@Id
+	@GeneratedValue
+		public int getIdFuncionario() {
+			return idFuncionario;
+		}
+	
+	
+	
+
+	/**Sets*/
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+	
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+    
+	public void setPerfil(Perfil perfil) {
+		this.perfil = perfil;
+	}
+	
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -41,61 +109,6 @@ public class Funcionario implements Serializable {
 		if (idFuncionario != other.idFuncionario)
 			return false;
 		return true;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-    
-	/**enumerated  (GARCOM, GERENTE, CAIXA, CHEF)  */
-	@Enumerated (EnumType.STRING)
-	public Perfil getPerfil() {
-		return perfil;
-	}
-
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil;
-	}
+	   }
 	
-@Id
-@GeneratedValue
-	public int getIdFuncionario() {
-		return idFuncionario;
-	}
 }
