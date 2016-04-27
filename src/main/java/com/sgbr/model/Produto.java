@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 import com.sgbr.service.NegocioException;
 
 @Entity
-@Table(name = "produto")
+@Table (name = "produto")
 public class Produto implements Serializable {
 
 	private static final long serialVersionUID = 1L;

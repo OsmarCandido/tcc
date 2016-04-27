@@ -19,7 +19,7 @@ public static void main(String[] args) {
 		trx.begin();
 		
 		Funcionario funcionario = new Funcionario();
-		funcionario.setNome("Osmar Candido Ribeiro Junior");
+		funcionario.setNome("Osmar Candidom Ribeiro Junior");
 		funcionario.setTelefone("21 998287195");
 		funcionario.setCpf ("11596720751");
 		funcionario.setPerfil(Perfil.GARCOM);

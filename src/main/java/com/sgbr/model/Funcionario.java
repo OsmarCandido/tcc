@@ -2,7 +2,9 @@ package com.sgbr.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,24 +21,31 @@ public class Funcionario implements Serializable {
 	@GeneratedValue
 	private int idFuncionario;
 	
+	@Column(name="Nome",length=100,nullable=false)
 	private String nome;
 	
+	@Column(name="Telefone",length=9,nullable=false)
 	private String telefone;
 	
+	@Column(name="Cpf",length=11,nullable=false)
 	private String cpf;
 	
+	@Column(name="Login",length=10,nullable=false)
 	private String login;
 	
+	@Column(name="senha",length=10,nullable=false)
 	private String senha;
-	@Enumerated
+	
+	@Enumerated(EnumType.STRING)
 	private Perfil perfil;
-
+	
 	
 //Get	
 	public int getIdFuncionario() {
 		return idFuncionario;
-	}
 
+	}
+    
 	public String getNome() {
 		return nome;
 	}
