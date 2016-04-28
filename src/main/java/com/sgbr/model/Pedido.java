@@ -12,8 +12,13 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table
@@ -26,20 +31,24 @@ public class Pedido implements Serializable {
 	@Column(name="idPedido", nullable=false)
 	private Long idPedido;
 	
+	@Temporal ( TemporalType . DATE )
 	@Column(name="dataCriacao",nullable=false)
 	private Date dataCriacao;
 	
 	@Column(name="Observacao",length=100,nullable=false)
 	private String observacao;
 	
-	@Column(name="ValorTotal",length=100,nullable=false)
+	@Column(name="ValorTotal",nullable=false)
 	private BigDecimal valorTotal;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name="Pedido", nullable=false)
 	private Status status;
 	
+	@ManyToOne
+	@JoinColumn (name="idFuncionario")
 	private Funcionario funcionario;
+	
 	
 	private List<ItemPedido> itens = new ArrayList<>();
 
