@@ -6,9 +6,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -19,17 +21,31 @@ public class Pedido implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue
+	@Column(name="idPedido", nullable=false)
 	private Long idPedido;
+	
+	@Column(name="dataCriacao",nullable=false)
 	private Date dataCriacao;
+	
+	@Column(name="Observacao",length=100,nullable=false)
 	private String observacao;
+	
+	@Column(name="ValorTotal",length=100,nullable=false)
 	private BigDecimal valorTotal;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name="Pedido", nullable=false)
 	private Status status;
+	
 	private Funcionario funcionario;
+	
 	private List<ItemPedido> itens = new ArrayList<>();
 
 	
 	/** Gets */ 
-	@Id
+	
 	public Long getIdPedido() {
 		return idPedido;
 	}

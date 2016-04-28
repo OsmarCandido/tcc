@@ -16,19 +16,31 @@ import javax.persistence.Table;
 public class ItemPedido implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
+	@Id
+	@GeneratedValue
+	@Column(name="IdItem", nullable=false)
 	private Long idItem;
+	
+	@Column(name="Descricao",length=100,nullable=false)
 	private String descricao;
+	
+	@Column(name="Quaantidade",length=100,nullable=false)
 	private Integer quantidade = 1;
+	
+	@Column(name="ValorUnitario",length=100,nullable=false)
 	private BigDecimal valorUnitario = BigDecimal.ZERO;
+	
+	@Column(name="Pedido",length=100,nullable=false)
 	private Pedido pedido;
+	
 	@ManyToOne
 	@JoinColumn(name = "pedido_id", nullable = false)
 	private Pedido idPedido;
 	
 	 /**Gets */
-	@Id
-	@GeneratedValue
+	
+	
 	public Long getIdItem() {
 		return idItem;
 	}
