@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -46,7 +47,7 @@ public class Pedido implements Serializable {
 	@JoinColumn (name="idFuncionario")
 	private Funcionario funcionario;
 	
-	@Transient
+	/**@OneToMany(mappedBy = "idPedido", cascade = CascadeType.ALL)*/
 	private List<ItemPedido> itens = new ArrayList<>();
 
 	
