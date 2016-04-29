@@ -13,15 +13,10 @@ public class EntityManagerProducer {
 	
 	private EntityManagerFactory factory;
 	
-
-	
 	public EntityManagerProducer() {
-	
 		factory = Persistence.createEntityManagerFactory("sgbr");
 	}
 	@Produces @RequestScoped
-
-	
 	public EntityManager createEntityManager(){
 		return factory.createEntityManager();
 	}
