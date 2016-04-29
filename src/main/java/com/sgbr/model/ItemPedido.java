@@ -28,13 +28,10 @@ public class ItemPedido implements Serializable {
 	@Column(name = "valor_unitario", nullable = false, precision = 10, scale = 2)
 	private BigDecimal valorUnitario = BigDecimal.ZERO;
 	
-	@Column(name="Pedido",length=100,nullable=false)
-	private Pedido pedido;
-	
 	@ManyToOne
 	@JoinColumn(name = "pedido_id", nullable = false)
-	private Pedido idPedido;
-	
+	private Pedido pedido;
+		
 	 /**Gets */
 	
 	

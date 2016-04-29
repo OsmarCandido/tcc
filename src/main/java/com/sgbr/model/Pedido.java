@@ -46,7 +46,7 @@ public class Pedido implements Serializable {
 	@JoinColumn (name="idFuncionario")
 	private Funcionario funcionario;
 	
-	@OneToMany(mappedBy = "idPedido", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
 	private List<ItemPedido> itens = new ArrayList<>();
 
 	
