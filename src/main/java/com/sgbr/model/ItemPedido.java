@@ -22,13 +22,10 @@ public class ItemPedido implements Serializable {
 	@Column(name="IdItem", nullable=false)
 	private Long idItem;
 	
-	@Column(name="Descricao",length=100,nullable=false)
-	private String descricao;
-	
-	@Column(name="Quaantidade",length=100,nullable=false)
+	@Column(nullable = false, length = 3)
 	private Integer quantidade = 1;
 	
-	@Column(name="ValorUnitario",length=100,nullable=false)
+	@Column(name = "valor_unitario", nullable = false, precision = 10, scale = 2)
 	private BigDecimal valorUnitario = BigDecimal.ZERO;
 	
 	@Column(name="Pedido",length=100,nullable=false)
@@ -44,17 +41,13 @@ public class ItemPedido implements Serializable {
 	public Long getIdItem() {
 		return idItem;
 	}
-	@JoinColumn(name = "descricao", nullable = false)
-	public String getDescricao() {
-		return descricao;
-	}
+		
 	
-	@Column(nullable = false, length = 3)
 	public Integer getQuantidade() {
 		return quantidade;
 	}
 	
-	@Column(name = "valor_unitario", nullable = false, precision = 10, scale = 2)
+	
 	public BigDecimal getValorUnitario() {
 		return valorUnitario;
 	}
@@ -70,10 +63,6 @@ public class ItemPedido implements Serializable {
 		this.idItem = IdItem;
 	}
 	
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}

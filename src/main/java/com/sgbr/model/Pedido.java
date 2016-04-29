@@ -13,12 +13,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 @Table
@@ -29,9 +27,8 @@ public class Pedido implements Serializable {
 	@Id
 	@GeneratedValue
 	@Column(name="idPedido", nullable=false)
-	private Long idPedido;
+	private Long idPeodido;
 	
-	@Temporal ( TemporalType . DATE )
 	@Column(name="dataCriacao",nullable=false)
 	private Date dataCriacao;
 	
@@ -49,7 +46,7 @@ public class Pedido implements Serializable {
 	@JoinColumn (name="idFuncionario")
 	private Funcionario funcionario;
 	
-	
+	@Transient
 	private List<ItemPedido> itens = new ArrayList<>();
 
 	
