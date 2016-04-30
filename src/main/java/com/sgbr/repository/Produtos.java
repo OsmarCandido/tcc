@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
@@ -18,7 +19,6 @@ import com.sgbr.model.Produto;
 import com.sgbr.repository.filter.ProdutoFilter;
 import com.sgbr.service.NegocioException;
 import com.sgbr.util.jpa.Transactional;
-import com.sun.xml.internal.ws.util.StringUtils;
 
 public class Produtos implements Serializable {
 

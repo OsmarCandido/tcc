@@ -11,7 +11,7 @@ public class Seguranca {
 	public String getNomeFuncionario() {
 		String nome = null;
 		
-		FuncionarioSistema funcionarioLogado = getUsuarioLogado();
+		FuncionarioSistema funcionarioLogado = getFuncionarioLogado();
 		
 		if (funcionarioLogado != null) {
 			nome = funcionarioLogado.getFuncionario().getNome();

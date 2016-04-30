@@ -1,10 +1,9 @@
 package com.sgbr.security;
 
 import java.util.Collection;
-
 import com.sgbr.model.Funcionario;
 
-public class FuncionarioSistema extends Funcionario {
+public class FuncionarioSistema extends Func {
 
 	private static final long serialVersionUID = 1L;
 
