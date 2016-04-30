@@ -48,8 +48,7 @@ public class Pedido implements Serializable {
 	
 	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
 	private List<ItemPedido> itens = new ArrayList<>();
-
-	
+		
 	/** Gets */ 
 	
 	public Long getIdPedido() {
