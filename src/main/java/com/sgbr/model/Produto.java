@@ -26,10 +26,15 @@ public class Produto implements Serializable {
 	private Long idProduto;
 	private String descricao;
 	private Date dataValidade;
+	private BigDecimal preco;
 	private BigDecimal valorUnitario;
+	private BigDecimal valorCusto;
+	private BigDecimal valorVenda;
 	private Categoria categoria;
 	private Integer quantidadeEstoque;
-
+    private Integer quantidadeMaxima;
+    private Integer quantidadeMinima;
+    
 	
 	/** Gets*/
 	@Id
@@ -58,6 +63,10 @@ public class Produto implements Serializable {
 		return categoria;
 	}
 	
+	public BigDecimal getPreco() {
+		return preco;
+	}
+
 	public String getDescricao() {
 		return descricao;
 	}
@@ -66,12 +75,27 @@ public class Produto implements Serializable {
 		return dataValidade;
 	}
 	
+	public BigDecimal getValorVenda() {
+		return valorVenda;
+	}
+	public BigDecimal getValorCusto() {
+		return valorCusto;
+	}
+
+	public Integer getQuantidadeMaxima() {
+		return quantidadeMaxima;
+	}
 	
-	
-	
-	
+	public Integer getQuantidadeMinima() {
+		return quantidadeMinima;
+	}
+
+		
 	/** Sets*/
 	
+	public void setPreco(BigDecimal preco) {
+		this.preco = preco;
+	}
 	
 	public void setIdProduto(Long idProduto) {
 		this.idProduto = idProduto;
@@ -108,7 +132,23 @@ public class Produto implements Serializable {
 		this.dataValidade = dataValidade;
 	}
 
+	public void setValorCusto(BigDecimal valorCusto) {
+		this.valorCusto = valorCusto;
+	}
+
+	public void setValorVenda(BigDecimal valorVenda) {
+		this.valorVenda = valorVenda;
+	}
 	
+
+
+	public void setQuantidadeMaxima(Integer quantidadeMaxima) {
+		this.quantidadeMaxima = quantidadeMaxima;
+	}
+
+	public void setQuantidadeMinima(Integer quantidadeMinima) {
+		this.quantidadeMinima = quantidadeMinima;
+	}
 	
 	
 	

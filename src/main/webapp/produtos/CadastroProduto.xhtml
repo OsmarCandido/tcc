@@ -26,14 +26,16 @@
 			<p:inputText id="idProduto" size="8" maxlenght="8" />
 
 			<p:outputLabel value="Descricao" for="descricao" />
-			<p:inputText id="descricao" size="60" maxlenght="80" />
+			<p:inputText id="descricao" size="60" maxlenght="80"
+			value="#{cadastroProdutoBean.produto.descricao}" />
 
 			<p:outputLabel value="Preço" for="preco" />
-			<p:inputText id="preco" size="10" maxlenght="10" styleClass="moeda" />
+			<p:inputText id="preco" size="10" maxlenght="10" styleClass="moeda" 
+			value="#{cadastroProdutoBean.produto.preco}"/>
 
 			<p:outputLabel for="dataValidade" value="Data De Validade: " />
 			<p:inputMask id="dataValidade" value="#{maskView.date}"
-				mask="99/99/9999" />
+				mask="99/99/9999"/>
 
 			<p:outputLabel value="Categoria" for="categoria" />
 			<p:selectOneMenu id="categoria">
@@ -43,21 +45,26 @@
 			</p:selectOneMenu>
 
 			<p:outputLabel value="Estoque" for="estoque" />
-			<p:inputText id="estoque" size="10" maxlenght="4" />
+			<p:inputText id="estoque" size="10" maxlenght="4" 
+			value="#{cadastroProdutoBean.produto.quantidadeEstoque}"/>
 
 			<p:outputLabel value="Quantidade Maxima" for="quantidadeMaxima" />
-			<p:inputText id="quantidadeMaxima" size="10" maxlenght="10" />
+			<p:inputText id="quantidadeMaxima" size="10" maxlenght="10" 
+			value="#{cadastroProdutoBean.produto.quantidadeMaxima}"/>
 
 			<p:outputLabel value="Quantidade Minima" for="quantidadeMinima" />
-			<p:inputText id="quantidadeMinima" size="10" maxlenght="10" />
+			<p:inputText id="quantidadeMinima" size="10" maxlenght="10" 
+			value="#{cadastroProdutoBean.produto.quantidadeMinima}"/>
 
 			<p:outputLabel value="Valor Custo" for="valorCusto" />
 			<p:inputText id="valorCusto" size="10" maxlenght="10"
-				styleClass="moeda" />
+				styleClass="moeda" 
+				value="#{cadastroProdutoBean.produto.valorCusto}"/>
 
 			<p:outputLabel value="Valor Venda" for="valorVenda" />
 			<p:inputText id="valorVenda" size="10" maxlenght="10"
-				styleClass="moeda" />
+				styleClass="moeda" 
+				value="#{cadastroProdutoBean.produto.valorVenda}"/>
 		</p:panelGrid>
 		</h:form>
 	</ui:define>
