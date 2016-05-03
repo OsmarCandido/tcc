@@ -113,15 +113,12 @@ public class Produto implements Serializable {
 		this.quantidadeEstoque = quantidadeEstoque;
 	}
     
-	
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 	
 	
-
-
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
