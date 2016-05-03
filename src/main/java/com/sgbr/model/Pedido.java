@@ -52,9 +52,17 @@ public class Pedido implements Serializable {
 	
 	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
 	private List<ItemPedido> itens = new ArrayList<>();
+	
+	private Pagamento pagamento;
 		
 	/** Gets */ 
 	
+
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
+
+
 	public Long getIdPedido() {
 		return idPedido;
 	}
@@ -118,6 +126,9 @@ public class Pedido implements Serializable {
 	public void setItens(List<ItemPedido> itens) {
 		this.itens = itens;
 	}
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
+	}
 	
 	
 	
@@ -144,4 +155,7 @@ public class Pedido implements Serializable {
 			return false;
 		return true;
 	}
+
+
+	
 }

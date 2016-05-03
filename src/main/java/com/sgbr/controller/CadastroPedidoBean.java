@@ -2,9 +2,11 @@ package com.sgbr.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
+import com.sgbr.model.Pagamento;
 import com.sgbr.service.NegocioException;
 
 @Named
@@ -18,6 +20,10 @@ public class CadastroPedidoBean {
 
 		itens = new ArrayList<>();
 		itens.add(1);
+	}
+		
+	public Pagamento[] getPagamento(){
+		return Pagamento.values();
 	}
 
 	public void salvar() {
