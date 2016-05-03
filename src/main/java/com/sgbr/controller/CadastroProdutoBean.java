@@ -15,18 +15,21 @@ public class CadastroProdutoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-    private Produto produto;
-		
+	private Produto produto;
+
 	public Produto getProduto() {
 		return produto;
 	}
-	
+
 	public CadastroProdutoBean() {
 		produto = new Produto();
 	}
 
 	public void salvar() {
 		
+		
+		
+		
 	}
-	
+
 }

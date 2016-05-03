@@ -19,12 +19,13 @@
 		<h:form id="frm">
 			<h:panelGrid columns="2" styleClass="grid-login">
 				<h:outputLabel value="Login" />
-				<p:inputText size="30" />
+				<p:inputText size="30" 
+				value="#{loginBean.nomeFuncionario}" />
 
 
 				<h:outputText value="Digite a senha:" />
-				<p:password size="30" id="inlineFeedback"
-					value="#{passwordView.password4}" feedback="true" inline="true" />
+				<p:password size="20"  
+				value="#{loginBean.senha}"/>
 
 				<h:panelGroup />
 				<p:commandButton value="Login" />
