@@ -11,6 +11,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -66,6 +68,7 @@ public class Produto implements Serializable {
 		return categoria;
 	}
 	@NotNull
+	@Column(precision = 10, scale = 2, nullable = false)
 	public BigDecimal getPreco() {
 		return preco;
 	}
@@ -75,15 +78,17 @@ public class Produto implements Serializable {
 	public String getDescricao() {
 		return descricao;
 	}
-	
+	@Temporal(TemporalType.DATE)
 	public Date getDataValidade() {
 		return dataValidade;
 	}
 	@NotNull
+	@Column(precision = 10, scale = 2, nullable = false)
 	public BigDecimal getValorVenda() {
 		return valorVenda;
 	}
 	@NotNull
+	@Column(precision = 10, scale = 2, nullable = false)
 	public BigDecimal getValorCusto() {
 		return valorCusto;
 	}
