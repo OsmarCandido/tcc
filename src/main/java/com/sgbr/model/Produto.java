@@ -14,6 +14,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 import com.sgbr.service.NegocioException;
 
@@ -62,11 +65,13 @@ public class Produto implements Serializable {
 	public Categoria getCategoria() {
 		return categoria;
 	}
-	
+	@NotNull
 	public BigDecimal getPreco() {
 		return preco;
 	}
 
+	@NotBlank
+	@Size(max=60)
 	public String getDescricao() {
 		return descricao;
 	}
@@ -74,22 +79,22 @@ public class Produto implements Serializable {
 	public Date getDataValidade() {
 		return dataValidade;
 	}
-	
+	@NotNull
 	public BigDecimal getValorVenda() {
 		return valorVenda;
 	}
+	@NotNull
 	public BigDecimal getValorCusto() {
 		return valorCusto;
 	}
-
+	@NotNull
 	public Integer getQuantidadeMaxima() {
 		return quantidadeMaxima;
 	}
-	
+	@NotNull
 	public Integer getQuantidadeMinima() {
 		return quantidadeMinima;
 	}
-
 		
 	/** Sets*/
 	
