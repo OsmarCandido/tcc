@@ -6,6 +6,7 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.sgbr.model.Categoria;
 import com.sgbr.model.Produto;
 
 @Named
@@ -16,10 +17,22 @@ public class CadastroProdutoBean implements Serializable {
 
 	@Inject
 	private Produto produto;
+	
+	// Gets
 
 	public Produto getProduto() {
 		return produto;
 	}
+	
+	public Categoria[] getCategorias(){
+		return Categoria.values();
+	}
+
+	// Sets
+
+	
+	
+	// Metodos
 
 	public CadastroProdutoBean() {
 		produto = new Produto();
@@ -27,9 +40,5 @@ public class CadastroProdutoBean implements Serializable {
 
 	public void salvar() {
 		
-		
-		
-		
 	}
-
 }
