@@ -20,7 +20,7 @@ public class CadastroProdutoService implements Serializable {
 		Produto produtoExistente = produtos.porIdProduto(produto.getIdProduto());
 		
 		if (produtoExistente != null && !produtoExistente.equals(produto)) {
-			throw new NegocioException("Já existe um produto com o ID informado.");
+			throw new NegocioException("Jï¿½ existe um produto com o ID informado.");
 		}
 		
 		return produtos.guardar(produto);

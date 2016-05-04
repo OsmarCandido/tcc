@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
 	xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -38,14 +37,14 @@
 
 				<p:outputLabel for="dataValidade" value="Data De Validade: " />
 				<p:inputMask id="dataValidade" value="#{maskView.date}"
-					mask="99/99/9999" />
+					mask="99/99/9999"/>
 
 				<p:outputLabel value="Categoria" for="categoria" />
 				<p:selectOneMenu id="categoria">
 					<f:selectItem itemLabel="Selecione a categoria" />
 					<f:selectItem itemLabel="Comida" itemValue="Comida" />
-					<f:selectItem itemLabel="Bebida" itemValue="Bebida"/>
-                </p:selectOneMenu>
+					<f:selectItem itemLabel="Bebida" itemValue="Bebida" />
+				</p:selectOneMenu>
 
 				<p:outputLabel value="Estoque" for="estoque" />
 				<p:inputText id="estoque" size="10" maxlenght="4"
