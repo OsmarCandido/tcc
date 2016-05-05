@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity
 @Table
@@ -155,7 +156,35 @@ public class Pedido implements Serializable {
 			return false;
 		return true;
 	}
-
-
 	
+	public void adicionarItemVazio() {
+
+		if (this.isAberto()) {
+
+			Produto produto = new Produto();
+
+			ItemPedido item = new ItemPedido();
+			item.setQuantidade(1);
+			item.setProduto(produto);
+			item.setPedido(this);
+
+			this.getItemPedido().add(0, item);
+		}
+	}
+
+//Metodos
+	
+	@Transient
+	public boolean isAberto() {
+		return Status.ABERTO.equals(this.getStatus());
+	}
+	
+	@Transient
+	private boolean isFechado() { 
+		return Status.FECHADO.equals(this.getStatus());
+	}
+	@Transient
+	private boolean isCancelado() { 
+		return Status.CANCELADO.equals(this.getStatus());
+	}	
 }

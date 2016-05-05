@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "item_pedido")
@@ -31,8 +32,13 @@ public class ItemPedido implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "pedido_id", nullable = false)
 	private Pedido pedido;
-		
-	 /**Gets */
+	
+	@ManyToOne
+	@JoinColumn(name = "produto_id", nullable = false)	
+	private Produto produto;
+	
+
+	/**Gets */
 	
 	
 	public Long getIdItem() {
@@ -52,7 +58,10 @@ public class ItemPedido implements Serializable {
 		return pedido;
 	}
 	
-	
+	public Produto getProduto() {
+		return produto;
+	}
+
 	
 	/**Sets */ 
 
@@ -70,6 +79,9 @@ public class ItemPedido implements Serializable {
 	
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
+	}
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 
 	
@@ -98,25 +110,25 @@ public class ItemPedido implements Serializable {
 		return true;
 	}
 
-//	@Transient
-//	public BigDecimal getValorTotal() {
-//		return this.getValorUnitario().multiply(new BigDecimal(this.getQuantidade()));
-//	}
-//	
-//	@Transient
-//	public boolean isProdutoAssociado() {
-//	return this.getDescricao() != null && this.getDescricao().getIdItem() != null;
-//	}
-//	
-//	@Transient
-//	public boolean isEstoqueSuficiente() {
-//		return this.getPedido().isFechado() || this.getDescricao().getIdItem() == null 
-//			|| this.getDescricao().getQuantidadeEstoque() >= this.getQuantidade(); 
-//	}
-//	
-//	@Transient
-//	public boolean isEstoqueInsuficiente() {
-//		return !this.isEstoqueSuficiente();
-//	}
-
+	@Transient
+	public BigDecimal getValorTotal() {
+		return this.getValorUnitario().multiply(new BigDecimal(this.getQuantidade()));
+	}
+	
+	@Transient
+	public boolean isProdutoAssociado() {
+		return this.getProduto() != null && this.getProduto().getIdProduto() != null;
+	}
+	
+	
+	@Transient
+	public boolean isEstoqueSuficiente(){//Estoque suficiente
+		return this.pedido.isAberto() || this.getProduto().getIdProduto() == null
+				|| this.getProduto().getQuantidadeEstoque() >= this.getQuantidade(); 
+	}
+	
+	@Transient
+	public boolean isEstoqueInsuficiente(){//verifico a negativa do estoque suficiete, se não for suficiente então...
+		return !isEstoqueSuficiente();
+	}
 }

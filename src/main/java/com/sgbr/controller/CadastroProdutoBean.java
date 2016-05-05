@@ -52,10 +52,6 @@ public class CadastroProdutoBean implements Serializable {
 	
 	
 	// Gets
-
-	public Produto getProduto() {
-		return produto;
-	}
 	
 	public Categoria[] getCategorias(){
 		return Categoria.values();
