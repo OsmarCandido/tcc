@@ -3,27 +3,47 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui">
 
-	<ui:define name="titulo">Cadastro de Produto</ui:define>
+<ui:define name="titulo">#{cadastroProdutoBean.editando ? 'Edição de Produto' : 'Novo Produto'}</ui:define>
 	<ui:define name="corpo">
+	
+		<!--  <f:metadata>
+			<o:viewParam name="produto" value="#{cadastroProdutoBean.produto}" />
+			<f:event listener="#{cadastroProdutoBean.inicializar}"
+				type="preRenderView" />
+		</f:metadata> -->	
+	
 		<h:form>
-			<h1>Cadastro de Produto</h1>
+			<h1>#{cadastroProdutoBean.editando ? 'Edição de Produto' : 'Novo Produto'}</h1>
 
+			<p:messages autoUpdate="true" closable="true" />
+     
+               <!--  --> 
 			<p:toolbar style="margin-top 20px">
 				<p:toolbarGroup>
 					<p:button value="Novo" outcome="/produtos/CadastroProduto" />
-					<p:commandButton value="Salvar" id="botaoSalvar" />
+					<p:commandButton value="Salvar" id="botaoSalvar"
+					action="{cadastroProdutoBean.cadastrar}" ajax="false" />				
 				</p:toolbarGroup>
-				<p:toolbarGroup align="right">
-					<p:button value="Pesquisa" outcome="/produtos/PesquisaProduto" />
+				
+				<!-- Pesquisar --> 
+			<p:toolbarGroup align="right">
+					<p:button value="Pesquisa" outcome="/produtos/PesquisaProduto" 
+					action="{cadastroProdutoBean.pesquisar}"/>
 				</p:toolbarGroup>
 			</p:toolbar>
-
+			
 			<p:panelGrid columns="2" id="painel"
+				style="width: 100%;margin-top:20px;" columnClasses="rotulo, campo">
+
+				<p:panelGrid columns="2" id="painel"
 				style="width: 100%; margin-top:20px" columnClasses="rotulo, campo">
+				
 				<p:outputLabel value="Id Produto" for="idProduto" />
-				<p:inputText id="idProduto" size="8" maxlenght="8" />
+				<p:inputText id="idProduto" size="8" maxlenght="8" 
+				value="#{cadastroProdutoBean.produto.idProduto}"/>
 
 				<p:outputLabel value="Descricao" for="descricao" />
 				<p:inputText id="descricao" size="60" maxlenght="80"
