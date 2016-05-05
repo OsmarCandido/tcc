@@ -40,7 +40,24 @@ public class Produto implements Serializable {
     private Integer quantidadeMaxima;
     private Integer quantidadeMinima;
     
-	
+    
+    
+    //=======================
+    //Construtores
+	//=======================
+    public Produto(){
+    }
+    
+    public Produto(Long idProduto, String descricao, Date dataValidade, BigDecimal preco) {
+		super();
+		this.idProduto = idProduto;
+		this.setDescricao(descricao);
+		//this.setdataValidade;
+		this.setPreco(preco);
+	}
+    
+    
+    
 	/** Gets*/
 	@Id
 	@GeneratedValue

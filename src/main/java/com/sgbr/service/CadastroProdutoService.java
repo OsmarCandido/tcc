@@ -14,16 +14,15 @@ public class CadastroProdutoService implements Serializable {
 
 	@Inject
 	private Produtos produtos;
-	
 	@Transactional
 	public Produto salvar(Produto produto) {
 		Produto produtoExistente = produtos.porIdProduto(produto.getIdProduto());
 		
 		if (produtoExistente != null && !produtoExistente.equals(produto)) {
-			throw new NegocioException("J� existe um produto com o ID informado.");
+			throw new NegocioException("Existe um produto com esse Id.");
 		}
 		
 		return produtos.guardar(produto);
 	}
-	
 }
+

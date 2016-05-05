@@ -36,14 +36,15 @@
 				</p:inputText>
 
 				<p:outputLabel for="dataValidade" value="Data De Validade: " />
-				<p:inputMask id="dataValidade" value="#{maskView.date}"
-					mask="99/99/9999"/>
+				<p:inputMask id="dataValidade"/>
 
 				<p:outputLabel value="Categoria" for="categoria" />
 				<p:selectOneMenu id="categoria">
 					<f:selectItem itemLabel="Selecione a categoria" />
-					<f:selectItem itemLabel="Comida" itemValue="Comida" />
-					<f:selectItem itemLabel="Bebida" itemValue="Bebida" />
+					<f:selectItem itemLabel="Comida" itemValue="Comida" 
+					value="#{cadastroProdutoBean.produto.categoria}"/>
+					<f:selectItem itemLabel="Bebida" itemValue="Bebida" 
+					value="#{cadastroProdutoBean.produto.categoria}" />
 				</p:selectOneMenu>
 
 				<p:outputLabel value="Estoque" for="estoque" />
