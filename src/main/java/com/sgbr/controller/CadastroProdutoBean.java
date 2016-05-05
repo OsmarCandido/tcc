@@ -51,36 +51,6 @@ public class CadastroProdutoBean implements Serializable {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	// Gets
 
 	public Produto getProduto() {
@@ -93,15 +63,4 @@ public class CadastroProdutoBean implements Serializable {
 
 	// Sets
 
-	
-	
-	// Metodos
-
-	public CadastroProdutoBean() {
-		produto = new Produto();
-	}
-
-	public void salvar() {
-		
-	}
 }

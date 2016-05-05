@@ -19,8 +19,10 @@ public class Funcionario implements Serializable {
 	
 	@Id
 	@GeneratedValue
-	private int idFuncionario;
+	private Long idFuncionario;
 	
+	
+
 	@Column(name="Nome",length=100,nullable=false)
 	private String nome;
 	
@@ -42,7 +44,7 @@ public class Funcionario implements Serializable {
 	
 	
 //Get	
-	public int getIdFuncionario() {
+	public Long getIdFuncionario() {
 		return idFuncionario;
 
 	}
@@ -72,12 +74,17 @@ public class Funcionario implements Serializable {
 	}
 	
 //Set
-	public void setIdFuncionario(int idFuncionario) {
-		this.idFuncionario = idFuncionario;
-	}
-
+		
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public void setIdFuncionario(Long idFuncionario) {
+		this.idFuncionario = idFuncionario;
 	}
 
 	public void setTelefone(String telefone) {
@@ -104,7 +111,7 @@ public class Funcionario implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + idFuncionario;
+		result = prime * result + ((idFuncionario == null) ? 0 : idFuncionario.hashCode());
 		return result;
 	}
 
@@ -117,9 +124,12 @@ public class Funcionario implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Funcionario other = (Funcionario) obj;
-		if (idFuncionario != other.idFuncionario)
+		if (idFuncionario == null) {
+			if (other.idFuncionario != null)
+				return false;
+		} else if (!idFuncionario.equals(other.idFuncionario))
 			return false;
 		return true;
-	   }
+	}
 	
 }
