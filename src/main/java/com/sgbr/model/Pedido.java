@@ -131,7 +131,15 @@ public class Pedido implements Serializable {
 		this.pagamento = pagamento;
 	}
 	
+	@Transient
+	public boolean isNovo() {
+		return getIdPedido() == null;
+	}
 	
+	@Transient
+	public boolean isExistente() {
+		return !isNovo();
+	}
 	
 	@Override
 	public int hashCode() {

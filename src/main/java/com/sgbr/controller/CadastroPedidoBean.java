@@ -6,7 +6,10 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
+import com.sgbr.service.CadastroPedidoService;
+import com.sgbr.util.jsf.FacesUtil;
 import com.sgbr.model.Pagamento;
+import com.sgbr.model.Pedido;
 import com.sgbr.service.NegocioException;
 
 @Named
@@ -15,6 +18,8 @@ import com.sgbr.service.NegocioException;
 public class CadastroPedidoBean {
 
 	private List<Integer> itens;
+	private Object pedido;
+	private Object cadastroPedidoService;
 
 	public CadastroPedidoBean() {
 
@@ -27,7 +32,9 @@ public class CadastroPedidoBean {
 	}
 
 	public void salvar() {
-		throw new NegocioException("Pedido não pode ser salvo, pois ainda não foi implementado.");
+		this.pedido = ((CadastroPedidoService) this.cadastroPedidoService).salvar((Pedido) this.pedido);
+		
+		FacesUtil.addInfoMessage("Pedido salvo com sucesso!");
 	}
 	
 	public List<Integer> getItens() {
