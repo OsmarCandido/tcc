@@ -42,9 +42,9 @@ public class Produtos implements Serializable {
 		}
 	}
 
-	public Produto porSku(String idProduto) {
+	public Produto porIdProduto(String idProduto) {
 		try {
-			return manager.createQuery("from Produto where upper(idPrduto) = :idProduto", Produto.class)
+			return manager.createQuery("from Produto where upper(idProduto) = :idProduto", Produto.class)
 				.setParameter("idProduto", idProduto.toUpperCase())
 				.getSingleResult();
 		} catch (NoResultException e) {

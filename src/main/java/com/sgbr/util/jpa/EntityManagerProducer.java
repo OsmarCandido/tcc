@@ -18,11 +18,10 @@ public class EntityManagerProducer {
 	}
 	@Produces @RequestScoped
 	public EntityManager createEntityManager(){
-		return factory.createEntityManager();
+		return factory.createEntityManager(); 
 	}
 	
 	public void closeEntityManager(@Disposes EntityManager manager){
 		manager.close();
 	}
-	
 }

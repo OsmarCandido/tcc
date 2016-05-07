@@ -1,64 +1,75 @@
 package com.sgbr.controller;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.constraints.NotNull;
+
 import com.sgbr.model.Categoria;
 import com.sgbr.model.Produto;
+import com.sgbr.repository.Categorias;
 import com.sgbr.service.CadastroProdutoService;
-import com.sgbr.util.jsf.FacesUtil;
 
 @Named
 @ViewScoped
 public class CadastroProdutoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
+	@Inject
+	private Categorias categorias;
+	
 	@Inject
 	private CadastroProdutoService cadastroProdutoService;
 	
 	private Produto produto;
+	private Categoria categoriaPai;
+	private Categoria categoria;
+	
+	private List<Categoria> categoriasRaizes;
+	private List<Categoria> subcategorias;
 	
 	public CadastroProdutoBean() {
-		limpar();
-	}
-	
-	public void inicializar() {
-	}
-	
-	private void limpar() {
 		produto = new Produto();
 	}
 	
+	public void inicializar(){
+		 categoriasRaizes = categorias.raizes();
+	}
+		
 	public void salvar() {
-	this.produto = cadastroProdutoService.salvar(this.produto);
-	limpar();
-	
-	FacesUtil.addInfoMessage("Produto salvo com sucesso!");
-}
-	
-	
-	public boolean isEditando() {
-		return this.produto.getIdProduto() != null;
+		this.produto = cadastroProdutoService.salvar(this.produto);
+		
 	}
 
 	public Produto getProduto() {
 		return produto;
 	}
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
+	public List<Categoria> getCategoriasRaizes() {
+		return categoriasRaizes;
 	}
 	
-	
-	// Gets
-	
-	public Categoria[] getCategorias(){
-		return Categoria.values();
+	@NotNull
+	public Categoria getCategoriaPai() {
+		return categoriaPai;
 	}
 
-	// Sets
+	public void setCategoriaPai(Categoria categoriaPai) {
+		this.categoriaPai = categoriaPai;
+	}
 
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	
+	
 }

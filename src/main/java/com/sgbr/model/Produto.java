@@ -6,10 +6,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -79,12 +79,14 @@ public class Produto implements Serializable {
 		return quantidadeEstoque;
 	}
 	
-	/**enumerated  (BEBIDA, COMIDA)  */
-	@Enumerated(EnumType.STRING)
+	//@NotNull
+	@ManyToOne
+	@JoinColumn(name="categoria_id", nullable=false)                                    //@Enumerated(EnumType.STRING)
 	public Categoria getCategoria() {
 		return categoria;
 	}
-	@NotNull
+	
+	//@NotNull
 	@Column(precision = 10, scale = 2, nullable = false)
 	public BigDecimal getPreco() {
 		return preco;
@@ -99,12 +101,12 @@ public class Produto implements Serializable {
 	public Date getDataValidade() {
 		return dataValidade;
 	}
-	@NotNull
+	//@NotNull
 	@Column(precision = 10, scale = 2, nullable = false)
 	public BigDecimal getValorVenda() {
 		return valorVenda;
 	}
-	@NotNull
+	//@NotNull
 	@Column(precision = 10, scale = 2, nullable = false)
 	public BigDecimal getValorCusto() {
 		return valorCusto;
