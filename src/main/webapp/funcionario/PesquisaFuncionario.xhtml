@@ -9,11 +9,13 @@
 	<ui:define name="titulo">Pesquisa de Funiconário </ui:define>
 	<ui:define name="corpo">
 		<h1>Pesquisa de Funcionário</h1>
+		
+		<p:messages autoUpdate="true" closable="true" />
 
 		<p:toolbar style="margin-top: 20px">
 			<p:toolbarGroup>
-				<p:button value="Pesquisar" />
-				<p:button value="Alterar" />
+			<p:commandButton value="Pesquisar" action="#{pesquisaFuncionarioBean.pesquisar}"
+	    				update="@form" />
 				<p:button value="Salvar" />
 				<p:button value="Cancelar" />
 			</p:toolbarGroup>
@@ -26,14 +28,14 @@
 			style="width: 100%; margin-top:35px" columnClasses="rotulo, campo">
 
 			<p:outputLabel value="Nome" for="nome" />
-			<p:inputText id="nome" size="100" maxlenght="255" />
+			<p:inputText id="nome" size="100" maxlenght="255" value="#{pesquisaFuncionariosBean.filtro.nome}" />
 
 			<p:outputLabel for="telefone" value="Telefone" />
-			<p:inputMask id="telefone" value="#{maskView.taxId}"
+			<p:inputMask id="telefone" value="#{pesquisaFuncionariosBean.filtro.telefone}"
 				mask="(99)9999-9999?9" />
 
 			<p:outputLabel value="CPF" for="cpf" />
-			<p:inputMask id="cpf" value="#{maskView.taxId}" mask="999.999.999-99" />
+			<p:inputMask id="cpf" value="#{pesquisaFuncionariosBean.filtro.cpf}" mask="999.999.999-99" />
 
 			<p:outputLabel value="Perfil" for="perfil" />
 			<p:selectOneMenu id="perfil">
@@ -43,12 +45,11 @@
 				<f:selectItem itemLabel="Caixa" itemValue="Caixa" />
 			</p:selectOneMenu>
 
-			<h:outputLabel value="Usuario" for="usuario" />
-			<p:inputText id="usuario" maxlenght="10" />
+			<h:outputLabel value="Usuario" for="login" />
+			<p:inputText id="login" maxlenght="10" value="#{pesquisaFuncionariosBean.filtro.login}" />
 
 			<p:outputLabel value="Senha" for="senha" />
-			<p:password id="senha" maxlenght="10"
-				value="#{passwordView.password2}" feedback="true" />
+			<p:password id="senha" maxlenght="10" value="#{pesquisaFuncionariosBean.filtro.senha}" feedback="true" />
 			<p:toolbarGroup align="rigth">
 				<p:button value="Alterar Senha" />
 			</p:toolbarGroup>
@@ -56,23 +57,27 @@
 
 
 		<p:dataTable id="produtosTable"
-			value="#{pesquisaProdutosBean.produtosFiltrados}" var="produto"
+			value="#{pesquisaProdutosBean.funcionariosFiltrados}" var="funcionario"
 			style="margin-top: 40px" emptyMessage="Produto não encontrado."
-			rows="20" paginator="true" paginatorAlwaysVisible="false"
-			paginatorPosition="botton">
+			rows="20" paginator="true" paginatorAlwaysVisible="false" paginatorPosition="botton">
+			
 			<p:column headerText="Nome" style="text-aling: center; width: 80px">
+				<h:outputText value="#{funcionario.nome}" />
 			</p:column>
-			<p:column headerText="Telefone"
-				style="text-aling: center; width: 15px">
+			<p:column headerText="Telefone" style="text-aling: center; width: 15px">
+				<h:outputText value="#{funcionario.telefone}" />
 			</p:column>
 			<p:column headerText="CPF" style="text-aling: center; width:10px">
+				<h:outputText value="#{funcionario.cpf}" />
 			</p:column>
 			<p:column headerText="Perfil" style="text-aling: center; width: 15px">
+				<h:outputText value="#{funcionario.perfil.perfilPai.descricao}"/>
 			</p:column>
-			<p:column headerText="Usuário"
-				style="text-aling: center; width: 20px">
+			<p:column headerText="Usuário" style="text-aling: center; width: 20px">
+				<h:outputText value="#{funcionario.login}" />
 			</p:column>
 			<p:column headerText="Senha" style="text-aling: center; width: 15px">
+				<h:outputText value="#{funcionario.senha}" />
 			</p:column>
 		</p:dataTable>
 	</ui:define>

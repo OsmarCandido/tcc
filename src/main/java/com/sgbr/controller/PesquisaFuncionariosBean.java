@@ -1,25 +1,42 @@
 package com.sgbr.controller;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+
+import javax.faces.bean.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.sgbr.model.Funcionario;
+import com.sgbr.repository.Funcionarios;
+import com.sgbr.repository.filter.FuncionarioFilter;
+
 @Named
-@RequestScoped
-public class PesquisaFuncionariosBean {
+@ViewScoped
+public class PesquisaFuncionariosBean implements Serializable {
 
-	private List<Integer> funcionariosFiltrados;
-
+	private static final long serialVersionUID = 1L;
+	
+	@Inject
+	private Funcionarios funcionarios;
+	
+	private FuncionarioFilter filtro;
+	private List<Funcionario> funcionariosFiltrados;
+	
 	public PesquisaFuncionariosBean() {
-
-		funcionariosFiltrados = new ArrayList<Integer>();
-		for (int i = 0; i < 50; i++) {
-			funcionariosFiltrados.add(i);
-		}
+		filtro = new FuncionarioFilter();
 	}
-
-	public List<Integer> getFuncionariosFiltrados() {
+	
+	public void pesquisar() {
+		funcionariosFiltrados = funcionarios.filtrados(filtro);
+	}
+	
+	public List<Funcionario> getFuncionariosFiltrados() {
 		return funcionariosFiltrados;
 	}
+
+	public FuncionarioFilter getFiltro() {
+		return filtro;
+	}
+	
 }
