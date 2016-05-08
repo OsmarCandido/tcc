@@ -25,7 +25,7 @@
 				<p:toolbarGroup>
 					<p:button value="Novo" outcome="/produtos/CadastroProduto" />
 					<p:commandButton value="Salvar" id="botaoSalvar"
-						action="#{cadastroProdutoBean.cadastrar}" ajax="false" />
+						action="#{cadastroProdutoBean.salvar}" ajax="false" />
 				</p:toolbarGroup>
 
 				<!-- Pesquisa -->
@@ -53,9 +53,8 @@
 				</p:inputText>
 			
 				<p:outputLabel value="Data De Validade: " for="dataValidade" />
-				<p:inputText id="dataValidade" value="#{cadastroProdutoBean.produto.dataValidade}">
-        			<f:convertDateTime pattern="dd/MM/yyyy" />
-        		</p:inputText> 
+				<p:calendar id="dataValidade" value="#{cadastroProdutoBean.produto.dataValidade}" />
+ 
 
 				<p:outputLabel value="Categoria" for="categoria" />
 				<p:selectOneMenu id="categoria" value="#{cadastroProdutoBean.categoriaPai}">

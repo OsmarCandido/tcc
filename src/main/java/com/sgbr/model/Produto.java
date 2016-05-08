@@ -32,7 +32,7 @@ public class Produto implements Serializable {
 	private String descricao;
 	private Date dataValidade;
 	private BigDecimal preco;
-	private BigDecimal valorUnitario;
+//	private BigDecimal valorUnitario;
 	private BigDecimal valorCusto;
 	private BigDecimal valorVenda;
 	private Categoria categoria;
@@ -64,13 +64,13 @@ public class Produto implements Serializable {
 	public Long getIdProduto() {
 		return idProduto;
 	}
-
+/*
 	@NotNull(message = "é obrigatório")
 	@Column(name = "valor_unitario", nullable = false, precision = 10, scale = 2)
 	public BigDecimal getValorUnitario() {
 		return valorUnitario;
 	}
-	
+	*/
 	@NotNull
 	@Min(0)
 	@Max(value = 9999, message = "tem um valor muito alto")
@@ -80,8 +80,8 @@ public class Produto implements Serializable {
 	}
 	
 	//@NotNull
-	@ManyToOne
-	@JoinColumn(name="categoria_id", nullable=false)                                    //@Enumerated(EnumType.STRING)
+	//@ManyToOne
+	@Column(name="categoria_id")                                    //@Enumerated(EnumType.STRING)
 	public Categoria getCategoria() {
 		return categoria;
 	}
@@ -132,12 +132,10 @@ public class Produto implements Serializable {
 
 	
 
-	public void setValorUnitario(BigDecimal valorUnitario) {
+/*	public void setValorUnitario(BigDecimal valorUnitario) {
 		this.valorUnitario = valorUnitario;
 	}
-
-	
-
+*/
 	public void setQuantidadeEstoque(Integer quantidadeEstoque) {
 		this.quantidadeEstoque = quantidadeEstoque;
 	}
