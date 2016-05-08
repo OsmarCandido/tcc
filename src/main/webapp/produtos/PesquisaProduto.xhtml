@@ -1,77 +1,100 @@
 <!DOCTYPE html>
 <ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
-	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+ xmlns="http://www.w3.org/1999/xhtml"
+ xmlns:h="http://java.sun.com/jsf/html"
+ xmlns:f="http://java.sun.com/jsf/core"
+ xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:p="http://primefaces.org/ui">
 
-	<ui:define name="titulo">Pesquisa de Produto</ui:define>
-	
-	<ui:define name="corpo">
-	<h:form>
-		<h1>Pesquisa de Produto</h1>
+ <ui:define name="titulo">Pesquisa de Produto</ui:define>
+ 
+ <ui:define name="corpo">
+ <h:form>
+  <h1>Pesquisa de Produto</h1>
 
-		<p:toolbar style="margin-top: 20px">
-			<p:toolbarGroup>
-				<p:commandButton value="Pesquisar" />
-			</p:toolbarGroup>
-			<p:toolbarGroup align="right">
-	    			<p:button value="Novo" outcome="/produtos/CadastroProduto" />
-	    	</p:toolbarGroup>
-		</p:toolbar>
+  <p:messages autoUpdate="true" closable="true" />
 
-		<p:panelGrid columns="2" id="painel"
-			style="width: 100%; margin-top:20px" columnClasses="rotulo, campo">
-			<p:outputLabel value="Id Produto" for="idProduto" />
-			<p:inputText id="idProduto" size="20" />
-			
-			<p:outputLabel value="Descricao" for="descricao" />
-			<p:inputText id="descricao" size="40" />
-		</p:panelGrid>
-		
-		<p:dataTable id="produtosTable" value="#{pesquisaProdutosBean.produtosFiltrados}" var="produto"
-			style="margin-top: 20px" emptyMessage="Produto não encontrado." rows="20" 
-			paginator="true" paginatorAlwaysVisible="false"	paginatorPosition="bottom">
-			<p:column headerText="Id Produto" style="text-aling: center; width: 20px">
-			</p:column>
-			<p:column headerText="Descrição"
-				style="text-aling: center; width: 100px">
-			</p:column>
-			<p:column headerText="Preço" style="text-aling: center; width: 10px">
-			</p:column>
-			<p:column headerText="Data de Validade"
-				style="text-aling: center; width:20px">
-			</p:column>
-			<p:column headerText="Categoria"
-				style="text-aling: center; width: 15px">
-			</p:column>
-			<p:column headerText="Estoque"
-				style="text-aling: center; width: 15px">
-			</p:column>
-			<p:column headerText="Qtd. Minima"
-				style="text-aling: center; width: 20px">
-			</p:column>
-			<p:column headerText="Qtd. Máxima"
-				style="text-aling: center; width: 20px">
-			</p:column>
-			<p:column headerText="Valor Custo"
-				style="text-aling: center; width: 15px">
-			</p:column>
-			<p:column headerText="Valor Venda"
-				style="text-aling: center; width: 15px">
-			</p:column>
-			<p:column style="width: 50px; text-align:center">
-			<p:button icon="ui-icon-pencil" title="Editar"/>
+  <p:toolbar style="margin-top: 20px">
+   <p:toolbarGroup>
+    <p:commandButton value="Pesquisar" action="#{pesquisaProdutosBean.pesquisar}"
+	    				update="@form" />
+   </p:toolbarGroup>
+   <p:toolbarGroup align="right">
+        <p:button value="Novo" outcome="/produtos/CadastroProduto" />
+      </p:toolbarGroup>
+  </p:toolbar>
+
+  <p:panelGrid columns="2" id="painel" style="width: 100%; margin-top:20px" 
+  				columnClasses="rotulo, campo">
+   		<p:outputLabel value="Id Produto" for="idProduto" />
+   <p:inputText id="idProduto" size="20" value="#{pesquisaProdutosBean.filtro.idProduto}" />
+   
+   <p:outputLabel value="Descricao" for="descricao" />
+   		<p:inputText id="nome" size="60" value="#{pesquisaProdutosBean.filtro.descricao}" />
+   </p:panelGrid>
+  
+  <p:dataTable id="produtosTable" value="#{pesquisaProdutosBean.produtosFiltrados}" var="produto"
+   style="margin-top: 20px" emptyMessage="Produto não encontrado." rows="20" 
+   paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
+   
+   <p:column headerText="Id Produto" style="text-aling: center; width: 20px">
+   		<h:outputText value="#{produto.idProduto}" />
+   </p:column>
+   
+   <p:column headerText="Descrição" style="text-aling: center; width: 100px">
+   		<h:outputText value="#{produto.descricao}" />
+   </p:column>
+   
+   <p:column headerText="Preço" style="text-aling: center; width: 10px">
+   		<h:outputText value="#{produto.preco}">
+	    	<f:convertNumber type="currency"/>
+	    </h:outputText>
+   </p:column>
+   
+   <p:column headerText="Data de Validade" style="text-aling: center; width:20px">
+   		<h:outputText value="#{pedido.dataValidade}">
+	  		<f:convertDateTime pattern="dd/MM/yyyy" />
+	  	</h:outputText>		
+   </p:column>
+   
+   <p:column headerText="Categoria" style="text-aling: center; width: 15px">
+   		<h:outputText value="#{produto.categoria}"/>
+   </p:column>
+   
+   <p:column headerText="Estoque" style="text-aling: center; width: 15px">
+   		<h:outputText value="#{produto.quantidadeEstoque}" />
+   </p:column>
+   
+   <p:column headerText="Qtd. Minima" style="text-aling: center; width: 20px">
+   		<h:outputText value="#{produto.quantidadeMinima}" />
+   </p:column>
+   
+   <p:column headerText="Qtd. Máxima" style="text-aling: center; width: 20px">
+   		<h:outputText value="#{produto.quantidadeMaxima}" />
+   </p:column>
+   
+   <p:column headerText="Valor Custo" style="text-aling: center; width: 15px">
+   		<h:outputText value="#{produto.valorCusto}">
+	    		<f:convertNumber type="currency"/>
+	    </h:outputText>
+   </p:column>
+   
+   <p:column headerText="Valor Venda" style="text-aling: center; width: 15px">
+   		<h:outputText value="#{produto.valorVenda}">
+	    		<f:convertNumber type="currency"/>
+	    </h:outputText>
+   </p:column>
+   <p:column style="width: 50px; text-align:center">
+   <p:button icon="ui-icon-pencil" title="Editar"/>
             <p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="confimacaoExclusao.show()" />   
-		</p:column>
-		</p:dataTable>
-		
-            	<p:confirmDialog header="Exclusão de produto" message="tem certeza que deseja excluir o produto"
-		widgetVar="confirmacaoExclusao">
-		<p:button value="Não" onclick="confirmacaoExclusao.hide(); return false;" />
-		<p:commandButton value="Sim" oncomplete="confimacaoExclusao.hide();" />
-		</p:confirmDialog>
-	</h:form>
-	</ui:define>
+  </p:column>
+  </p:dataTable>
+  
+             <p:confirmDialog header="Exclusão de produto" message="tem certeza que deseja excluir o produto"
+  widgetVar="confirmacaoExclusao">
+  <p:button value="Não" onclick="confirmacaoExclusao.hide(); return false;" />
+  <p:commandButton value="Sim" oncomplete="confimacaoExclusao.hide();" />
+  </p:confirmDialog>
+ </h:form>
+ </ui:define>
 </ui:composition>
