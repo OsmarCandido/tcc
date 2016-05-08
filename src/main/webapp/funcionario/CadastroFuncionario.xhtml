@@ -8,50 +8,62 @@
 
 	<ui:define name="titulo"> Cadastro de Funiconário </ui:define>
 	<ui:define name="corpo">
-		<h1>Cadastro de Funcionário</h1>
 
-		<p:toolbar style="margin-top: 20px;">
-			<p:toolbarGroup>
-				<p:button value="Novo" outcome="/funcionario/CadastroFuncionario" />
-				<p:commandButton value="Salvar" id="botaoSalvar" 
-				action="#{cadastroFuncionarioBean.salvar}" ajax="false"/>
-				
-			</p:toolbarGroup>
-			<p:toolbarGroup align="right">
-				<p:button value="Pesquisa"
-					outcome="/funcionario/PesquisaFuncionario" />
-			</p:toolbarGroup>
-		</p:toolbar>
+		<f:metadata>
+			<f:param value="dummy" />
+			<f:event listener="#{cadastroFuncionarioBean.inicializar}"
+				type="preRenderView" />
+		</f:metadata>
 
-		<p:panelGrid columns="2" id="painel"
-			style="width: 100%; margin-top:35px" columnClasses="rotulo, campo">
 
-			<p:outputLabel value="Nome" for="nome" />
-			<p:inputText id="nome" size="100" maxlenght="255" />
+		<h:form>
 
-			<p:outputLabel for="telefone" value="Telefone" />
-			<p:inputMask id="telefone" value="#{maskView.taxId}"
-				mask="(99)9999-9999?9" />
 
-			<p:outputLabel value="CPF" for="cpf" />
-			<p:inputMask id="cpf" value="#{maskView.taxId}" mask="999.999.999-99" />
+			<h1>Cadastro de Funcionário</h1>
 
-			<p:outputLabel value="Perfil" for="perfil" />
-			<p:selectOneMenu id="perfil">
-				<f:selectItem itemLabel="Selecione o Perfil" />
-				<f:selectItem itemLabel="Gerente" itemValue="Gerente" />
-				<f:selectItem itemLabel="Garçom" itemValue="Garçom" />
-				<f:selectItem itemLabel="Caixa" itemValue="Caixa" />
-                <f:selectItem itemLabel="Chef" itemValue="Chef" />	
-			</p:selectOneMenu>
+			<p:toolbar style="margin-top: 20px;">
+				<p:toolbarGroup>
+					<p:button value="Novo" outcome="/funcionario/CadastroFuncionario" />
+					<p:commandButton value="Salvar" id="botaoSalvar"
+						action="#{cadastroFuncionarioBean.salvar}" ajax="false" />
 
-			<h:outputLabel value="Usuário" for="usuario" />
-			<p:inputText id="usuario" maxlenght="10" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisa"
+						outcome="/funcionario/PesquisaFuncionario" />
+				</p:toolbarGroup>
+			</p:toolbar>
 
-			<p:outputLabel value="Senha" for="senha" />
-			<p:password id="senha" maxlenght="10"
-				value="#{passwordView.password2}" feedback="true" />
+			<p:panelGrid columns="2" id="painel"
+				style="width: 100%; margin-top:35px" columnClasses="rotulo, campo">
 
-		</p:panelGrid>
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" size="100" maxlenght="255" />
+
+				<p:outputLabel for="telefone" value="Telefone" />
+				<p:inputMask id="telefone" value="#{maskView.taxId}"
+					mask="(99)9999-9999?9" />
+
+				<p:outputLabel value="CPF" for="cpf" />
+				<p:inputMask id="cpf" value="#{maskView.taxId}"
+					mask="999.999.999-99" />
+
+				<p:outputLabel value="Perfil" for="perfil" />
+				<p:selectOneMenu id="perfil"
+					value="#{cadastroFuncionarioBean.perfilPai}">
+					<f:selectItem itemLabel="Selecione a categoria" />
+					<f:selectItems value="#{cadastroFuncionarioBean.perfisRaizes}"
+						var="perfil" itemValue="#{perfil}" itemLabel="#{perfil.descricao}" />
+				</p:selectOneMenu>
+
+				<h:outputLabel value="Usuário" for="usuario" />
+				<p:inputText id="usuario" maxlenght="10" />
+
+				<p:outputLabel value="Senha" for="senha" />
+				<p:password id="senha" maxlenght="10"
+					value="#{passwordView.password2}" feedback="true" />
+
+			</p:panelGrid>
+		</h:form>
 	</ui:define>
 </ui:composition>

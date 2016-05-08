@@ -16,7 +16,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.sgbr.model.Funcionario;
-import com.sgbr.model.Produto;
+import com.sgbr.repository.filter.FuncionarioFilter;
 import com.sgbr.service.NegocioException;
 import com.sgbr.util.jpa.Transactional;
 
@@ -42,7 +42,7 @@ public class Funcionarios implements Serializable {
 		}
 	}
 
-	public Produto porIdFuncionario(String idFuncionario) {
+	public Funcionario porIdFuncionario(String idFuncionario) {
 		try {
 			return manager.createQuery("from Funcionario where upper(idFuncionario) = :idFuncionario", Funcionario.class)
 				.setParameter("idFuncionario", idFuncionario.toUpperCase())

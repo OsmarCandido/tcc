@@ -2,6 +2,8 @@ package com.sgbr.repository.filter;
 
 import java.io.Serializable;
 
+import com.sgbr.validation.IdFuncionario;
+
 public class FuncionarioFilter implements Serializable {
 
 	private static final long serialVersionUID = 1L;

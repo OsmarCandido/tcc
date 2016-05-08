@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.inject.Inject;
 
 import com.sgbr.model.Funcionario;
+import com.sgbr.repository.Funcionarios;
 import com.sgbr.util.jpa.Transactional;
 
 public class CadastroFuncionarioService implements Serializable {
