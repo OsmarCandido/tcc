@@ -12,10 +12,13 @@
 	<h:form>
 		<h1>Pesquisa de Produto</h1>
 
-		<p:toolbar style="margin-top 20px">
+		<p:toolbar style="margin-top: 20px">
 			<p:toolbarGroup>
 				<p:commandButton value="Pesquisar" />
 			</p:toolbarGroup>
+			<p:toolbarGroup align="right">
+	    			<p:button value="Novo" outcome="/produtos/CadastroProduto" />
+	    	</p:toolbarGroup>
 		</p:toolbar>
 
 		<p:panelGrid columns="2" id="painel"

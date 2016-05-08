@@ -12,10 +12,13 @@
 		<h:form>
 			<h1>Pesquisa de Pedidos</h1>
 
-			<p:toolbar style="margin-top 20px">
+			<p:toolbar style="margin-top: 20px">
 				<p:toolbarGroup>
 					<p:commandButton value="Pesquisar" />
 				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+	    			<p:button value="Novo" outcome="/pedidos/CadastroPedido" />
+	    		</p:toolbarGroup>
 			</p:toolbar>
 
 			<p:panelGrid columns="2" id="painel"
@@ -59,7 +62,7 @@
 			<p:dataTable id="pedidosTable"
 				value="#{pesquisaPedidosBean.pedidosFiltrados}" var="pedidos"
 				style="margin-top: 20px" emptyMessage="Nenhum pedido encontrado."
-				rows="20" paginator="true" paginatorAlwaysVisible="false"
+				rows="15" paginator="true" paginatorAlwaysVisible="false"
 				paginatorPosition="bottom">
 
 				<p:column headerText="Id Pedido"

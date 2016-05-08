@@ -10,13 +10,16 @@
 	<ui:define name="corpo">
 		<h1>Pesquisa de Funcionário</h1>
 
-		<p:toolbar style="margin-top 20px">
+		<p:toolbar style="margin-top: 20px">
 			<p:toolbarGroup>
 				<p:button value="Pesquisar" />
 				<p:button value="Alterar" />
 				<p:button value="Salvar" />
 				<p:button value="Cancelar" />
 			</p:toolbarGroup>
+			<p:toolbarGroup align="right">
+	    			<p:button value="Novo" outcome="/funcionario/CadastroFuncionario" />
+	    	</p:toolbarGroup>
 		</p:toolbar>
 
 		<p:panelGrid columns="2" id="painel"
