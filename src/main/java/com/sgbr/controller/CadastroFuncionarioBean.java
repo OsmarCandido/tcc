@@ -10,7 +10,6 @@ import javax.validation.constraints.NotNull;
 
 import com.sgbr.model.Funcionario;
 import com.sgbr.model.Perfil;
-import com.sgbr.model.Produto;
 import com.sgbr.repository.Perfis;
 import com.sgbr.service.CadastroFuncionarioService;
 
@@ -43,7 +42,6 @@ public class CadastroFuncionarioBean implements Serializable {
 		
 	public void salvar() {
 		this.funcionario = cadastroFuncionarioService.salvar(this.funcionario);
-		
 	}
 
 	public Funcionario getFuncionario() {
