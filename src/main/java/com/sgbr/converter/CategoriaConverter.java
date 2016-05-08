@@ -9,14 +9,14 @@ import com.sgbr.model.Categoria;
 import com.sgbr.repository.Categorias;
 import com.sgbr.util.cdi.CDIServiceLocator;
 
-@FacesConverter(forClass = Perfil.class)
-public class PerfilConverter implements Converter{
+@FacesConverter(forClass = Categoria.class)
+public class CategoriaConverter implements Converter{
 	
 	
-	private Perfis perfis;
+	private Categorias categorias;
 	
 	public CategoriaConverter(){
-		perfis = CDIServiceLocator.getBean(Perfis.class);
+		categorias = CDIServiceLocator.getBean(Categorias.class);
 	} 
 	
 	@Override
@@ -25,7 +25,7 @@ public class PerfilConverter implements Converter{
 		
 		if(value != null){
 			Long id = new Long(value);
-			retorno = perfis.porId(id);
+			retorno = categorias.porId(id);
 		}
 		return retorno;
 	}
@@ -34,7 +34,7 @@ public class PerfilConverter implements Converter{
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
 		
 		if(value != null){
-			return ((Perfil)value).getId().toString();
+			return ((Categoria)value).getId().toString();
 		}
 		return " ";
 	}

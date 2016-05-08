@@ -25,4 +25,3 @@ public class CadastroProdutoService implements Serializable {
 		return produtos.guardar(produto);
 	}
 }
-

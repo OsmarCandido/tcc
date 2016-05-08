@@ -6,11 +6,10 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
-import com.sgbr.service.CadastroPedidoService;
-import com.sgbr.util.jsf.FacesUtil;
 import com.sgbr.model.Pagamento;
 import com.sgbr.model.Pedido;
-import com.sgbr.service.NegocioException;
+import com.sgbr.service.CadastroPedidoService;
+import com.sgbr.util.jsf.FacesUtil;
 
 @Named
 @RequestScoped

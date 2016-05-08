@@ -38,8 +38,6 @@ public class Funcionario implements Serializable {
 	@Column(name="senha",length=10,nullable=false)
 	private String senha;
 	
-	@Enumerated(EnumType.STRING)
-	@Column(nullable = false)
 	private Perfil perfil;
 	
 	
@@ -69,6 +67,7 @@ public class Funcionario implements Serializable {
 		return senha;
 	}
 
+	@Column(name="perfil_id")                                    //@Enumerated(EnumType.STRING)
 	public Perfil getPerfil() {
 		return perfil;
 	}

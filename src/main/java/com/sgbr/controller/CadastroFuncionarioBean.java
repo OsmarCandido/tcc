@@ -8,9 +8,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 
-import com.sgbr.model.Perfil;
 import com.sgbr.model.Funcionario;
-import com.sgbr.repository.Perfil;
+import com.sgbr.model.Perfil;
+import com.sgbr.model.Produto;
+import com.sgbr.repository.Perfis;
 import com.sgbr.service.CadastroFuncionarioService;
 
 @Named
@@ -23,7 +24,7 @@ public class CadastroFuncionarioBean implements Serializable {
 	private Perfis perfis;
 	
 	@Inject
-	private CadastroFuncioanrioService cadastroFuncionarioService;
+	private CadastroFuncionarioService cadastroFuncionarioService;
 	
 	private Funcionario funcionario;
 	private Perfil perfilPai;
@@ -33,23 +34,23 @@ public class CadastroFuncionarioBean implements Serializable {
 	
 	
 	public CadastroFuncionarioBean() {
-		produto = new Produto();
+		funcionario = new Funcionario();
 	}
 	
 	public void inicializar(){
-		 categoriasRaizes = categorias.raizes();
+		 perfisRaizes = perfis.raizes();
 	}
 		
 	public void salvar() {
-		this.funcionario = cadastroFuncionarioService.salvar(this.funcioanario);
+		this.funcionario = cadastroFuncionarioService.salvar(this.funcionario);
 		
 	}
 
-	public Produto getFuncionario() {
+	public Funcionario getFuncionario() {
 		return funcionario;
 	}
 
-	public List<perfil> getPerfisRaizes() {
+	public List<Perfil> getPerfisRaizes() {
 		return perfisRaizes;
 	}
 	
