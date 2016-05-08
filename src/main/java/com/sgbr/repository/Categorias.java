@@ -20,7 +20,7 @@ public class Categorias implements Serializable {
 	}
 	
 	public List<Categoria> raizes() {
-		return manager.createQuery("from  Categoria", 
+		return manager.createQuery("from  Categoria where categoriaPai is null", 
 				Categoria.class).getResultList();
 	}
 	

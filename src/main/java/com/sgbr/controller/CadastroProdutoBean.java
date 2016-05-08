@@ -12,6 +12,7 @@ import com.sgbr.model.Categoria;
 import com.sgbr.model.Produto;
 import com.sgbr.repository.Categorias;
 import com.sgbr.service.CadastroProdutoService;
+import com.sgbr.util.jsf.FacesUtil;
 
 @Named
 @ViewScoped
@@ -27,7 +28,6 @@ public class CadastroProdutoBean implements Serializable {
 	
 	private Produto produto;
 	private Categoria categoriaPai;
-	private Categoria categoria;
 	
 	private List<Categoria> categoriasRaizes;
 	private List<Categoria> subcategorias;
@@ -37,11 +37,20 @@ public class CadastroProdutoBean implements Serializable {
 	}
 	
 	public void inicializar(){
+		 if(FacesUtil.isNotPostback()){
 		 categoriasRaizes = categorias.raizes();
+		 }
 	}
-		
+				
+	public void carregarSubcategorias(){
+		subcategorias = categorias.subcategoriasDe(categoriaPai);
+	}
+	
 	public void salvar() {
+		System.out.println("Categoria: " + categoriaPai.getDescricao());
+		System.out.println("Subcategoria: " + produto.getDescricao());
 		this.produto = cadastroProdutoService.salvar(this.produto);
+		
 		
 	}
 
@@ -62,14 +71,10 @@ public class CadastroProdutoBean implements Serializable {
 		this.categoriaPai = categoriaPai;
 	}
 
-	public Categoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
-
 	
+	public List<Categoria> getSubcategorias() {
+		return subcategorias;
+}
+
 	
 }

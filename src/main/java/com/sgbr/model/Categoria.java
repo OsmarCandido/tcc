@@ -51,6 +51,7 @@ public class Categoria implements Serializable {
 	public void setCategoriaPai(Categoria categoriaPai) {
 		this.categoriaPai = categoriaPai;
 	}
+	
 	@OneToMany(mappedBy = "categoriaPai", cascade = CascadeType.ALL)
 	public List<Categoria> getSubcategorias() {
 		return subcategorias;
