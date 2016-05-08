@@ -50,8 +50,7 @@ public class CadastroProdutoBean implements Serializable {
 		System.out.println("Categoria: " + categoriaPai.getDescricao());
 		System.out.println("Subcategoria: " + produto.getDescricao());
 		this.produto = cadastroProdutoService.salvar(this.produto);
-		
-		
+
 	}
 
 	public Produto getProduto() {

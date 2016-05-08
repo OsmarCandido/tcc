@@ -15,11 +15,10 @@
 				type="preRenderView" />
 		</f:metadata>
 
-
 		<h:form>
 
-
 			<h1>Cadastro de Funcionário</h1>
+			<p:messages autoUpdate="true" closable="true" />
 
 			<p:toolbar style="margin-top: 20px;">
 				<p:toolbarGroup>
@@ -38,30 +37,29 @@
 				style="width: 100%; margin-top:35px" columnClasses="rotulo, campo">
 
 				<p:outputLabel value="Nome" for="nome" />
-				<p:inputText id="nome" size="100" maxlenght="255" />
+				<p:inputText id="nome" size="100" maxlenght="255" value="#{cadastroFuncionarioBean.funcionario.nome}"/>
 
-				<p:outputLabel for="telefone" value="Telefone" />
-				<p:inputMask id="telefone" value="#{maskView.taxId}"
+				<p:outputLabel for="Telefone" value="Telefone" />
+				<p:inputMask id="Telefone" value="#{cadastroFuncionarioBean.funcionario.telefone}"
 					mask="(99)9999-9999?9" />
 
-				<p:outputLabel value="CPF" for="cpf" />
-				<p:inputMask id="cpf" value="#{maskView.taxId}"
+				<p:outputLabel value="CPF" for="Cpf" />
+				<p:inputMask id="Cpf" value="#{cadastroFuncionarioBean.funcionario.cpf}"
 					mask="999.999.999-99" />
 
 				<p:outputLabel value="Perfil" for="perfil" />
-				<p:selectOneMenu id="perfil"
-					value="#{cadastroFuncionarioBean.perfilPai}">
+				<p:selectOneMenu id="perfil" value="#{cadastroFuncionarioBean.perfilPai}">
 					<f:selectItem itemLabel="Selecione a categoria" />
 					<f:selectItems value="#{cadastroFuncionarioBean.perfisRaizes}"
 						var="perfil" itemValue="#{perfil}" itemLabel="#{perfil.descricao}" />
 				</p:selectOneMenu>
 
-				<h:outputLabel value="Usuário" for="usuario" />
-				<p:inputText id="usuario" maxlenght="10" />
+				<h:outputLabel value="Login" for="Login" />
+				<p:inputText id="Login" maxlenght="10" value="#{cadastroFuncionarioBean.funcionario.login}"/>
 
 				<p:outputLabel value="Senha" for="senha" />
 				<p:password id="senha" maxlenght="10"
-					value="#{passwordView.password2}" feedback="true" />
+					value="#{cadastroFuncionarioBean.funcionario.senha}" feedback="true" />
 
 			</p:panelGrid>
 		</h:form>

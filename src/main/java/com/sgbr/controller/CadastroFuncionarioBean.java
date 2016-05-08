@@ -8,10 +8,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 
-import com.sgbr.model.Funcionario;
 import com.sgbr.model.Perfil;
+import com.sgbr.model.Funcionario;
 import com.sgbr.repository.Perfis;
 import com.sgbr.service.CadastroFuncionarioService;
+import com.sgbr.util.jsf.FacesUtil;
 
 @Named
 @ViewScoped
@@ -27,21 +28,24 @@ public class CadastroFuncionarioBean implements Serializable {
 	
 	private Funcionario funcionario;
 	private Perfil perfilPai;
-	private Perfil perfil;
 	
 	private List<Perfil> perfisRaizes;
-	
 	
 	public CadastroFuncionarioBean() {
 		funcionario = new Funcionario();
 	}
 	
 	public void inicializar(){
+		 if(FacesUtil.isNotPostback()){
 		 perfisRaizes = perfis.raizes();
+		 }
 	}
-		
+				
+	
 	public void salvar() {
+		System.out.println("Perfil: " + perfilPai.getDescricao());
 		this.funcionario = cadastroFuncionarioService.salvar(this.funcionario);
+
 	}
 
 	public Funcionario getFuncionario() {
@@ -61,11 +65,4 @@ public class CadastroFuncionarioBean implements Serializable {
 		this.perfilPai = perfilPai;
 	}
 
-	public Perfil getPerfil() {
-		return perfil;
-	}
-
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil;
-	}
 }

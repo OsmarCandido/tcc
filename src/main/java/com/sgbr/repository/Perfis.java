@@ -20,7 +20,7 @@ public class Perfis implements Serializable {
 	}
 	
 	public List<Perfil> raizes() {
-		return manager.createQuery("from  Perfil", 
+		return manager.createQuery("from Perfil where perfilPai is null", 
 				Perfil.class).getResultList();
 	}
 	

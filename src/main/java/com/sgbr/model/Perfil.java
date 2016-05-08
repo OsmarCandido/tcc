@@ -39,7 +39,7 @@ public class Perfil implements Serializable {
 	}
 	
 	@ManyToOne
-	@JoinColumn(name = "categoria_pai_id")
+	@JoinColumn(name = "perfil_pai_id")
 	public Perfil getPerfilPai() {
 		return perfilPai;
 	}
