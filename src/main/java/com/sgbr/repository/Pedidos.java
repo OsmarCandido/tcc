@@ -24,12 +24,12 @@ public class Pedidos implements Serializable {
 	private EntityManager manager;
 
 	@SuppressWarnings("unchecked")
-	public List<Pedidos> filtrados(PedidoFilter filtro) {
+	public List<Pedido> filtrados(PedidoFilter filtro) {
 		Session session = this.manager.unwrap(Session.class);
 		
 		Criteria criteria = session.createCriteria(Pedidos.class) 
 				// fazemos uma associação (join) com funcionario e nomeamos como "f"
-				.createAlias("Funcionario", "f");
+				.createAlias("funcionario", "f");
 		
 		if (filtro.getNumeroDe() != null) {
 			// id deve ser maior ou igual (ge = greater or equals) a filtro.numeroDe

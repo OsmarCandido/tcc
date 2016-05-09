@@ -1,13 +1,18 @@
 package com.sgbr.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.sgbr.model.Pagamento;
 import com.sgbr.model.Pedido;
+import com.sgbr.model.Funcionario;
+import com.sgbr.repository.Funcionarios;
+import com.sgbr.service.CadastroPedidoService;
+import com.sgbr.util.jsf.FacesUtil;
 
 @Named
 @ViewScoped
@@ -15,25 +20,45 @@ public class CadastroPedidoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Pedido pedido;
+	@Inject
+	private Funcionarios Funcionarios;
 	
-	private List<Integer> itens;
+	@Inject
+	private CadastroPedidoService cadastroPedidoService;
+	
+	private Pedido pedido;
+	private List<Funcionario> funcionarios;
 	
 	public CadastroPedidoBean() {
+		limpar();
+	}
+	
+	public void inicializar() {
+		if (FacesUtil.isNotPostback()) {
+			//this.funcionarios = this.funcionarios.funcionarios();
+		}
+	}
+	
+	private void limpar() {
 		pedido = new Pedido();
-		itens = new ArrayList<>();
-		itens.add(1);
 	}
 	
 	public void salvar() {
+		this.pedido = this.cadastroPedidoService.salvar(this.pedido);
+		
+		FacesUtil.addInfoMessage("Pedido salvo com sucesso!");
 	}
-
-	public List<Integer> getItens() {
-		return itens;
+	
+	public Pagamento[] getPagamento() {
+		return Pagamento.values();
 	}
 
 	public Pedido getPedido() {
 		return pedido;
+	}
+
+	public List<Funcionario> getFuncionaios() {
+		return funcionarios;
 	}
 
 }

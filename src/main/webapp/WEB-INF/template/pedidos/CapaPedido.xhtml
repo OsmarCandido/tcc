@@ -26,13 +26,13 @@
             <f:selectItem itemLabel="Selecione" />
         </p:selectOneMenu>
 			
-	<p:outputLabel value="Forma de pagamento" for="formaPagamento"/>
-        <p:selectOneMenu id="formaPagamento" value="#{cadastroPedidoBean.pedido.pagamento}">
+	<p:outputLabel value="Forma de pagamento" for="pagamento"/>
+        <p:selectOneMenu id="pagamento" value="#{cadastroPedidoBean.pedido.pagamento}">
             <f:selectItem itemLabel="Selecione" />
         </p:selectOneMenu>
 	
 	<p:outputLabel value="Subtotal" style="font-weigth: bold"/>
-	<p:inputText id="valorFrete" size="10" maxlength="10" styleClass="moeda" 
+	<p:inputText id="subTotal" size="10" maxlength="10" styleClass="moeda" 
         	value="#{cadastroPedidoBean.pedido.subTotal}">
         	<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
         </p:inputText> 

@@ -14,7 +14,8 @@
 
 			<p:toolbar style="margin-top: 20px">
 				<p:toolbarGroup>
-					<p:commandButton value="Pesquisar" />
+					<p:commandButton value="Pesquisar" action="#{pesquisaPedidosBean.pesquisar}"
+	    				update="@form" />
 				</p:toolbarGroup>
 				<p:toolbarGroup align="right">
 	    			<p:button value="Novo" outcome="/pedidos/CadastroPedido" />
@@ -33,30 +34,30 @@
 
 				<p:outputLabel value="Data Pedido" />
 				<h:panelGroup>
-					<p:calendar size="10" pattern="dd/MM/yyyy" />
+					<p:calendar size="10" pattern="dd/MM/yyyy" 
+						value="#{pesquisaPedidosBean.filtro.dataCriacaoDe}" />
 					a
-					<p:calendar size="10" pattern="dd/MM/yyyy" />
+					<p:calendar size="10" pattern="dd/MM/yyyy"
+						value="#{pesquisaPedidosBean.filtro.dataCriacaoAte}" />
 				</h:panelGroup>
 
 				<p:outputLabel value="Hora Pedido" />
 				<h:panelGroup>
-					<p:calendar size="10" pattern="HH/mm/ss" />
+					<p:calendar size="10" pattern="HH:mm:ss" 
+						value="#{pesquisaPedidosBean.filtro.dataCriacaoDe}" />
 					a
-					<p:calendar size="10" pattern="HH/mm/ss" />
+					<p:calendar size="10" pattern="HH:mm:ss" 
+						value="#{pesquisaPedidosBean.filtro.dataCriacaoAte}" />
 				</h:panelGroup>
 
 				<p:outputLabel value="Funcionario" />
-				<p:inputText size="40" />
-
-				<p:outputLabel value="Valor Total" />
-				<p:inputText size="40" />
+					<p:inputText size="40" value="#{pesquisaPedidosBean.filtro.nomeFuncionario}" />			
 
 				<p:outputLabel value="Status" />
-				<p:selectManyCheckbox>
-					<f:selectItem itemLabel="Orcamento" />
-					<f:selectItem itemLabel="Pedido" />
-					<f:selectItem itemLabel="Cancelado" />
-				</p:selectManyCheckbox>
+				<p:selectManyCheckbox value="#{pesquisaPedidosBean.filtro.statuses}">
+	    			<f:selectItems value="#{pesquisaPedidosBean.statuses}" var="status"
+	    				itemValue="#{status}" itemLabel="#{status.descricao}" />
+	    		</p:selectManyCheckbox>
 			</p:panelGrid>
 
 			<p:dataTable id="pedidosTable"
@@ -65,32 +66,34 @@
 				rows="15" paginator="true" paginatorAlwaysVisible="false"
 				paginatorPosition="bottom">
 
-				<p:column headerText="Id Pedido"
-					style="text-aling: center; width: 20px">
+				<p:column headerText="Id Pedido" style="text-aling: center; width: 20px">
+					<h:outputText value="#{pedido.id}"/>
 				</p:column>
 
-				<p:column headerText="DataPedido"
-					style="text-aling: center; width: 20px">
+				<p:column headerText="DataPedido" style="text-aling: center; width: 20px">
+					<h:outputText value="#{pedido.dataCriacao}">
+	    				<f:convertDateTime pattern="dd/MM/yyyy" />
+	    			</h:outputText>
 				</p:column>
 
-				<p:column headerText="Hora Pedido"
-					style="text-aling: center; width: 20px">
+				<p:column headerText="Hora Pedido" style="text-aling: center; width: 20px">
+					<h:outputText value="#{pedido.dataCriacao}">
+	    				<f:convertDateTime pattern="HH:mm:ss" />
+	    			</h:outputText>
 				</p:column>
 
-				<p:column headerText="Funcionario"
-					style="text-aling: center; width: 40px">
+				<p:column headerText="Funcionario" style="text-aling: center; width: 40px">
+					<h:outputText value="#{pedido.funcionario.nome}"/>
 				</p:column>
 
-				<p:column headerText="Valor Pedido"
-					style="text-aling: center; width: 20px">
+				<p:column headerText="Valor Pedido"	style="text-aling: center; width: 20px">
+					<h:outputText value="#{pedido.valorTotal}">
+	    				<f:convertNumber type="currency"/>
+	    			</h:outputText>
 				</p:column>
 
-				<p:column headerText="Status"
-					style="text-aling: center; width: 20px">
-				</p:column>
-				
-				<p:column headerText="Observação"
-					style="text-aling: center; width: 100px">
+				<p:column headerText="Status" style="text-aling: center; width: 20px">
+					<h:outputText value="#{pedido.status.descricao}"/>
 				</p:column>
 
 				<p:column style="width: 50px; text-align:center">

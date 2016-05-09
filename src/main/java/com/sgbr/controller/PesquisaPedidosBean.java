@@ -3,27 +3,47 @@ package com.sgbr.controller;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.enterprise.context.RequestScoped;
+
+import javax.faces.bean.ViewScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.sgbr.model.Pedido;
+import com.sgbr.model.Status;
+import com.sgbr.repository.Pedidos;
+import com.sgbr.repository.filter.PedidoFilter;
+
 @Named
-@RequestScoped
-
+@ViewScoped
 public class PesquisaPedidosBean implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-
-	private List<Integer> pedidosFiltrados;
-
+	
+	@Inject
+	private Pedidos pedidos;
+	
+	private PedidoFilter filtro;
+	private List<Pedido> pedidosFiltrados;
+	
 	public PesquisaPedidosBean() {
-
-		pedidosFiltrados = new ArrayList<Integer>();
-		for (int i = 0; i < 50; i++) {
-			pedidosFiltrados.add(i);
-		}
+		filtro = new PedidoFilter();
+		pedidosFiltrados = new ArrayList<>();
 	}
 
-	public List<Integer> getPedidosFiltrados() {
+	public void pesquisar() {
+		pedidosFiltrados = pedidos.filtrados(filtro);
+	}
+	
+	public Status[] getStatuses() {
+		return Status.values();
+	}
+	
+	public List<Pedido> getPedidosFiltrados() {
 		return pedidosFiltrados;
 	}
+
+	public PedidoFilter getFiltro() {
+		return filtro;
+	}
+	
 }
