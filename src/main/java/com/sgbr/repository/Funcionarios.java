@@ -1,6 +1,7 @@
 package com.sgbr.repository;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -18,8 +19,6 @@ import com.sgbr.model.Funcionario;
 import com.sgbr.repository.filter.FuncionarioFilter;
 import com.sgbr.service.NegocioException;
 import com.sgbr.util.jpa.Transactional;
-
-import antlr.collections.List;
 
 public class Funcionarios implements Serializable {
   
@@ -54,7 +53,7 @@ public class Funcionarios implements Serializable {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List <Funcionario> filtrados(FuncionarioFilter filtro) {
+	public List<Funcionario> filtrados(FuncionarioFilter filtro) {
 		Session session = manager.unwrap(Session.class);
 		Criteria criteria = session.createCriteria(Funcionario.class);
 
