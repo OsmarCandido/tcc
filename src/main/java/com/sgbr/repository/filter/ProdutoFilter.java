@@ -2,8 +2,6 @@ package com.sgbr.repository.filter;
 
 import java.io.Serializable;
 
-import com.sgbr.validation.IdProduto;
-
 public class ProdutoFilter implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -11,7 +9,6 @@ public class ProdutoFilter implements Serializable {
 	private String idProduto;
 	private String descricao;
 
-	@IdProduto
 	public String getIdProduto() {
 		return idProduto;
 	}

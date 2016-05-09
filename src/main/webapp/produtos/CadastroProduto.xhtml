@@ -33,13 +33,15 @@
 					<p:button value="Pesquisa" outcome="/produtos/PesquisaProduto" />
 				</p:toolbarGroup>
 			</p:toolbar>
+			
+			<!--  Alterado em 09/05/2016 (Osmar)
+				<p:outputLabel value="Id Produto" for="idProduto" />
+				<p:inputText id="idProduto" size="8" maxlenght="8"
+					value="#{cadastroProdutoBean.produto.idProduto}" />  --> 
 
 			<p:panelGrid columns="2" id="painel"
 				style="width: 100%;margin-top:20px;" columnClasses="rotulo, campo">
 
-				<p:outputLabel value="Id Produto" for="idProduto" />
-				<p:inputText id="idProduto" size="8" maxlenght="8"
-					value="#{cadastroProdutoBean.produto.idProduto}" />
 
 				<p:outputLabel value="Descricao" for="descricao" />
 				<p:inputText id="descricao" size="60" maxlenght="80"

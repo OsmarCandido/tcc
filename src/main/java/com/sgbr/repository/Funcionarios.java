@@ -1,7 +1,6 @@
 package com.sgbr.repository;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -20,17 +19,19 @@ import com.sgbr.repository.filter.FuncionarioFilter;
 import com.sgbr.service.NegocioException;
 import com.sgbr.util.jpa.Transactional;
 
+import antlr.collections.List;
+
 public class Funcionarios implements Serializable {
-
+  
 	private static final long serialVersionUID = 1L;
-
+		
 	@Inject
 	private EntityManager manager;
 
 	public Funcionario guardar(Funcionario funcionario) {
 		return manager.merge(funcionario);
 	}
-	
+
 	@Transactional
 	public void remover(Funcionario funcionario) {
 		try {
@@ -44,27 +45,27 @@ public class Funcionarios implements Serializable {
 
 	public Funcionario porIdFuncionario(String idFuncionario) {
 		try {
-			return manager.createQuery("from Funcionario where upper(idFuncionario) = :idFuncionario", Funcionario.class)
-				.setParameter("idFuncionario", idFuncionario.toUpperCase())
-				.getSingleResult();
+			return manager
+					.createQuery("from Funcionario where upper(idFuncionario) = :idFuncionario", Funcionario.class)
+					.setParameter("idFuncionario", idFuncionario.toUpperCase()).getSingleResult();
 		} catch (NoResultException e) {
 			return null;
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public List<Funcionario> filtrados(FuncionarioFilter filtro) {
+	public List <Funcionario> filtrados(FuncionarioFilter filtro) {
 		Session session = manager.unwrap(Session.class);
 		Criteria criteria = session.createCriteria(Funcionario.class);
-		
+
 		if (StringUtils.isNotBlank(filtro.getIdFuncionario())) {
 			criteria.add(Restrictions.eq("idFuncionario", filtro.getIdFuncionario()));
 		}
-		
+
 		if (StringUtils.isNotBlank(filtro.getDescricao())) {
 			criteria.add(Restrictions.ilike("descricao", filtro.getDescricao(), MatchMode.ANYWHERE));
 		}
-		
+
 		return criteria.addOrder(Order.asc("descricao")).list();
 	}
 
@@ -76,5 +77,6 @@ public class Funcionarios implements Serializable {
 		return this.manager.createQuery("from Funcionario where upper(descricao) like :descricao", Funcionario.class)
 				.setParameter("descricao", nome.toUpperCase() + "%").getResultList();
 	}
-	
 }
+
+

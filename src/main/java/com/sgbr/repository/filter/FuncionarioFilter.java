@@ -1,8 +1,7 @@
 package com.sgbr.repository.filter;
 
-import java.io.Serializable;
-
 import com.sgbr.validation.IdFuncionario;
+import java.io.Serializable;
 
 public class FuncionarioFilter implements Serializable {
 
@@ -17,7 +16,7 @@ public class FuncionarioFilter implements Serializable {
 	}
 
 	public void setIdProduto(String idProduto) {
-		this.idFuncionario = idFuncionario == null ? null : idProduto.toUpperCase();
+		this.idFuncionario = idFuncionario == null ? null : idFuncionario.toUpperCase();
 	}
 
 	public String getDescricao() {
