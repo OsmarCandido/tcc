@@ -22,7 +22,9 @@ import com.sgbr.util.jpa.Transactional;
 import antlr.collections.List;
 
 public class Funcionarios implements Serializable {
-
+  
+	private static final long serialVersionUID = 1L;
+		
 	@Inject
 	private EntityManager manager;
 
@@ -76,3 +78,5 @@ public class Funcionarios implements Serializable {
 		 				-				.setParameter("descricao", nome.toUpperCase() + "%").getResultList();
 		 	}
 }
+
+
