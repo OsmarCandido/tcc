@@ -49,14 +49,6 @@ public class Pedidos implements Serializable {
 			criteria.add(Restrictions.le("dataCriacao", filtro.getDataCriacaoAte()));
 		}
 
-		if (filtro.getHoraCriacaoAte() != null) {
-			criteria.add(Restrictions.ge("horaCriacao", filtro.getHoraCriacaoAte()));
-		}
-		
-		if (filtro.getDataCriacaoDe() != null) {
-			criteria.add(Restrictions.le("horaCriacao", filtro.getDataCriacaoDe()));
-		}
-
 		if (StringUtils.isNotBlank(filtro.getNomeFuncionario())) {
 			// acessamos o nome do funcionario associado ao pedido pelo alias "f", criado anteriormente
 			criteria.add(Restrictions.ilike("f.nome", filtro.getNomeFuncionario(), MatchMode.ANYWHERE));

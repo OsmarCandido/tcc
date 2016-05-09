@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,127 +21,116 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
-
+import javax.validation.constraints.NotNull;
 @Entity
-@Table
+@Table(name = "pedido")
 public class Pedido implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
+	private Long idPedido;
+	private Date dataCriacao;
+	private String observacao;
+	private BigDecimal subTotal;
+	private BigDecimal valorTotal;
+	private Status status;
+	private Pagamento pagamento;
+	private Funcionario funcionario;
+	private List<ItemPedido> itens = new ArrayList<>();
+
 	@Id
 	@GeneratedValue
-	@Column(name="idPedido", nullable=false)
-	private Long idPedido;
-	
-	
-	@Temporal(TemporalType.DATE)
-	@Column(name="dataCriacao",nullable=false)
-	private Date dataCriacao;
-	
-	@Column(name="Observacao",length=100,nullable=false)
-	private String observacao;
-	
-	@Column(name="ValorTotal",nullable=false)
-	private BigDecimal valorTotal;
-	
-	@Enumerated(EnumType.STRING)
-	@Column(name="Pedido", nullable=false)
-	private Status status;
-	
-	@ManyToOne
-	@JoinColumn (name="idFuncionario")
-	private Funcionario funcionario;
-	
-	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
-	private List<ItemPedido> itens = new ArrayList<>();
-	
-	private Pagamento pagamento;
-		
-	/** Gets */ 
-	
-
-	public Pagamento getPagamento() {
-		return pagamento;
-	}
-
-
 	public Long getIdPedido() {
 		return idPedido;
 	}
 
-
-	public Date getDataCriacao() {
-		return dataCriacao;
-	}
-	
-	public BigDecimal getValorTotal() {
-		return valorTotal;
-	}
-	
-	/**ABERTO, FECHADO, CANCELADO*/
-	@Enumerated (EnumType.STRING)
-	public Status getStatus() {
-		return status;
-	}
-	
-	public String getObservacao() {
-		return observacao;
-	}
-	
-	public Funcionario getFuncionario() {
-		return funcionario;
-	}
-	
-	@OneToMany 
-	public List<ItemPedido> getItens() {
-		return itens;
-	}
-	
-	
-	/** Sets*/
-	
 	public void setIdPedido(Long idPedido) {
 		this.idPedido = idPedido;
 	}
-	
+
+	@NotNull
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "data_criacao", nullable = false)
+	public Date getDataCriacao() {
+		return dataCriacao;
+	}
+
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
+
+	@Column(columnDefinition = "text")
+	public String getObservacao() {
+		return observacao;
+	}
+
+	@NotNull
+	@Column(name = "subtotal", nullable = false, precision = 10, scale = 2)
+	public BigDecimal getSubTotal() {
+		return subTotal;
+	}
+
+	public void setSubTotal(BigDecimal subTotal) {
+		this.subTotal = subTotal;
+	}
+
 	
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
-	
+
+	@NotNull
+	@Column(name = "valor_total", nullable = false, precision = 10, scale = 2)
+	public BigDecimal getValorTotal() {
+		return valorTotal;
+	}
+
 	public void setValorTotal(BigDecimal valorTotal) {
 		this.valorTotal = valorTotal;
 	}
 	
-	
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false, length = 20)
+	public Status getStatus() {
+		return status;
+	}
+
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
+
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	@Column(name = "pagamento", nullable = false, length = 20)
+	public Pagamento getPagamento() {
+		return pagamento;
 	}
-	
-	public void setItens(List<ItemPedido> itens) {
-		this.itens = itens;
-	}
+
 	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
 	}
-	
-	@Transient
-	public boolean isNovo() {
-		return getIdPedido() == null;
+
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "funcionario", nullable = false)
+	public Funcionario getFuncionario() {
+		return funcionario;
 	}
-	
-	@Transient
-	public boolean isExistente() {
-		return !isNovo();
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
 	}
-	
+
+	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+	public List<ItemPedido> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<ItemPedido> itens) {
+		this.itens = itens;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -148,6 +138,7 @@ public class Pedido implements Serializable {
 		result = prime * result + ((idPedido == null) ? 0 : idPedido.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -164,35 +155,41 @@ public class Pedido implements Serializable {
 			return false;
 		return true;
 	}
-	
-	public void adicionarItemVazio() {
 
-		if (this.isAberto()) {
-
-			Produto produto = new Produto();
-
-			ItemPedido item = new ItemPedido();
-			item.setQuantidade(1);
-			item.setProduto(produto);
-			item.setPedido(this);
-
-			this.getItens().add(0, item);
-		}
-	}
-
-//Metodos
-	
-	@Transient
-	public boolean isAberto() {
-		return Status.ABERTO.equals(this.getStatus());
-	}
-	
-	@Transient
-	private boolean isFechado() { 
-		return Status.FECHADO.equals(this.getStatus());
-	}
-	@Transient
-	private boolean isCancelado() { 
-		return Status.CANCELADO.equals(this.getStatus());
-	}	
+@Transient
+public boolean isNovo() {
+	return getIdPedido() == null;
 }
+
+@Transient
+public boolean isExistente() {
+	return !isNovo();
+}
+
+@Transient
+public boolean isValorTotalNegativo() {
+	return this.getValorTotal().compareTo(BigDecimal.ZERO) < 0;
+}
+
+@Transient
+public boolean isEmitido() {
+	return Status.ABERTO.equals(this.getStatus());
+}
+
+@Transient
+public boolean isCancelavel() {
+	return this.isExistente() && !this.isCancelado();
+}
+
+@Transient
+private boolean isCancelado() {
+	return Status.CANCELADO.equals(this.getStatus());
+}
+
+@Transient
+public boolean isNaoCancelavel() {
+	return !this.isCancelavel();
+}
+
+}
+

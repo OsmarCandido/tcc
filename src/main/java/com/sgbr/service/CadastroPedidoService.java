@@ -24,6 +24,11 @@ public class CadastroPedidoService implements Serializable {
 			pedido.setStatus(Status.ABERTO);
 		}
 		
+		
+		if (pedido.isValorTotalNegativo()) {
+			throw new NegocioException("Valor total do pedido não pode ser negativo.");
+		}
+		
 		pedido = this.pedidos.guardar(pedido);
 		return pedido;
 	}

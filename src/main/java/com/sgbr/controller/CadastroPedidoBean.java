@@ -1,42 +1,39 @@
 package com.sgbr.controller;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
-import com.sgbr.model.Pagamento;
 import com.sgbr.model.Pedido;
-import com.sgbr.service.CadastroPedidoService;
-import com.sgbr.util.jsf.FacesUtil;
 
 @Named
-@RequestScoped
+@ViewScoped
+public class CadastroPedidoBean implements Serializable {
 
-public class CadastroPedidoBean {
+	private static final long serialVersionUID = 1L;
 
+	private Pedido pedido;
+	
 	private List<Integer> itens;
-	private Object pedido;
-	private Object cadastroPedidoService;
-
+	
 	public CadastroPedidoBean() {
-
+		pedido = new Pedido();
 		itens = new ArrayList<>();
 		itens.add(1);
 	}
-		
-	public Pagamento[] getPagamento(){
-		return Pagamento.values();
+	
+	public void salvar() {
 	}
 
-	public void salvar() {
-		this.pedido = ((CadastroPedidoService) this.cadastroPedidoService).salvar((Pedido) this.pedido);
-		
-		FacesUtil.addInfoMessage("Pedido salvo com sucesso!");
-	}
-	
 	public List<Integer> getItens() {
 		return itens;
 	}
+
+	public Pedido getPedido() {
+		return pedido;
+	}
+
 }
