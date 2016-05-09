@@ -6,7 +6,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table
@@ -14,17 +17,14 @@ public class Funcionario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	
 	@Id
 	@GeneratedValue
 	private Long idFuncionario;
 	
-	
-
 	@Column(name="Nome",length=100,nullable=false)
 	private String nome;
 	
-	@Column(name="Telefone",length=13,nullable=false)
+	@Column(name="Telefone",length=14,nullable=false)
 	private String telefone;
 	
 	@Column(name="Cpf",length=14,nullable=false)
@@ -36,6 +36,9 @@ public class Funcionario implements Serializable {
 	@Column(name="senha",length=10,nullable=false)
 	private String senha;
 	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name="perfil_id", nullable=false)
 	private Perfil perfil;
 	
 	

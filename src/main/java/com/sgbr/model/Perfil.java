@@ -19,7 +19,6 @@ public class Perfil implements Serializable {
 	private String descricao;
 	private Perfil perfilPai;
 	
-	
 	@Id
 	@GeneratedValue
 	public Long getId() {
@@ -47,7 +46,7 @@ public class Perfil implements Serializable {
 	public void setPerfilPai(Perfil perfilPai) {
 		this.perfilPai = perfilPai;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -73,4 +72,5 @@ public class Perfil implements Serializable {
 		return true;
 	}
 
+	
 }

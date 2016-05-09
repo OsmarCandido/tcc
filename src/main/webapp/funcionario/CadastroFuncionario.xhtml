@@ -6,7 +6,7 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:define name="titulo"> Cadastro de Funiconário </ui:define>
+	<ui:define name="titulo"> Cadastro de Funcionário </ui:define>
 	<ui:define name="corpo">
 
 		<f:metadata>
@@ -36,6 +36,11 @@
 			<p:panelGrid columns="2" id="painel"
 				style="width: 100%; margin-top:35px" columnClasses="rotulo, campo">
 
+				<p:outputLabel value="Id Funcionario" for="idFuncionario" />
+				<p:inputText id="idFuncionario" size="8" maxlenght="8"
+					value="#{cadastroFuncionarioBean.funcionario.idFuncionario}" />
+
+
 				<p:outputLabel value="Nome" for="nome" />
 				<p:inputText id="nome" size="100" maxlenght="255" value="#{cadastroFuncionarioBean.funcionario.nome}"/>
 
@@ -48,9 +53,9 @@
 					mask="999.999.999-99" />
 
 				<p:outputLabel value="Perfil" for="perfil" />
-				<p:selectOneMenu id="perfil" value="#{cadastroFuncionarioBean.perfilPai}">
-					<f:selectItem itemLabel="Selecione a categoria" />
-					<f:selectItems value="#{cadastroFuncionarioBean.perfisRaizes}"
+				<p:selectOneMenu id="perfil" value="#{cadastroFuncionarioBean.funcionario.perfil}">
+					<f:selectItem itemLabel="Selecione a perfil" />
+					<f:selectItems value="#{cadastroFuncionarioBean.perfils}"
 						var="perfil" itemValue="#{perfil}" itemLabel="#{perfil.descricao}" />
 				</p:selectOneMenu>
 

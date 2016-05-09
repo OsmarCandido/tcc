@@ -19,14 +19,9 @@ public class Perfis implements Serializable {
 		return manager.find(Perfil.class, id);
 	}
 	
-	public List<Perfil> raizes() {
-		return manager.createQuery("from Perfil where perfilPai is null", 
+	public List<Perfil> encontrados() {
+		return manager.createQuery("from Perfil", 
 				Perfil.class).getResultList();
-	}
-	
-	public List<Perfil> subperfisDe(Perfil perfilPai) {
-		return manager.createQuery("from Perfil where perfilPai = :raiz", 
-				Perfil.class).setParameter("raiz", perfilPai).getResultList();
 	}
 	
 }
