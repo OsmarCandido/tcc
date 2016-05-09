@@ -33,14 +33,14 @@
 				</p:toolbarGroup>
 			</p:toolbar>
 
+	      <!--  Alterado em 09/05/2016 (Osmar)
+	          <p:outputLabel value="Id Funcionario" for="idFuncionario" />
+				<p:inputText id="idFuncionario" size="8" maxlenght="8"
+					value="#{cadastroFuncionarioBean.funcionario.idFuncionario}" />   -->
+
 			<p:panelGrid columns="2" id="painel"
 				style="width: 100%; margin-top:35px" columnClasses="rotulo, campo">
-
-				<p:outputLabel value="Id Funcionario" for="idFuncionario" />
-				<p:inputText id="idFuncionario" size="8" maxlenght="8"
-					value="#{cadastroFuncionarioBean.funcionario.idFuncionario}" />
-
-
+					
 				<p:outputLabel value="Nome" for="nome" />
 				<p:inputText id="nome" size="100" maxlenght="255" value="#{cadastroFuncionarioBean.funcionario.nome}"/>
 
