@@ -33,7 +33,7 @@ public class Pedido implements Serializable {
 	private String observacao;
 	private BigDecimal subTotal;
 	private BigDecimal valorTotal;
-	private Status status;
+	private StatusOld status;
 	private Pagamento pagamento;
 	private Funcionario funcionario;
 	private List<ItemPedido> itens = new ArrayList<>();
@@ -92,11 +92,11 @@ public class Pedido implements Serializable {
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length = 20)
-	public Status getStatus() {
+	public StatusOld getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(StatusOld status) {
 		this.status = status;
 	}
 
@@ -173,7 +173,7 @@ public boolean isValorTotalNegativo() {
 
 @Transient
 public boolean isEmitido() {
-	return Status.ABERTO.equals(this.getStatus());
+	return StatusOld.ABERTO.equals(this.getStatus());
 }
 
 @Transient
@@ -183,7 +183,7 @@ public boolean isCancelavel() {
 
 @Transient
 private boolean isCancelado() {
-	return Status.CANCELADO.equals(this.getStatus());
+	return StatusOld.CANCELADO.equals(this.getStatus());
 }
 
 @Transient

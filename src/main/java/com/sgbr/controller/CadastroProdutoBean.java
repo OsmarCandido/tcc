@@ -20,8 +20,7 @@ public class CadastroProdutoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	@Inject
-	private Categorias categorias;
+	 private Categorias categorias;
 	
 	@Inject
 	private CadastroProdutoService cadastroProdutoService;

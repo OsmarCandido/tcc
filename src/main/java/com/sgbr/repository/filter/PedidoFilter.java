@@ -3,7 +3,7 @@ package com.sgbr.repository.filter;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.sgbr.model.Status;
+import com.sgbr.model.StatusOld;
 
 public class PedidoFilter implements Serializable {
 
@@ -16,7 +16,7 @@ public class PedidoFilter implements Serializable {
 	private Date horaCriacaoDe;
 	private Date horaCriacaoAte;
 	private String nomeFuncionario;
-	private Status[] statuses;
+	private StatusOld[] statuses;
 
 	public Long getNumeroDe() {
 		return numeroDe;
@@ -75,11 +75,11 @@ public class PedidoFilter implements Serializable {
 		this.nomeFuncionario = nomeFuncionario;
 	}
 	
-	public Status[] getStatuses() {
+	public StatusOld[] getStatuses() {
 		return statuses;
 	}
 
-	public void setStatuses(Status[] statuses) {
+	public void setStatuses(StatusOld[] statuses) {
 		this.statuses = statuses;
 	}
 
