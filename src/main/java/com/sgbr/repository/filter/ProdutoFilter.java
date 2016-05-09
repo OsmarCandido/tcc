@@ -11,7 +11,6 @@ public class ProdutoFilter implements Serializable {
 	private String idProduto;
 	private String descricao;
 
-	@IdProduto
 	public String getIdProduto() {
 		return idProduto;
 	}

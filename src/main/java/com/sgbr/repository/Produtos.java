@@ -58,7 +58,7 @@ public class Produtos implements Serializable {
 		Criteria criteria = session.createCriteria(Produto.class);
 		
 		if (StringUtils.isNotBlank(filtro.getIdProduto())) {
-			criteria.add(Restrictions.eq("idProduto", filtro.getIdProduto()));
+			criteria.add(Restrictions.eq("idProduto", Long.parseLong(filtro.getIdProduto())));
 		}
 		
 		if (StringUtils.isNotBlank(filtro.getDescricao())) {
