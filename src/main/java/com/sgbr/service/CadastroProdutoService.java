@@ -16,11 +16,12 @@ public class CadastroProdutoService implements Serializable {
 	private Produtos produtos;
 	@Transactional
 	public Produto salvar(Produto produto) {
-		Produto produtoExistente = produtos.porIdProduto(produto.getIdProduto());
+		//Alterado 09/05/2016 (Osmar) 
+	//	Produto produtoExistente = produtos.porIdProduto(produto.getIdProduto());
 		
-		if (produtoExistente != null && !produtoExistente.equals(produto)) {
-			throw new NegocioException("Existe um produto com esse Id.");
-		}
+		//if (produtoExistente != null && !produtoExistente.equals(produto)) {
+			//throw new NegocioException("Existe um produto com esse Id.");
+		//}
 		
 		return produtos.guardar(produto);
 	}
