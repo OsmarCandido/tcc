@@ -15,6 +15,7 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import com.sgbr.model.Funcionario;
+import com.sgbr.model.Produto;
 import com.sgbr.repository.filter.FuncionarioFilter;
 import com.sgbr.service.NegocioException;
 import com.sgbr.util.jpa.Transactional;
@@ -54,7 +55,7 @@ public class Funcionarios implements Serializable {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Funcionario> filtrados(FuncionarioFilter filtro) {
+	public List <Funcionario> filtrados(FuncionarioFilter filtro) {
 		Session session = manager.unwrap(Session.class);
 		Criteria criteria = session.createCriteria(Funcionario.class);
 
@@ -74,9 +75,9 @@ public class Funcionarios implements Serializable {
 	}
 
 	public List<Funcionario> porNome(String nome) {
-		 		return this.manager.createQuery("from Funcionario where upper(descricao) like :descricao", Funcionario.class)
-		 				-				.setParameter("descricao", nome.toUpperCase() + "%").getResultList();
-		 	}
+		return this.manager.createQuery("from Produto where upper(descricao) like :descricao", Produto.class)
+				.setParameter("descricao", nome.toUpperCase() + "%").getResultList();
+	}
 }
 
 
