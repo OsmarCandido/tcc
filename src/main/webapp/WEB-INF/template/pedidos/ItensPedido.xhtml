@@ -4,32 +4,60 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 	
-	<p:dataTable value="#{cadastroPedidoBean.itens}" var="item" id="tabelaItens">
+	<p:dataTable value="#{cadastroPedidoBean.pedido.itens}" var="item" id="tabelaItens">
 	
 			<p:column headerText="Id Produto" style="text-aling: center; width: 100px">
-				<p:inputText size="8"/>
+				<h:outputText value="#{item.produto.idProduto}" rendered="#{item.produtoAssociado}"/>
+			
+				<p:inputText size="8" value="#{cadastroPedidoBean.idProduto}" label="SKU"
+				rendered="#{not item.produtoAssociado}">
+				<p:ajax event="change" process="@this" 
+					update="tabelaItens :frmCadastro:totalPedido :frmCadastro:subtotal" 
+					listener="#{cadastroPedidoBean.carregarProdutoPorIdProduto}" />
+			</p:inputText>
 			</p:column>
 			
-			<p:column headerText="Descrição Produto" style="text-aling: center; width: 100px">
-				<p:autoComplete styleClass="produto-tabela"/>
+			<p:column headerText="Descrição Produto">
+				<h:outputText value="#{item.produto.descricao}" rendered="#{item.produtoAssociado}" />
+		
+			<p:autoComplete styleClass="produto-tabela" value="#{cadastroPedidoBean.produtoLinhaEditavel}"
+				completeMethod="#{cadastroPedidoBean.completarProduto}"
+				var="produto" itemLabel="#{produto.descricao}" itemValue="#{produto}" 
+				forceSelection="true" rendered="#{not item.produtoAssociado}">
+				<p:ajax event="itemSelect" update="tabelaItens :frmCadastro:totalPedido :frmCadastro:subtotal" 
+					listener="#{cadastroPedidoBean.carregarProdutoLinhaEditavel}"/>
+			</p:autoComplete>
 			</p:column>
 			
-			<p:column headerText="Valor Unitário" style="text-aling: center; width: 100px">
-				<h:outputText value="R$ 0,00"/>
-			</p:column>
+			<p:column headerText="Valor unitário" style="text-align: right; width: 120px">
+			<h:outputText value="#{item.valorUnitario}">
+				<f:convertNumber type="currency"/>
+			</h:outputText>
 			
 			<p:column headerText="Quantidade" style="text-aling: center; width: 100px">
-				<p:inputText size="8" value="1"/>
+				<p:inputText size="8" value="#{item.quantidade}">
+				<p:ajax event="change" process="@this"
+					update="tabelaItens :frmCadastro:totalPedido :frmCadastro:subtotal"
+					listener="#{cadastroPedidoBean.atualizarQuantidade(item, linha)}" />
+			</p:inputText>
 			</p:column>			
 		
-			<p:column headerText="Valor Total" style="text-aling: rigth; width: 100px">
-				<h:outputText value="R$ 0,00"/>
+			<p:column headerText="Valor total" style="text-align: right; width: 100px">
+				<h:outputText value="#{item.valorTotal}">
+					<f:convertNumber type="currency"/>
+				</h:outputText>
 			</p:column>
-			
+		
 			<p:columnGroup type="footer">
 				<p:row>
 					<p:column colspan="4" footerText="Subtotal" style="text-align: right"/>
-					<p:column footerText="50,00" style="text-aling: rigth" />
+					<p:column style="text-align: right">
+					<f:facet name="footer">
+						<h:outputText value="#{cadastroPedidoBean.pedido.subtotal}">
+							<f:convertNumber type="currency"/>
+						</h:outputText>
+					</f:facet>
+				</p:column>
 				</p:row>
 				
 			</p:columnGroup>
