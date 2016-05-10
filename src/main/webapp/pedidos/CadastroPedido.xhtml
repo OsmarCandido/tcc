@@ -5,13 +5,17 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-
+	
+	<f:metadata>
+		<f:event listener="#{cadastroPedidoBean.inicializar}" type="preRenderView" />
+	</f:metadata>
+	
 	<ui:define name="titulo"> Cadastro de Pedido </ui:define>
 	<ui:define name="corpo">
 	<h:form>
 		<h1>Novo Pedido</h1>
 
-				<p:messages autoUpdate="true" />
+				<p:messages autoUpdate="true" closable="true"/>
 
 				<ui:include src="/WEB-INF/template/pedidos/BotoesPedido.xhtml" />
 

@@ -3,44 +3,74 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-	
-<p:panelGrid columns="4" style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo, rotulo, campo">
-	<p:outputLabel value="Id Pedido" />
-	<h:outputText value="#{cadastroPedidoBean.pedido.idPedido}" />
-	
-	<p:outputLabel value="Data Pedido" />
-	<h:outputText value="#{cadastroPedidoBean.pedido.dataCriacao}">
-        	<f:convertDateTime pattern="dd/MM/yyyy" />
-    </h:outputText>
-	
-	<p:outputLabel value="Status" />
-	<h:outputText value="#{cadastroPedidoBean.pedido.status}" />
-	
-	<p:outputLabel value="Hora Pedido" />
-	<h:outputText value="#{cadastroPedidoBean.pedido.dataCriacao}">
-        	<f:convertDateTime pattern="HH:mm:ss" />
-    </h:outputText>
-	
-	<p:outputLabel value="Funcionario" for="funcionario" />
-		<p:selectOneMenu id="funcionario" value="#{cadastroPedidoBean.pedido.funcionario}">
-            <f:selectItem itemLabel="Selecione" />
-        </p:selectOneMenu>
-			
-	<p:outputLabel value="Forma de pagamento" for="pagamento"/>
-        <p:selectOneMenu id="pagamento" value="#{cadastroPedidoBean.pedido.pagamento}">
-            <f:selectItem itemLabel="Selecione" />
-        </p:selectOneMenu>
-	
-	<p:outputLabel value="Subtotal" style="font-weigth: bold"/>
-	<p:inputText id="subTotal" size="10" maxlength="10" styleClass="moeda" 
-        	value="#{cadastroPedidoBean.pedido.subTotal}">
-        	<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
-        </p:inputText> 
-	
-	<p:outputLabel value="Total do pedido" style="font-weight: bold; font-size: 1.1em"/>
-    <h:outputText value="#{cadastroPedidoBean.pedido.valorTotal}" 
-        	style="font-weight: bold; font-size: 1.1em" id="totalPedido">
-        	<f:convertNumber type="currency" />
-        </h:outputText>
-</p:panelGrid>
+
+	<p:panelGrid columns="4" style="width: 100%; margin-top: 20px"
+		columnClasses="rotulo, campo, rotulo, campo">
+
+		<p:outputLabel value="Id Pedido"
+			rendered="#{cadastroPedidoBean.pedido.existente}" />
+		<h:outputText value="#{cadastroPedidoBean.pedido.idPedido}"
+			rendered="#{cadastroPedidoBean.pedido.existente}" />
+
+		<p:outputLabel value="Data Pedido"
+			rendered="#{cadastroPedidoBean.pedido.existente}" />
+		<h:outputText value="#{cadastroPedidoBean.pedido.dataCriacao}"
+			rendered="#{cadastroPedidoBean.pedido.existente}">
+			<f:convertDateTime pattern="dd/MM/yyyy" />
+		</h:outputText>
+
+		<p:outputLabel value="Status" />
+		<h:outputText value="#{cadastroPedidoBean.pedido.status.descricao}" />
+
+		<p:outputLabel value="Hora Pedido" />
+		<h:outputText value="#{cadastroPedidoBean.pedido.dataCriacao}">
+			<f:convertDateTime pattern="HH:mm:ss" />
+		</h:outputText>
+
+		<p:outputLabel value="Funcionario" for="funcionario" />
+		<p:selectOneMenu id="funcionario"
+			value="#{cadastroPedidoBean.pedido.funcionario}">
+			<f:selectItem itemLabel="Selecione" />
+			<f:selectItems value="#{cadastroPedidoBean.vendedores}"
+				var="vendedor" itemvalue="#{vendedor}" itemLabel="#{vendedor.nome}" />
+		</p:selectOneMenu>
+
+		<p:outputLabel value="Forma de pagamento" for="pagamento" />
+		<p:selectOneMenu id="pagamento"
+			value="#{cadastroPedidoBean.pedido.pagamento}">
+			<f:selectItem itemLabel="Selecione" />
+			<f:selectItems value="#{cadastroPedidoBean.pagamento}"
+				var="pagamento" itemValue="#{pagamento}"
+				itemLabel="#{pagamento.descricao}" />
+		</p:selectOneMenu>
+
+		<p:outputLabel value="Comissão" for="comissaoAtendimento" />
+		<p:inputText id="comissaoAtendimento" size="10" maxlength="10"
+			styleClass="moeda" value="#{cadastroPedidoBean.pedido.valorComissao}">
+			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+			<p:ajax event="change" process="@this" update="totalPedido"
+				listener="#{cadastroPedidoBean.recalcularPedido}" />
+		</p:inputText>
+
+		<p:outputLabel value="Desconto" for="valorDesconto" />
+		<p:inputText id="valorDesconto" size="10" maxlength="10"
+			styleClass="moeda" value="#{cadastroPedidoBean.pedido.valorDesconto}">
+			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+			<p:ajax event="change" process="@this" update="totalPedido"
+				listener="#{cadastroPedidoBean.recalcularPedido}" />
+		</p:inputText>
+
+		<p:outputLabel value="Subtotal" style="font-weigth: bold" />
+		<h:outputText id="subTotal" size="10" maxlength="10"
+			styleClass="moeda" value="#{cadastroPedidoBean.pedido.valorSubtotal}">
+			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+		</h:outputText>
+
+		<p:outputLabel value="Total do pedido"
+			style="font-weight: bold; font-size: 1.1em" />
+		<h:outputText value="#{cadastroPedidoBean.pedido.valorTotal}"
+			style="font-weight: bold; font-size: 1.1em" id="totalPedido">
+			<f:convertNumber type="currency" />
+		</h:outputText>
+	</p:panelGrid>
 </ui:composition>

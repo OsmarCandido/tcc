@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,6 +21,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+
 @Entity
 @Table(name = "pedido")
 public class Pedido implements Serializable {
@@ -31,9 +31,11 @@ public class Pedido implements Serializable {
 	private Long idPedido;
 	private Date dataCriacao;
 	private String observacao;
-	private BigDecimal subTotal;
-	private BigDecimal valorTotal;
-	private StatusOld status;
+	private BigDecimal valorComissao = BigDecimal.ZERO;
+	private BigDecimal valorDesconto = BigDecimal.ZERO;
+	private BigDecimal subTotal = BigDecimal.ZERO;
+	private BigDecimal valorTotal = BigDecimal.ZERO;
+	private StatusPedido status = StatusPedido.ORCAMENTO;
 	private Pagamento pagamento;
 	private Funcionario funcionario;
 	private List<ItemPedido> itens = new ArrayList<>();
@@ -74,7 +76,6 @@ public class Pedido implements Serializable {
 		this.subTotal = subTotal;
 	}
 
-	
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
@@ -88,15 +89,15 @@ public class Pedido implements Serializable {
 	public void setValorTotal(BigDecimal valorTotal) {
 		this.valorTotal = valorTotal;
 	}
-	
+
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length = 20)
-	public StatusOld getStatus() {
+	public StatusPedido getStatus() {
 		return status;
 	}
 
-	public void setStatus(StatusOld status) {
+	public void setStatus(StatusPedido status) {
 		this.status = status;
 	}
 
@@ -156,40 +157,75 @@ public class Pedido implements Serializable {
 		return true;
 	}
 
-@Transient
-public boolean isNovo() {
-	return getIdPedido() == null;
-}
+	@Transient
+	public boolean isNovo() {
+		return getIdPedido() == null;
+	}
 
-@Transient
-public boolean isExistente() {
-	return !isNovo();
-}
+	@Transient
+	public boolean isExistente() {
+		return !isNovo();
+	}
 
-@Transient
-public boolean isValorTotalNegativo() {
-	return this.getValorTotal().compareTo(BigDecimal.ZERO) < 0;
-}
+	@Transient
+	public boolean isValorTotalNegativo() {
+		return this.getValorTotal().compareTo(BigDecimal.ZERO) < 0;
+	}
 
-@Transient
-public boolean isEmitido() {
-	return StatusOld.ABERTO.equals(this.getStatus());
-}
+	@Transient
+	public boolean isEmitido() {
+		return StatusPedido.ABERTO.equals(this.getStatus());
+	}
 
-@Transient
-public boolean isCancelavel() {
-	return this.isExistente() && !this.isCancelado();
-}
+	@Transient
+	public boolean isCancelavel() {
+		return this.isExistente() && !this.isCancelado();
+	}
 
-@Transient
-private boolean isCancelado() {
-	return StatusOld.CANCELADO.equals(this.getStatus());
-}
+	@Transient
+	private boolean isCancelado() {
+		return StatusPedido.CANCELADO.equals(this.getStatus());
+	}
 
-@Transient
-public boolean isNaoCancelavel() {
-	return !this.isCancelavel();
-}
+	@Transient
+	public boolean isNaoCancelavel() {
+		return !this.isCancelavel();
+	}
 
-}
+	@NotNull
+	@Column(name = "valor_comissao", nullable = false, precision = 10, scale = 2)
+	public BigDecimal getValorComissao() {
+		return valorComissao;
+	}
 
+	public void setValorComissao(BigDecimal valorComissao) {
+		this.valorComissao = valorComissao;
+	}
+
+	@NotNull
+	@Column(name = "valor_desconto", nullable = false, precision = 10, scale = 2)
+	public BigDecimal getValorDesconto() {
+		return valorDesconto;
+	}
+
+	public void setValorDesconto(BigDecimal valorDesconto) {
+		this.valorDesconto = valorDesconto;
+	}
+	@Transient
+	public BigDecimal getValorSubtotal(){
+		return this.getValorTotal().subtract(this.getValorComissao()).add(this.getValorDesconto());
+	}
+	
+	public void recalcularValorTotal() {
+		BigDecimal total = BigDecimal.ZERO;
+
+		total = total.add(this.getValorComissao()).subtract(this.getValorDesconto());
+
+		for (ItemPedido item : this.getItens()) {
+			if (item.getProduto() != null && item.getProduto().getIdProduto() != null) {
+				total = total.add(item.getValorTotal());
+			}
+		}
+		this.setValorTotal(total);
+	}
+}

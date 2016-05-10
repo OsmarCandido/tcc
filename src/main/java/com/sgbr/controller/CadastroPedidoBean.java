@@ -19,38 +19,46 @@ import com.sgbr.util.jsf.FacesUtil;
 public class CadastroPedidoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Inject
 	private Funcionarios funcionarios;
-	
+
 	@Inject
 	private CadastroPedidoService cadastroPedidoService;
-	
+
 	@Inject
 	private Pedido pedido;
-	
+
 	private List<Funcionario> vendedores;
-	
+
 	public CadastroPedidoBean() {
 		limpar();
 	}
-	
+
 	public void inicializar() {
 		if (FacesUtil.isNotPostback()) {
 			this.vendedores = this.funcionarios.vendedores();
+			
+			this.recalcularPedido();
 		}
 	}
-	
+
 	private void limpar() {
 		pedido = new Pedido();
 	}
-	
+
 	public void salvar() {
 		this.pedido = this.cadastroPedidoService.salvar(this.pedido);
-		
+
 		FacesUtil.addInfoMessage("Pedido salvo com sucesso!");
 	}
-	
+
+	public void recalcularPedido() {
+		if (this.pedido != null) {
+			this.pedido.recalcularValorTotal();
+		}
+	}
+
 	public Pagamento[] getPagamento() {
 		return Pagamento.values();
 	}
@@ -62,4 +70,5 @@ public class CadastroPedidoBean implements Serializable {
 	public List<Funcionario> getVendedores() {
 		return vendedores;
 	}
+
 }

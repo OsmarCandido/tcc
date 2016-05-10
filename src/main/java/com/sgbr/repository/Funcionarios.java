@@ -73,9 +73,15 @@ public class Funcionarios implements Serializable {
 	}
 
 	public List<Funcionario> porNome(String nome) {
-		return this.manager.createQuery("from Funcionario where upper(descricao) like :descricao", Funcionario.class)
-				.setParameter("descricao", nome.toUpperCase() + "%").getResultList();
+		return this.manager.createQuery("from Funcionario" + "where upper(nome) like :nome", Funcionario.class)
+				.setParameter("nome", nome.toUpperCase() + "%").getResultList();
 	}
+	
+	public List<Funcionario> vendedores(){
+		//TODO filtrar apenas vendedores por um grupo específico
+		return this.manager.createQuery("From Funcionario",Funcionario.class).getResultList();
+	}	
+	
 }
 
 
