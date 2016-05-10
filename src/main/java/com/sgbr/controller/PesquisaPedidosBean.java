@@ -9,7 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.sgbr.model.Pedido;
-import com.sgbr.model.Status;
+/*import com.sgbr.model.Status;*/
 import com.sgbr.repository.Pedidos;
 import com.sgbr.repository.filter.PedidoFilter;
 
@@ -33,11 +33,11 @@ public class PesquisaPedidosBean implements Serializable {
 	public void pesquisar() {
 		pedidosFiltrados = pedidos.filtrados(filtro);
 	}
-	
+/*	
 	public Status[] getStatuses() {
 		return Status.values();
 	}
-	
+	*/
 	public List<Pedido> getPedidosFiltrados() {
 		return pedidosFiltrados;
 	}

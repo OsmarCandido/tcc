@@ -7,9 +7,9 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.sgbr.model.Funcionario;
 import com.sgbr.model.Pagamento;
 import com.sgbr.model.Pedido;
-import com.sgbr.model.Funcionario;
 import com.sgbr.repository.Funcionarios;
 import com.sgbr.service.CadastroPedidoService;
 import com.sgbr.util.jsf.FacesUtil;
@@ -19,15 +19,17 @@ import com.sgbr.util.jsf.FacesUtil;
 public class CadastroPedidoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Inject
-	private Funcionarios Funcionarios;
+	private Funcionarios funcionarios;
 	
 	@Inject
 	private CadastroPedidoService cadastroPedidoService;
 	
+	@Inject
 	private Pedido pedido;
-	private List<Funcionario> funcionarios;
+	
+	private List<Funcionario> vendedores;
 	
 	public CadastroPedidoBean() {
 		limpar();
@@ -35,7 +37,7 @@ public class CadastroPedidoBean implements Serializable {
 	
 	public void inicializar() {
 		if (FacesUtil.isNotPostback()) {
-			//this.funcionarios = this.funcionarios.funcionarios();
+			this.vendedores = this.funcionarios.vendedores();
 		}
 	}
 	
@@ -57,8 +59,7 @@ public class CadastroPedidoBean implements Serializable {
 		return pedido;
 	}
 
-	public List<Funcionario> getFuncionaios() {
-		return funcionarios;
+	public List<Funcionario> getVendedores() {
+		return vendedores;
 	}
-
 }
