@@ -20,6 +20,7 @@ public class CadastroProdutoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	 @Inject
 	 private Categorias categorias;
 	
 	@Inject
@@ -36,9 +37,9 @@ public class CadastroProdutoBean implements Serializable {
 	}
 	
 	public void inicializar(){
-		 if(FacesUtil.isNotPostback()){
+		if(FacesUtil.isNotPostback()){
 		 categoriasRaizes = categorias.raizes();
-		 }
+		}
 	}
 				
 	public void carregarSubcategorias(){
