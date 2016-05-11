@@ -77,6 +77,27 @@ public class Funcionarios implements Serializable {
 				.setParameter("nome", nome.toUpperCase() + "%").getResultList();
 	}
 	
+	
+   //  Início Controle de acesso (11/05/2016)
+	
+	public Funcionario porLogin(String login){
+		Funcionario funcionario = null;
+		
+		try {
+			
+		funcionario = this.manager.createQuery("from Funcionario where lower(login) = ;login", Funcionario.class)
+		.setParameter ("login", login.toLowerCase()).getSingleResult() ;
+		return funcionario;
+		
+		}catch (NoResultException e){
+			//Funcionario não encontrado com o login informado 
+			return null;
+		}
+		
+}
+	
+//  Fim Controle de acesso (11/05/2016)	
+	
 	public List<Funcionario> vendedores(){
 		//TODO filtrar apenas vendedores por um grupo específico
 		return this.manager.createQuery("From Funcionario",Funcionario.class).getResultList();
