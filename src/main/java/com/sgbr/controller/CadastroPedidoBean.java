@@ -16,6 +16,7 @@ import com.sgbr.repository.Funcionarios;
 import com.sgbr.repository.Produtos;
 import com.sgbr.service.CadastroPedidoService;
 import com.sgbr.util.jsf.FacesUtil;
+import com.sgbr.validation.IdProduto;
 
 @Named
 @ViewScoped
@@ -36,6 +37,9 @@ public class CadastroPedidoBean implements Serializable {
 	private Pedido pedido;
 
 	private List<Funcionario> vendedores;
+	
+	@IdProduto
+	private String idProduto;
 	
 	private Produto produtoLinhaEditavel;
 
@@ -78,6 +82,8 @@ public class CadastroPedidoBean implements Serializable {
 		
 		if(this.produtoLinhaEditavel != null){
 			item.setProduto(this.produtoLinhaEditavel);
+			System.out.println(item.getProduto().getDescricao());
+			System.out.println(item.getQuantidade());
 			item.setValorUnitario(this.produtoLinhaEditavel.getValorVenda());
 			
 			this.pedido.adicionarItemVazio();

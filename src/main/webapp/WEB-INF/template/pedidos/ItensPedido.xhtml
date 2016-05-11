@@ -12,53 +12,46 @@
 		</p:column>
 
 		<p:column headerText="Produto">
-			<p:autoComplete styleClass="produto-tabela" value="#{cadastroPedidoBean.produtoLinhaEditavel}"/>
+			<h:outputText value="#{item.produto.descricao}" rendered="#{item.produtoAssociado}"/>
+			<p:autoComplete styleClass="produto-tabela" value="#{cadastroPedidoBean.produtoLinhaEditavel}"
+				completeMethod="#{cadastroPedidoBean.completarProduto}" 
+					var="produto" itemLabel="#{produto.descricao}" itemValue="#{produto}"
+					forceSelection="true" rendered="#{not item.produtoAssociado}">
+				<p:ajax event="itemSelect" update="tabelaItens :frmCadastro:totalPedido :frmCadastro:subTotal" 
+					listener="#{cadastroPedidoBean.carregarProdutoLinhaEditavel}"/>
+			</p:autoComplete>
 		</p:column>
 
 		<p:column headerText="Valor unitário"
 			style="text-align: center; width: 120px">
-
-			<p:inputText size="8" value="R$ 0,00" />
-
+			<h:outputText size="8" value="#{item.valorUnitario}">
+				<f:convertNumber type="currency"/>
+			</h:outputText>
 		</p:column>
 
 
-		<p:column headerText="Quantidade"
-			style="text-align: center; width: 120px">
-
-			<p:inputText size="8" value="1" />
-
+		<p:column headerText="Quantidade" style="text-align: center; width: 120px" >
+			<p:inputText size="8" value="#{item.quantidade}" />
 		</p:column>
-
 
 		<p:column headerText="Estoque"
 			style="text-align: center; width: 120px">
-
-			<p:inputText size="8" value="0" />
-
+			<p:inputText size="8" value="#{item.produto.quantidadeEstoque}" />
 		</p:column>
-
 
 		<p:column headerText="Valor total"
 			style="text-align: center; width: 120px">
-
-			<p:inputText size="8" value="0" />
-
+			<h:outputText size="8" value="#{item.valorTotal}">
+				<f:convertNumber type="currency"/>
+			</h:outputText>
 		</p:column>
 
-
 		<p:columnGroup type="footer">
-
 			<p:row>
-
-				<p:column colspan="5" footerText="Subtotal"
-					style="text-align: right" />
-
-				<p:column footerText="R$ 0,00" />
-
+				<p:column colspan="5" footerText="Subtotal"	style="text-align: right"  />
+				<p:column footerText="#{cadastroPedidoBean.pedido.valorSubtotal}" />
 			</p:row>
-
+			<h:outputText />
 		</p:columnGroup>
-
 	</p:dataTable>
 </ui:composition>

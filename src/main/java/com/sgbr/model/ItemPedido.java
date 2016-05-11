@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "item_pedido")
@@ -19,8 +22,8 @@ public class ItemPedido implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
-	private Integer quantidade;
-	private BigDecimal valorUnitario;
+	private Integer quantidade = 1 ;
+	private BigDecimal valorUnitario = BigDecimal.ZERO;
 	private Produto produto;
 	private Pedido pedido;
 
@@ -33,12 +36,15 @@ public class ItemPedido implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
+	@NotNull
+	@Min(0)
+	@Max(value = 9999, message = "tem um valor muito alto")
 	@Column(nullable = false, length = 3)
 	public Integer getQuantidade() {
 		return quantidade;
 	}
-
+	
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
 	}
@@ -99,6 +105,15 @@ public class ItemPedido implements Serializable {
 	
 	@Transient
 	public BigDecimal getValorTotal(){
+		System.out.println(this.getValorUnitario());
+		System.out.println(this.getQuantidade());
 		return this.getValorUnitario().multiply(new BigDecimal(this.getQuantidade()));
 	}
+	
+	@Transient
+	public boolean isProdutoAssociado(){
+		return this.getProduto() != null && this.getProduto().getIdProduto() != null;
+	}
+	
+	
 }

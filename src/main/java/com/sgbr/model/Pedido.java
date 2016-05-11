@@ -233,9 +233,9 @@ public class Pedido implements Serializable {
 	public void adicionarItemVazio() {
 		if (this.isOrcamento()) {
 			Produto produto = new Produto();
-			produto.setQuantidadeEstoque(1);
 
 			ItemPedido item = new ItemPedido();
+			item.setQuantidade(1);
 			item.setProduto(produto);
 			item.setPedido(this);
 
