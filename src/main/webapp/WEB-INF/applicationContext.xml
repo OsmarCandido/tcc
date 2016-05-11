@@ -33,7 +33,8 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      <intercept-url pattern="/produtos/PesquisaProduto.xhtml" access="hasAnyRole('Administrador' , 'Garcom')"/> 
      <intercept-url pattern="/WEB-INF/template/pedidos/**" access="hasAnyRole('Administrador','Garcom')"/> 
      <intercept-url pattern="/**" access="denyAll"/> 
-     <form-login login-page="/Login.xhtml" default-target-url="/" always-use-default-target="true"/>
+     <form-login login-page="/Login.xhtml" authentication-failure-url="/Login.xhtml?invalid=true" 
+     default-target-url="/" always-use-default-target="true"/>
      <logout logout-url="/j_spring_security_logout" invalidate-session="true"/>
       
       </http> 
