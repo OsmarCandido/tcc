@@ -21,5 +21,4 @@ public class FuncionarioSistema extends User{
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
-
 }

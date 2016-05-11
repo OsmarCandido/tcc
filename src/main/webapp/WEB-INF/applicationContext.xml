@@ -16,8 +16,10 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   
 <!--       controle de acesso as paginas  -->
     <intercept-url pattern="/Index.xhtml" access="isAuthenticated()"/> 
+    <intercept-url pattern="/Erro.xhtml" access="isAuthenticated()"/> 
      <intercept-url pattern="/caixa/**" access="hasAnyRole('Administrador' , 'Caixa')"/> 
      <intercept-url pattern="/funcionario/**" access="hasAnyRole('Administrador')"/> 
+     <intercept-url pattern="/funcionario/PesquisaFuncionario.xhtml" access="hasAnyRole('Administrador')"/> 
      <intercept-url pattern="/mesa/**" access="hasAnyRole('Administrador','Garcom')"/> 
       <intercept-url pattern="/pedidos/**" access="hasAnyRole('Administrador','Garcom')"/> 
      <intercept-url pattern="/pedidos/PesquisaPedido.xhtml" access="hasAnyRole('Administrador','Garcom')"/> 
