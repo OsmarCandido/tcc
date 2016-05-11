@@ -8,30 +8,35 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 
 
        <beans:bean id="appUserDetailsService" class="com.sgbr.security.AppUserDetailsService"/>
-
-<!--       Acesso a todos as imagens estatica do sistema  -->
-      <http pattern="/javax.faces.resource/**" security="none"/> 
-      
-      <http auto-config="true" use-expressions="true"> 
+       
+    <!-- Acesso a todos as imagens estatica do sistema-->
+    
   
-<!--       controle de acesso as paginas  -->
-    <intercept-url pattern="/Index.xhtml" access="isAuthenticated()"/> 
-    <intercept-url pattern="/Erro.xhtml" access="isAuthenticated()"/> 
+      <http pattern="/javax.faces.resource/**" security="none"/> 
+      <http pattern="/Login.xhtml" security="none"/>      
+      <http pattern="/Error.xhtml" security="none"/>     
+      <http auto-config="false" use-expressions="true"> 
+  
+ 
+    <!-- controle de acesso as paginas  -->
+
+     <intercept-url pattern="/Index.xhtml" access="isAuthenticated()"/> 
      <intercept-url pattern="/caixa/**" access="hasAnyRole('Administrador' , 'Caixa')"/> 
      <intercept-url pattern="/funcionario/**" access="hasAnyRole('Administrador')"/> 
      <intercept-url pattern="/relatorio/**" access="hasAnyRole('Administrador')"/> 
      <intercept-url pattern="/funcionario/PesquisaFuncionario.xhtml" access="hasAnyRole('Administrador')"/> 
      <intercept-url pattern="/mesa/**" access="hasAnyRole('Administrador','Garcom')"/> 
-      <intercept-url pattern="/pedidos/**" access="hasAnyRole('Administrador','Garcom')"/> 
+     <intercept-url pattern="/pedidos/**" access="hasAnyRole('Administrador','Garcom')"/> 
      <intercept-url pattern="/pedidos/PesquisaPedido.xhtml" access="hasAnyRole('Administrador','Garcom')"/> 
-   <intercept-url pattern="/mesa/**" access="hasAnyRole('Administrador','Garçom')"/> 
+     <intercept-url pattern="/mesa/**" access="hasAnyRole('Administrador','Garçom')"/> 
      <intercept-url pattern="/produtos/CadastroProduto.xhtml" access="hasAnyRole('Administrador')"/>
      <intercept-url pattern="/produtos/PesquisaProduto.xhtml" access="hasAnyRole('Administrador' , 'Garcom')"/> 
-      <intercept-url pattern="/WEB-INF/template/pedidos/**" access="hasAnyRole('Administrador','Garcom')"/> 
-     
-   <intercept-url pattern="/**" access="denyAll"/> 
-     
-     </http> 
+     <intercept-url pattern="/WEB-INF/template/pedidos/**" access="hasAnyRole('Administrador','Garcom')"/> 
+     <intercept-url pattern="/**" access="denyAll"/> 
+     <form-login login-page="/Login.xhtml" default-target-url="/" always-use-default-target="true"/>
+     <logout logout-url="/j_spring_security_logout" invalidate-session="true"/>
+      
+      </http> 
 
      <authentication-manager>  
      <authentication-provider user-service-ref="appUserDetailsService"> 

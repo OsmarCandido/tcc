@@ -1,47 +1,61 @@
 package com.sgbr.controller;
 
-import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
+import java.io.IOException;
+import java.io.Serializable;
+
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-
-import com.sgbr.model.Funcionario;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Named
-@RequestScoped
-public class LoginBean {
+@SessionScoped
+public class LoginBean implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
 	@Inject
-
-	private Funcionario funcionario;
-	private String nomeFuncionario;
-	private String senha;
-
-	public String login() {
-		FacesContext context = FacesContext.getCurrentInstance();
-		if ("admin".equals(this.nomeFuncionario) && "123".equals(this.senha)) {
-			this.funcionario.setNome(this.nomeFuncionario);
-}else{
-
-	FacesMessage mensagem = new FacesMessage("Usuário/senha inválidos!");mensagem.setSeverity(FacesMessage.SEVERITY_ERROR);context.addMessage(null,mensagem);
-
-}return null;}
-
-public String getNomeFuncionario() {
-return nomeFuncionario;
-}
-
-public void setNomeFuncionario(String nomeFuncionario) {
-this.nomeFuncionario = nomeFuncionario;
-}
-
-public String getSenha() {
-return senha;
- }
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-}
-
+	private FacesContext facesContext;
+	
+	@Inject
+	private HttpServletRequest request;
+	
+	@Inject 
+	private HttpServletResponse response;
 		
+	
+	//private Funcionario funcionario;
+	private String nomeFuncionario;
+	//private String senha;
+
+
+	
+	public void login() throws ServletException, IOException{
+	 RequestDispatcher dispatcher = request.getRequestDispatcher("/j_spring_security_check");
+	 dispatcher.forward(request, response);
+	 
+	 facesContext.responseComplete();
+	 
+	}
+	
+	//Gets e Sets
+	public String getNomeFuncionario() {
+		return nomeFuncionario;
+	}
+
+	public void setNomeFuncionario(String nomeFuncionario) {
+		this.nomeFuncionario = nomeFuncionario;
+	}
+
+//	public String getSenha() {
+	//	return senha;
+	//}
+
+	//public void setSenha(String senha) {
+		//this.senha = senha;
+//	}
+}
