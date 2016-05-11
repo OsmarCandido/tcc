@@ -31,9 +31,13 @@ public class AppUserDetailsService implements UserDetailsService {
 	}
 
 	private Collection<? extends GrantedAuthority> getPerfis(Funcionario funcionario) {
-		List<SimpleGrantedAuthority> perfis = new ArrayList<>();
+		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		
 		// TODO Auto-generated method stub
-		return perfis;
+
+     authorities.add(new SimpleGrantedAuthority(funcionario.getPerfil().getDescricao())); 
+
+    return authorities;
 	}
 
 }

@@ -85,7 +85,7 @@ public class Funcionarios implements Serializable {
 		
 		try {
 			
-		funcionario = this.manager.createQuery("from Funcionario where lower(login) = ;login", Funcionario.class)
+		funcionario = this.manager.createQuery("from Funcionario where lower(login) = :login", Funcionario.class)
 		.setParameter ("login", login.toLowerCase()).getSingleResult() ;
 		return funcionario;
 		
@@ -93,7 +93,6 @@ public class Funcionarios implements Serializable {
 			//Funcionario não encontrado com o login informado 
 			return null;
 		}
-		
 }
 	
 //  Fim Controle de acesso (11/05/2016)	

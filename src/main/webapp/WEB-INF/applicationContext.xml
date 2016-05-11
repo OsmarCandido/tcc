@@ -1,43 +1,46 @@
-<!-- <beans:beans xmlns="http://www.springframework.org/schema/security" -->
-<!--   xmlns:beans="http://www.springframework.org/schema/beans" -->
-<!--   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" -->
-<!--   xsi:schemaLocation="http://www.springframework.org/schema/beans -->
-<!--                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  -->
-<!--                http://www.springframework.org/schema/security   -->
-<!--                http://www.springframework.org/schema/security/spring-security-3.1.xsd"> -->
+ <beans:beans xmlns="http://www.springframework.org/schema/security" 
+  xmlns:beans="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd  
+                http://www.springframework.org/schema/security   
+             http://www.springframework.org/schema/security/spring-security-3.1.xsd"> 
 
+
+       <beans:bean id="appUserDetailsService" class="com.sgbr.security.AppUserDetailsService"/>
 
 <!--       Acesso a todos as imagens estatica do sistema  -->
-<!--       <http pattern="/javax.faces.resource/**" security="none"/> -->
-    
-<!--      <http auto-config="true" use-expressions="true"> -->
+      <http pattern="/javax.faces.resource/**" security="none"/> 
+      
+      <http auto-config="true" use-expressions="true"> 
   
 <!--       controle de acesso as paginas  -->
-<!--      <intercept-url pattern="/Index.xhtml" access="isAuthenticated()"/> -->
-<!--      <intercept-url pattern="/caixa/**" access="hasAnyRole('Administrador' , 'Caixa')"/> -->
-<!--      <intercept-url pattern="/funcionario/**" access="hasAnyRole('Administrador')"/> -->
-<!--      <intercept-url pattern="/mesa/**" access="hasAnyRole('Administrador','Garcom')"/> -->
-<!--      <intercept-url pattern="/pedidos/**" access="hasAnyRole('Administrador','Garcom')"/> -->
-<!--      <intercept-url pattern="/pedidos/PesquisaPedido.xhtml" access="hasAnyRole('Administrador','Garcom')"/> -->
-<!--      <intercept-url pattern="/mesa/**" access="hasAnyRole('Administrador','Garçom')"/> -->
-<!--      <intercept-url pattern="/produtos/CadastroProduto.xhtml" access="hasAnyRole('Administrador')"/> -->
-<!--      <intercept-url pattern="/produtos/PesquisaProduto.xhtml" access="hasAnyRole('Administrador' , 'Garcom')"/> -->
-<!--      <intercept-url pattern="/WEB-INF/template/pedidos/**" access="hasAnyRole('Administrador','Garcom')"/> -->
+    <intercept-url pattern="/Index.xhtml" access="isAuthenticated()"/> 
+     <intercept-url pattern="/caixa/**" access="hasAnyRole('Administrador' , 'Caixa')"/> 
+     <intercept-url pattern="/funcionario/**" access="hasAnyRole('Administrador')"/> 
+     <intercept-url pattern="/mesa/**" access="hasAnyRole('Administrador','Garcom')"/> 
+      <intercept-url pattern="/pedidos/**" access="hasAnyRole('Administrador','Garcom')"/> 
+     <intercept-url pattern="/pedidos/PesquisaPedido.xhtml" access="hasAnyRole('Administrador','Garcom')"/> 
+   <intercept-url pattern="/mesa/**" access="hasAnyRole('Administrador','Garçom')"/> 
+     <intercept-url pattern="/produtos/CadastroProduto.xhtml" access="hasAnyRole('Administrador')"/>
+     <intercept-url pattern="/produtos/PesquisaProduto.xhtml" access="hasAnyRole('Administrador' , 'Garcom')"/> 
+      <intercept-url pattern="/WEB-INF/template/pedidos/**" access="hasAnyRole('Administrador','Garcom')"/> 
      
-<!--      <intercept-url pattern="/**" access="denyAll"/> -->
+   <intercept-url pattern="/**" access="denyAll"/> 
      
-<!--     </http> -->
+     </http> 
 
-<!--     <authentication-manager>  -->
-<!--       <authentication-provider> -->
+     <authentication-manager>  
+     <authentication-provider user-service-ref="appUserDetailsService"> 
       
-<!--       <user-service> -->
-<!--        <user name="teste" password="teste" authorities="Caixa"/> -->
-<!--        <user name="admin" password="admin" authorities="Administrador"/> -->
+       <!--  <user-service> 
+ <user name="teste" password="teste" authorities="Caixa"/> 
+     <user name="admin" password="admin" authorities="Administrador"/>  
        
-<!--       </user-service> -->
-<!--       </authentication-provider>    -->
-<!--      </authentication-manager> -->
+   </user-service>  -->
+   
+    </authentication-provider>
+     </authentication-manager> 
     
     
-<!-- </beans:beans>  -->
+</beans:beans> 
