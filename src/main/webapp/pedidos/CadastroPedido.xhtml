@@ -12,7 +12,7 @@
 	
 	<ui:define name="titulo"> Cadastro de Pedido </ui:define>
 	<ui:define name="corpo">
-	<h:form>
+	<h:form id="frmCadastro">
 		<h1>Novo Pedido</h1>
 
 				<p:messages autoUpdate="true" closable="true"/>
@@ -23,7 +23,7 @@
 				
 				<p:tabView style="margin-top: 20px" >
 					<p:tab title="Itens">
-						<ui:include src="/WEB-INF/template/pedidos/ItensPedido.xhtml" />
+					  	 <ui:include src="/WEB-INF/template/pedidos/ItensPedido.xhtml" /> 
 					</p:tab>
 					<p:tab title="Observação">
 						<ui:include src="/WEB-INF/template/pedidos/ObservacaoPedido.xhtml" />
