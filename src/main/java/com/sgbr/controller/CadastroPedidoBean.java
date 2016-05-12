@@ -16,7 +16,6 @@ import com.sgbr.repository.Funcionarios;
 import com.sgbr.repository.Produtos;
 import com.sgbr.service.CadastroPedidoService;
 import com.sgbr.util.jsf.FacesUtil;
-import com.sgbr.validation.IdProduto;
 
 @Named
 @ViewScoped
@@ -38,8 +37,8 @@ public class CadastroPedidoBean implements Serializable {
 
 	private List<Funcionario> vendedores;
 	
-	@IdProduto
-	private String idProduto;
+	
+	private Long idProduto;
 	
 	private Produto produtoLinhaEditavel;
 
@@ -73,6 +72,16 @@ public class CadastroPedidoBean implements Serializable {
 		}
 	}
 	
+	public void carregarProdutoPorIdProduto(){
+		
+		System.out.println("carregando Produto Por IdProduto");
+		if(this.idProduto != null){
+			System.out.println("IdProduto nao esta vazio");
+			produtoLinhaEditavel = produtos.porIdProduto(this.idProduto);
+			this.carregarProdutoLinhaEditavel();
+		}
+	}
+	
 	public List<Produto> completarProduto(String descricao){
 		return this.produtos.porNome(descricao);
 	}
@@ -81,18 +90,34 @@ public class CadastroPedidoBean implements Serializable {
 		ItemPedido item = this.pedido.getItens().get(0);
 		
 		if(this.produtoLinhaEditavel != null){
-			item.setProduto(this.produtoLinhaEditavel);
-			System.out.println(item.getProduto().getDescricao());
-			System.out.println(item.getQuantidade());
-			item.setValorUnitario(this.produtoLinhaEditavel.getValorVenda());
+			if(this.existeItemComProduto(this.produtoLinhaEditavel)){
+				FacesUtil.addErrorMessage("já existe item com o produto informado"); 
+			}else{
+				item.setProduto(this.produtoLinhaEditavel);
+				System.out.println(item.getProduto().getDescricao());
+				System.out.println(item.getQuantidade());
+				item.setValorUnitario(this.produtoLinhaEditavel.getValorVenda());
 			
 			this.pedido.adicionarItemVazio();
 			this.produtoLinhaEditavel = null;
 			
-			this.pedido.recalcularValorTotal();
+			this.pedido.recalcularValorTotal();	
+			}
 		}
 	}
 	
+	private boolean existeItemComProduto(Produto produto) {
+		boolean existeItem = false;
+		
+		for (ItemPedido item : this.getPedido().getItens()){
+			if(produto.equals(item.getProduto())){
+				existeItem = true;
+				break;
+			}
+		}
+		return existeItem;
+	}
+
 	public Pagamento[] getPagamento() {
 		return Pagamento.values();
 	}
@@ -113,5 +138,13 @@ public class CadastroPedidoBean implements Serializable {
 		this.produtoLinhaEditavel = produtoLinhaEditavel;
 	}
 	
+	
+	public Long getIdProduto() {
+		return idProduto;
+	}
+
+	public void setIdProduto(Long idProduto) {
+		this.idProduto = idProduto;
+	}
 	
 }

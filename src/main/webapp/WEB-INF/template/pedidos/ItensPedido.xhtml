@@ -8,7 +8,12 @@
 		id="tabelaItens">
 		<p:column headerText="IdProduto"
 			style="text-align: center; width: 100px">
-			<p:inputText size="8" />
+			<h:outputText value="#{item.produto.idProduto}" rendered="#{item.produtoAssociado}" />
+			<p:inputText size="8" value="#{cadastroPedidoBean.idProduto}" label="idProduto"
+				rendered="#{not item.produtoAssociado}">
+				<p:ajax event="change" process="@this" update="tabelaItens :frmCadastro:totalPedido :frmCadastro:subTotal" 
+					listener="#{cadastroPedidoBean.carregarProdutoPorIdProduto}" />
+			</p:inputText>
 		</p:column>
 
 		<p:column headerText="Produto">

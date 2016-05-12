@@ -13,7 +13,7 @@ import javax.validation.constraints.Pattern;
 @Target({ ElementType.FIELD, ElementType.METHOD, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {})
-@Pattern(regexp = "([a-zA-Z]{2}\\d{4,18})?")
+@Pattern(regexp = "d{1,4}")
 public @interface IdProduto {
 
 	@OverridesAttribute(constraint = Pattern.class, name = "message")

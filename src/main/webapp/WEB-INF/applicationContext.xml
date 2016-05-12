@@ -27,9 +27,10 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      <intercept-url pattern="/funcionario/PesquisaFuncionario.xhtml" access="hasAnyRole('Administrador')"/> 
      <intercept-url pattern="/mesa/**" access="hasAnyRole('Administrador','Garcom')"/> 
      <intercept-url pattern="/pedidos/**" access="hasAnyRole('Administrador','Garcom')"/> 
+     <intercept-url pattern="/pedidos/CadastroPedido.xhtml" access="hasAnyRole('Administrador','Garcom')"/>
      <intercept-url pattern="/pedidos/PesquisaPedido.xhtml" access="hasAnyRole('Administrador','Garcom')"/> 
      <intercept-url pattern="/mesa/**" access="hasAnyRole('Administrador','Garçom')"/> 
-     <intercept-url pattern="/produtos/CadastroProduto.xhtml" access="hasAnyRole('Administrador')"/>
+     <intercept-url pattern="/produtos/**" access="hasAnyRole('Administrador')"/>
      <intercept-url pattern="/produtos/PesquisaProduto.xhtml" access="hasAnyRole('Administrador' , 'Garcom')"/> 
      <intercept-url pattern="/WEB-INF/template/pedidos/**" access="hasAnyRole('Administrador','Garcom')"/> 
      <intercept-url pattern="/**" access="denyAll"/> 
