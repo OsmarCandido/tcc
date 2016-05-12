@@ -8,10 +8,16 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8" />
 	<title>Login</title>
-
 	<h:outputStylesheet library="css" name="sistema.css" />
+	
 </h:head>
 <h:body>
+    <f:metadata>
+          <f:viewParam name="dummy"/>
+         <f:event listener="#{loginBean.preRender}" type="preRenderView"/>      
+         
+    </f:metadata>
+
 
 	<div id="login-dialog">
 		<h1>Login</h1>

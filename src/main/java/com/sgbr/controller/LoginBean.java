@@ -12,6 +12,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sgbr.util.jsf.FacesUtil;
+
 @Named
 @SessionScoped
 public class LoginBean implements Serializable {
@@ -51,6 +53,14 @@ public class LoginBean implements Serializable {
 		this.nomeFuncionario = nomeFuncionario;
 	}
 
+	 public void preRender (){
+			
+		if ("true".equals(request.getParameter("invalid"))){
+	    FacesUtil.addErrorMessage("Usuário ou senha invalido!");
+	   }
+  }
+	
+	
 //	public String getSenha() {
 	//	return senha;
 	//}
