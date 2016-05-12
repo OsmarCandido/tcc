@@ -1,6 +1,5 @@
 package com.sgbr.repository.filter;
 
-import com.sgbr.validation.IdFuncionario;
 import java.io.Serializable;
 
 public class FuncionarioFilter implements Serializable {
@@ -10,7 +9,6 @@ public class FuncionarioFilter implements Serializable {
 	private String idFuncionario;
 	private String descricao;
 
-	@IdFuncionario
 	public String getIdFuncionario() {
 		return idFuncionario;
 	}

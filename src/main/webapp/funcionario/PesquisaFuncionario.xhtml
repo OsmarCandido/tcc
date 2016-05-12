@@ -17,8 +17,6 @@
 			<p:toolbarGroup>
 			<p:commandButton value="Pesquisar" action="#{pesquisaFuncionariosBean.pesquisar}"
 	    				update="@form" />
-				<p:button value="Salvar" />
-				<p:button value="Cancelar" />
 			</p:toolbarGroup>
 			<p:toolbarGroup align="right">
 	    			<p:button value="Novo" outcome="/funcionario/CadastroFuncionario" />
@@ -42,7 +40,7 @@
 			rows="20" paginator="true" paginatorAlwaysVisible="false" paginatorPosition="botton">
 			
 			<p:column headerText="Id Funcionario" style="text-aling: center; width: 20px">
-   				<h:outputText value="#{produto.idFuncionario}" />
+   				<h:outputText value="#{funcionario.idFuncionario}" />
   			</p:column>
 			<p:column headerText="Nome" style="text-aling: center; width: 80px">
 				<h:outputText value="#{funcionario.descricao}" />
@@ -59,10 +57,21 @@
 			<p:column headerText="Usuário" style="text-aling: center; width: 20px">
 				<h:outputText value="#{funcionario.login}" />
 			</p:column>
-			<p:column headerText="Senha" style="text-aling: center; width: 15px">
+			 <p:column headerText="Senha" style="text-aling: center; width: 15px">
 				<h:outputText value="#{funcionario.senha}" />
-			</p:column>
-		</p:dataTable>
+			</p:column> 
+			<p:column style="width: 50px; text-align:center">
+   <p:button icon="ui-icon-pencil" title="Editar"/>
+            <p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="confimacaoExclusao.show()" />   
+  </p:column>
+  </p:dataTable>
+  
+             <p:confirmDialog header="Exclusão de Funcionario" message="Tem certeza que deseja excluir o Funcionario"
+  widgetVar="confirmacaoExclusao">
+  <p:button value="Não" onclick="confirmacaoExclusao.hide(); return false;" />
+  <p:commandButton value="Sim" oncomplete="confimacaoExclusao.hide();" />
+  </p:confirmDialog>
+		
 		</h:form>
 	</ui:define>
 </ui:composition>
