@@ -6,15 +6,16 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:define name="titulo">Pesquisa de Funiconário </ui:define>
+	<ui:define name="titulo">Pesquisa de Funcionário </ui:define>
 	<ui:define name="corpo">
+	<h:form>
 		<h1>Pesquisa de Funcionário</h1>
 		
 		<p:messages autoUpdate="true" closable="true" />
 
 		<p:toolbar style="margin-top: 20px">
 			<p:toolbarGroup>
-			<p:commandButton value="Pesquisar" action="#{pesquisaFuncionarioBean.pesquisar}"
+			<p:commandButton value="Pesquisar" action="#{pesquisaFuncionariosBean.pesquisar}"
 	    				update="@form" />
 				<p:button value="Salvar" />
 				<p:button value="Cancelar" />
@@ -24,44 +25,27 @@
 	    	</p:toolbarGroup>
 		</p:toolbar>
 
-		<p:panelGrid columns="2" id="painel"
-			style="width: 100%; margin-top:35px" columnClasses="rotulo, campo">
+		<p:panelGrid columns="2" id="painel" style="width: 100%; margin-top:20px" 
+  				columnClasses="rotulo, campo">
+   		<p:outputLabel value="Id Funcionario" for="idFuncionario" />
+   		<p:inputText id="idFuncionario" size="20" value="#{pesquisaFuncionariosBean.filtro.idFuncionario}" />
 
 			<p:outputLabel value="Nome" for="nome" />
-			<p:inputText id="nome" size="100" maxlenght="255" value="#{pesquisaFuncionariosBean.filtro.nome}" />
+			<p:inputText id="nome" size="100" maxlenght="255" value="#{pesquisaFuncionariosBean.filtro.descricao}" />
 
-			<p:outputLabel for="telefone" value="Telefone" />
-			<p:inputMask id="telefone" value="#{pesquisaFuncionariosBean.filtro.telefone}"
-				mask="(99)9999-9999?9" />
-
-			<p:outputLabel value="CPF" for="cpf" />
-			<p:inputMask id="cpf" value="#{pesquisaFuncionariosBean.filtro.cpf}" mask="999.999.999-99" />
-
-			<p:outputLabel value="Perfil" for="perfil" />
-			<p:selectOneMenu id="perfil">
-				<f:selectItem itemLabel="Selecione o Perfil" />
-				<f:selectItem itemLabel="Administrador" itemValue="Administrador" />
-				<f:selectItem itemLabel="Garçom" itemValue="Garçom" />
-				<f:selectItem itemLabel="Caixa" itemValue="Caixa" />
-			</p:selectOneMenu>
-
-			<h:outputLabel value="Usuario" for="login" />
-			<p:inputText id="login" maxlenght="10" value="#{pesquisaFuncionariosBean.filtro.login}" />
-
-			<p:outputLabel value="Senha" for="senha" />
-			<p:password id="senha" maxlenght="10" value="#{pesquisaFuncionariosBean.filtro.senha}" feedback="true" />
-			<p:toolbarGroup align="rigth">
-				<p:button value="Alterar Senha" />
-			</p:toolbarGroup>
+			
 		</p:panelGrid>
 		
 		<p:dataTable id="funcionariosTable"
 			value="#{pesquisaFuncionariosBean.funcionariosFiltrados}" var="funcionario"
-			style="margin-top: 40px" emptyMessage="Produto não encontrado."
+			style="margin-top: 40px" emptyMessage="Funcionario não encontrado."
 			rows="20" paginator="true" paginatorAlwaysVisible="false" paginatorPosition="botton">
 			
+			<p:column headerText="Id Funcionario" style="text-aling: center; width: 20px">
+   				<h:outputText value="#{produto.idFuncionario}" />
+  			</p:column>
 			<p:column headerText="Nome" style="text-aling: center; width: 80px">
-				<h:outputText value="#{funcionario.nome}" />
+				<h:outputText value="#{funcionario.descricao}" />
 			</p:column>
 			<p:column headerText="Telefone" style="text-aling: center; width: 15px">
 				<h:outputText value="#{funcionario.telefone}" />
@@ -79,6 +63,7 @@
 				<h:outputText value="#{funcionario.senha}" />
 			</p:column>
 		</p:dataTable>
+		</h:form>
 	</ui:define>
 </ui:composition>
 

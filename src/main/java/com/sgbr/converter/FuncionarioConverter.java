@@ -34,7 +34,6 @@ public class FuncionarioConverter implements Converter{
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
 		
 		if(value != null){
-			System.out.println("teste");
 			return ((Funcionario)value).getIdFuncionario().toString();
 			
 		}
