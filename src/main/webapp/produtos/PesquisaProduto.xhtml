@@ -98,7 +98,9 @@
 					</h:outputText>
 				</p:column>
 				<p:column style="width: 50px; text-align:center">
-					<p:button icon="ui-icon-pencil" title="Editar" />
+					<p:button outcome="/produtos/CadastroProduto" icon="ui-icon-pencil" title="Editar">
+						<f:param name="produto" value="#{produto.idProduto}" />
+					</p:button>
 					<p:commandButton icon="ui-icon-trash" title="Excluir"
 						oncomplete="confimacaoExclusao.show()" />
 				</p:column>

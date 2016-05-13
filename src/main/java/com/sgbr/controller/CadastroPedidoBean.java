@@ -149,6 +149,10 @@ public class CadastroPedidoBean implements Serializable {
 	public Pedido getPedido() {
 		return pedido;
 	}
+	
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
 
 	public List<Funcionario> getVendedores() {
 		return vendedores;
@@ -168,6 +172,10 @@ public class CadastroPedidoBean implements Serializable {
 
 	public void setIdProduto(Long idProduto) {
 		this.idProduto = idProduto;
+	}
+	
+	public boolean isEditando(){
+		return this.pedido.getIdPedido() != null; 
 	}
 
 }

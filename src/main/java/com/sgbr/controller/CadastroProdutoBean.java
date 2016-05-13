@@ -26,7 +26,9 @@ public class CadastroProdutoBean implements Serializable {
 	@Inject
 	private CadastroProdutoService cadastroProdutoService;
 	
+	
 	private Produto produto;
+	
 	private Categoria categoriaPai;
 	
 	private List<Categoria> categoriasRaizes;
@@ -38,7 +40,7 @@ public class CadastroProdutoBean implements Serializable {
 	
 	public void inicializar(){
 		if(FacesUtil.isNotPostback()){
-		 categoriasRaizes = categorias.raizes();
+			categoriasRaizes = categorias.raizes();
 		}
 	}
 				
@@ -56,6 +58,10 @@ public class CadastroProdutoBean implements Serializable {
 
 	public Produto getProduto() {
 		return produto;
+	}
+	
+	public void setProduto(Produto produto) {
+		this.produto = produto;
 	}
 
 	public List<Categoria> getCategoriasRaizes() {
@@ -75,6 +81,8 @@ public class CadastroProdutoBean implements Serializable {
 	public List<Categoria> getSubcategorias() {
 		return subcategorias;
 }
-
+	public boolean isEditando(){
+		return this.produto.getIdProduto() != null; 
+	}
 	
 }

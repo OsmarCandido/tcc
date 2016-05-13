@@ -42,15 +42,6 @@ public class Produtos implements Serializable {
 		}
 	}
 
-	public Produto porIdProduto(String idProduto) {
-		try {
-			return manager.createQuery("from Produto where upper(idProduto) = :idProduto", Produto.class)
-				.setParameter("idProduto", idProduto.toUpperCase())
-				.getSingleResult();
-		} catch (NoResultException e) {
-			return null;
-		}
-	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Produto> filtrados(ProdutoFilter filtro) {
@@ -72,6 +63,16 @@ public class Produtos implements Serializable {
 		return manager.find(Produto.class, idProduto);
 	}
 
+	public Produto porIdProduto(String idProduto) {
+		try {
+			return manager.createQuery("from Produto where upper(idProduto) = :idProduto", Produto.class)
+				.setParameter("idProduto", idProduto.toUpperCase())
+				.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
+	
 	public List<Produto> porNome(String nome) {
 		return this.manager.createQuery("from Produto where upper(descricao) like :descricao", Produto.class)
 				.setParameter("descricao", nome.toUpperCase() + "%").getResultList();

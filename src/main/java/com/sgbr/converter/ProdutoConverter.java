@@ -23,7 +23,7 @@ public class ProdutoConverter implements Converter{
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		Produto retorno = null;
-		
+		System.out.println("teste");
 		if(value != null){
 			Long id = new Long(value);
 			retorno = produtos.porIdProduto(id);
@@ -33,9 +33,9 @@ public class ProdutoConverter implements Converter{
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
-		
 		if(value != null){
-			return ((Produto)value).getIdProduto().toString();
+			Produto produto = (Produto) value;
+			return produto.getIdProduto() == null ? null : produto.getIdProduto().toString();
 		}
 		return " ";
 	}
