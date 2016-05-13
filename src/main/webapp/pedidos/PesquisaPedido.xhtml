@@ -27,9 +27,9 @@
 
 				<p:outputLabel value="Id Pedido" />
 				<h:panelGroup>
-					<p:inputText size="10" />
+					<p:inputText size="10" value="#{pesquisaPedidosBean.filtro.numeroDe}"/>
 					a
-					<p:inputText size="10" />
+					<p:inputText size="10" value="#{pesquisaPedidosBean.filtro.numeroAte}"/>
 				</h:panelGroup>
 
 				<p:outputLabel value="Data Pedido" />
@@ -44,10 +44,10 @@
 				<p:outputLabel value="Hora Pedido" />
 				<h:panelGroup>
 					<p:calendar size="10" pattern="HH:mm:ss" 
-						value="#{pesquisaPedidosBean.filtro.dataCriacaoDe}" />
+						value="#{pesquisaPedidosBean.filtro.horaCriacaoDe}" />
 					a
 					<p:calendar size="10" pattern="HH:mm:ss" 
-						value="#{pesquisaPedidosBean.filtro.dataCriacaoAte}" />
+						value="#{pesquisaPedidosBean.filtro.horaCriacaoAte}" />
 				</h:panelGroup>
 
 				<p:outputLabel value="Funcionario" />
@@ -61,22 +61,22 @@
 			</p:panelGrid>
 
 			<p:dataTable id="pedidosTable"
-				value="#{pesquisaPedidosBean.pedidosFiltrados}" var="pedidos"
+				value="#{pesquisaPedidosBean.pedidosFiltrados}" var="pedido"
 				style="margin-top: 20px" emptyMessage="Nenhum pedido encontrado."
 				rows="15" paginator="true" paginatorAlwaysVisible="false"
 				paginatorPosition="bottom">
 
-				<p:column headerText="Id Pedido" style="text-aling: center; width: 20px">
-					<h:outputText value="#{pedido.id}"/>
+				<p:column headerText="Id Pedido" style="text-align: center; width: 20px">
+					<h:outputText value="#{pedido.idPedido}"/>
 				</p:column>
 
-				<p:column headerText="DataPedido" style="text-aling: center; width: 20px">
+				<p:column headerText="DataPedido" style="text-align: center; width: 20px">
 					<h:outputText value="#{pedido.dataCriacao}">
 	    				<f:convertDateTime pattern="dd/MM/yyyy" />
 	    			</h:outputText>
 				</p:column>
 
-				<p:column headerText="Hora Pedido" style="text-aling: center; width: 20px">
+				<p:column headerText="Hora Pedido" style="text-align: center; width: 20px">
 					<h:outputText value="#{pedido.dataCriacao}">
 	    				<f:convertDateTime pattern="HH:mm:ss" />
 	    			</h:outputText>

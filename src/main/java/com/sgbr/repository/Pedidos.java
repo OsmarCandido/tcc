@@ -27,7 +27,7 @@ public class Pedidos implements Serializable {
 	public List<Pedido> filtrados(PedidoFilter filtro) {
 		Session session = this.manager.unwrap(Session.class);
 		
-		Criteria criteria = session.createCriteria(Pedidos.class) 
+		Criteria criteria = session.createCriteria(Pedido.class) 
 				// fazemos uma associação (join) com funcionario e nomeamos como "f"
 				.createAlias("funcionario", "f");
 		
