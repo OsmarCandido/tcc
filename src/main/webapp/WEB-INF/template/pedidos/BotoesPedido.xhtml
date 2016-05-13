@@ -11,7 +11,8 @@
   				update="@form"/>
   		</p:toolbarGroup>
 		<p:toolbarGroup align="right">
-			<p:commandButton value="Emitir"/>
+			<p:commandButton value="Emitir" action="#{emissaoPedidoBean.emitirPedido}"
+				process="@form" update="@form" />
 			<p:commandButton value="Cancelar"/>
 			<p:separator/>
 			<p:button value="Pesquisa" outcome="/pedidos/PesquisaPedido" />

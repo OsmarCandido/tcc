@@ -174,7 +174,7 @@ public class Pedido implements Serializable {
 
 	@Transient
 	public boolean isEmitido() {
-		return StatusPedido.EMITIDO.equals(this.getStatus());
+		return StatusPedido.FECHADO.equals(this.getStatus());
 	}
 
 	@Transient
@@ -256,5 +256,15 @@ public class Pedido implements Serializable {
 			
 		}
 		
+	}
+	
+	@Transient
+	public boolean isNaoFechavel() {
+		return !this.isFechavel();
+	}
+	
+	@Transient
+	private boolean isFechavel() {
+		return this.isExistente() && this.isAberto();
 	}
 }

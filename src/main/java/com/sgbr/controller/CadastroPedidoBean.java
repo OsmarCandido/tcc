@@ -3,6 +3,8 @@ package com.sgbr.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.event.Observes;
+import javax.enterprise.inject.Produces;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -31,8 +33,9 @@ public class CadastroPedidoBean implements Serializable {
 
 	@Inject
 	private CadastroPedidoService cadastroPedidoService;
-
-	@Inject
+	
+	@Produces
+	@PedidoEdicao
 	private Pedido pedido;
 
 	private List<Funcionario> vendedores;
@@ -58,7 +61,11 @@ public class CadastroPedidoBean implements Serializable {
 	private void limpar() {
 		pedido = new Pedido();
 	}
-
+	
+	public void pedidoAlterado(@Observes PedidoAlteradoEvent event){
+		this.pedido = event.getPedido();
+	}
+	
 	public void salvar() {
 
 		this.pedido.removerItemVazio();

@@ -3,7 +3,7 @@ package com.sgbr.model;
 public enum StatusPedido {
 	ORCAMENTO("orçamento"),
 	ABERTO("aberto"),
-	EMITIDO("emitido"),
+	FECHADO("fechado"),
 	CANCELADO("cancelado");
 	
 private String descricao;
