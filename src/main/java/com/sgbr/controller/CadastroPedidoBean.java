@@ -25,10 +25,10 @@ public class CadastroPedidoBean implements Serializable {
 
 	@Inject
 	private Funcionarios funcionarios;
-	
+
 	@Inject
 	private Produtos produtos;
-	
+
 	@Inject
 	private CadastroPedidoService cadastroPedidoService;
 
@@ -36,10 +36,9 @@ public class CadastroPedidoBean implements Serializable {
 	private Pedido pedido;
 
 	private List<Funcionario> vendedores;
-	
-	
+
 	private Long idProduto;
-	
+
 	private Produto produtoLinhaEditavel;
 
 	public CadastroPedidoBean() {
@@ -49,9 +48,9 @@ public class CadastroPedidoBean implements Serializable {
 	public void inicializar() {
 		if (FacesUtil.isNotPostback()) {
 			this.vendedores = this.funcionarios.vendedores();
-			
+
 			this.pedido.adicionarItemVazio();
-			
+
 			this.recalcularPedido();
 		}
 	}
@@ -61,9 +60,15 @@ public class CadastroPedidoBean implements Serializable {
 	}
 
 	public void salvar() {
-		this.pedido = this.cadastroPedidoService.salvar(this.pedido);
 
-		FacesUtil.addInfoMessage("Pedido salvo com sucesso!");
+		this.pedido.removerItemVazio();
+		try{
+			this.pedido = this.cadastroPedidoService.salvar(this.pedido);
+			FacesUtil.addInfoMessage("Pedido salvo com sucesso!");
+		}finally{
+			this.pedido.adicionarItemVazio();
+		}
+
 	}
 
 	public void recalcularPedido() {
@@ -71,46 +76,58 @@ public class CadastroPedidoBean implements Serializable {
 			this.pedido.recalcularValorTotal();
 		}
 	}
-	
-	public void carregarProdutoPorIdProduto(){
-		
+
+	public void carregarProdutoPorIdProduto() {
+
 		System.out.println("carregando Produto Por IdProduto");
-		if(this.idProduto != null){
+		if (this.idProduto != null) {
 			System.out.println("IdProduto nao esta vazio");
 			produtoLinhaEditavel = produtos.porIdProduto(this.idProduto);
 			this.carregarProdutoLinhaEditavel();
 		}
 	}
-	
-	public List<Produto> completarProduto(String descricao){
+
+	public List<Produto> completarProduto(String descricao) {
 		return this.produtos.porNome(descricao);
 	}
-	
-	public void carregarProdutoLinhaEditavel(){
+
+	public void carregarProdutoLinhaEditavel() {
 		ItemPedido item = this.pedido.getItens().get(0);
-		
-		if(this.produtoLinhaEditavel != null){
-			if(this.existeItemComProduto(this.produtoLinhaEditavel)){
-				FacesUtil.addErrorMessage("já existe item com o produto informado"); 
-			}else{
+
+		if (this.produtoLinhaEditavel != null) {
+			if (this.existeItemComProduto(this.produtoLinhaEditavel)) {
+				FacesUtil.addErrorMessage("já existe item com o produto informado");
+			} else {
 				item.setProduto(this.produtoLinhaEditavel);
 				System.out.println(item.getProduto().getDescricao());
 				System.out.println(item.getQuantidade());
 				item.setValorUnitario(this.produtoLinhaEditavel.getValorVenda());
-			
-			this.pedido.adicionarItemVazio();
-			this.produtoLinhaEditavel = null;
-			
-			this.pedido.recalcularValorTotal();	
+
+				this.pedido.adicionarItemVazio();
+				this.produtoLinhaEditavel = null;
+				this.idProduto = null;
+
+				this.pedido.recalcularValorTotal();
 			}
 		}
 	}
-	
+
+	public void atualizarQuantidade(ItemPedido item, int linha) {
+		if (item.getQuantidade() < 1) {
+			if (linha == 0) {
+				item.setQuantidade(1);
+			} else {
+				this.getPedido().getItens().remove(linha);
+			}
+		}
+		this.pedido.recalcularValorTotal();
+	}
+
 	private boolean existeItemComProduto(Produto produto) {
 		boolean existeItem = false;
-		
-		for (ItemPedido item : this.getPedido().getItens()){
-			if(produto.equals(item.getProduto())){
+
+		for (ItemPedido item : this.getPedido().getItens()) {
+			if (produto.equals(item.getProduto())) {
 				existeItem = true;
 				break;
 			}
@@ -137,8 +154,7 @@ public class CadastroPedidoBean implements Serializable {
 	public void setProdutoLinhaEditavel(Produto produtoLinhaEditavel) {
 		this.produtoLinhaEditavel = produtoLinhaEditavel;
 	}
-	
-	
+
 	public Long getIdProduto() {
 		return idProduto;
 	}
@@ -146,5 +162,5 @@ public class CadastroPedidoBean implements Serializable {
 	public void setIdProduto(Long idProduto) {
 		this.idProduto = idProduto;
 	}
-	
+
 }

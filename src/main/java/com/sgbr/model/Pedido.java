@@ -35,7 +35,7 @@ public class Pedido implements Serializable {
 	private BigDecimal valorDesconto = BigDecimal.ZERO;
 	private BigDecimal subTotal = BigDecimal.ZERO;
 	private BigDecimal valorTotal = BigDecimal.ZERO;
-	private StatusPedido status = StatusPedido.ORCAMENTO;
+	private StatusPedido status = StatusPedido.ABERTO;
 	private Pagamento pagamento;
 	private Funcionario funcionario;
 	private List<ItemPedido> itens = new ArrayList<>();
@@ -231,7 +231,7 @@ public class Pedido implements Serializable {
 	}
 
 	public void adicionarItemVazio() {
-		if (this.isOrcamento()) {
+		if (this.isAberto()) {
 			Produto produto = new Produto();
 
 			ItemPedido item = new ItemPedido();
@@ -244,7 +244,17 @@ public class Pedido implements Serializable {
 	}
 
 	@Transient
-	public boolean isOrcamento() {
-		return StatusPedido.ORCAMENTO.equals(this.getStatus());
+	public boolean isAberto() {
+		return StatusPedido.ABERTO.equals(this.getStatus());
+	}
+
+	public void removerItemVazio() {
+		ItemPedido primeiroItem = this.getItens().get(0);
+		
+		if(primeiroItem != null && primeiroItem.getProduto().getIdProduto() == null){
+			this.getItens().remove(0);
+			
+		}
+		
 	}
 }
