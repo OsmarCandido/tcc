@@ -174,7 +174,7 @@ public class Pedido implements Serializable {
 
 	@Transient
 	public boolean isEmitido() {
-		return StatusPedido.ABERTO.equals(this.getStatus());
+		return StatusPedido.EMITIDO.equals(this.getStatus());
 	}
 
 	@Transient
