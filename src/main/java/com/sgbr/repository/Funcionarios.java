@@ -61,11 +61,11 @@ public class Funcionarios implements Serializable {
 			criteria.add(Restrictions.eq("idFuncionario", filtro.getIdFuncionario()));
 		}
 
-		if (StringUtils.isNotBlank(filtro.getDescricao())) {
-			criteria.add(Restrictions.ilike("descricao", filtro.getDescricao(), MatchMode.ANYWHERE));
+		if (StringUtils.isNotBlank(filtro.getNome())) {
+			criteria.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));
 		}
 
-		return criteria.addOrder(Order.asc("descricao")).list();
+		return criteria.addOrder(Order.asc("nome")).list();
 	}
 
 	public Funcionario porIdFuncionario(Long idFuncionario) {

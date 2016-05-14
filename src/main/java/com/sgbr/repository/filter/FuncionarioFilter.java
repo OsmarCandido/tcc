@@ -7,7 +7,7 @@ public class FuncionarioFilter implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String idFuncionario;
-	private String descricao;
+	private String nome;
 
 	public String getIdFuncionario() {
 		return idFuncionario;
@@ -17,12 +17,12 @@ public class FuncionarioFilter implements Serializable {
 		this.idFuncionario = idFuncionario == null ? null : idFuncionario.toUpperCase();
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 }
