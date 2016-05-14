@@ -4,37 +4,38 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import javax.inject.Inject;
 
-import com.sgbr.model.Produto;
-import com.sgbr.repository.Produtos;
+import com.sgbr.model.Pedido;
+import com.sgbr.repository.Pedidos;
 import com.sgbr.util.cdi.CDIServiceLocator;
 
-@FacesConverter(forClass = Produto.class)
-public class ProdutoConverter implements Converter{
+@FacesConverter(forClass = Pedido.class)
+public class PedidoConverter implements Converter{
 	
-	@Inject
-	private Produtos produtos;
+	//@Inject
+	private Pedidos pedidos;
 	
-	public ProdutoConverter(){
-		produtos = CDIServiceLocator.getBean(Produtos.class);
+	public PedidoConverter(){
+		pedidos = CDIServiceLocator.getBean(Pedidos.class);
 	} 
 	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		Produto retorno = null;
+		Pedido retorno = null;
+		
 		if(value != null){
 			Long id = new Long(value);
-			retorno = produtos.porIdProduto(id);
+			retorno = pedidos.porIdPedido(id);
 		}
 		return retorno;
 	}
 
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
+		
 		if(value != null){
-			Produto produto = (Produto) value;
-			return produto.getIdProduto() == null ? null : produto.getIdProduto().toString();
+			Pedido pedido = (Pedido)value;
+			return pedido.getIdPedido() == null ? null : pedido.getIdPedido().toString();
 		}
 		return " ";
 	}
