@@ -29,7 +29,7 @@
 
 		<p:outputLabel value="Funcionario" for="funcionario" />
 		<p:selectOneMenu id="funcionario"
-			value="#{cadastroPedidoBean.pedido.funcionario}">
+			value="#{cadastroPedidoBean.pedido.funcionario}" disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" >
 			<f:selectItem itemLabel="Selecione" />
 			<f:selectItems value="#{cadastroPedidoBean.vendedores}"
 				var="vendedor" itemvalue="#{vendedor}" itemLabel="#{vendedor.nome}" />
@@ -37,7 +37,7 @@
 
 		<p:outputLabel value="Forma de pagamento" for="pagamento" />
 		<p:selectOneMenu id="pagamento"
-			value="#{cadastroPedidoBean.pedido.pagamento}">
+			value="#{cadastroPedidoBean.pedido.pagamento}" disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" >
 			<f:selectItem itemLabel="Selecione" />
 			<f:selectItems value="#{cadastroPedidoBean.pagamento}"
 				var="pagamento" itemValue="#{pagamento}"
@@ -46,7 +46,8 @@
 
 		<p:outputLabel value="Comissão" for="comissaoAtendimento" />
 		<p:inputText id="comissaoAtendimento" size="10" maxlength="10"
-			styleClass="moeda" value="#{cadastroPedidoBean.pedido.valorComissao}">
+			styleClass="moeda" value="#{cadastroPedidoBean.pedido.valorComissao}"
+				disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" >
 			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
 			<p:ajax event="change" process="@this" update="totalPedido"
 				listener="#{cadastroPedidoBean.recalcularPedido}" />
@@ -54,7 +55,8 @@
 
 		<p:outputLabel value="Desconto" for="valorDesconto" />
 		<p:inputText id="valorDesconto" size="10" maxlength="10"
-			styleClass="moeda" value="#{cadastroPedidoBean.pedido.valorDesconto}">
+			styleClass="moeda" value="#{cadastroPedidoBean.pedido.valorDesconto}" 
+				disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" >
 			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
 			<p:ajax event="change" process="@this" update="totalPedido"
 				listener="#{cadastroPedidoBean.recalcularPedido}" />

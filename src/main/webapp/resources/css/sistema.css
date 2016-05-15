@@ -113,3 +113,8 @@ h1 {
 .menu-sistema .ui-icon-triangle-1-s {
     background: url(#{resource['img:seta-para-baixo.png']}) no-repeat;
 }
+/* Menu sistema inicio */
+
+.ui-state-disabled{
+	opacity: 0.80 !important;
+}

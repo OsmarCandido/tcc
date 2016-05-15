@@ -267,4 +267,14 @@ public class Pedido implements Serializable {
 	private boolean isFechavel() {
 		return this.isExistente() && this.isAberto();
 	}
+	
+	@Transient
+	public boolean isAlteravel() {
+		return this.isAberto();
+	}
+	
+	@Transient
+	public boolean isNaoAlteravel() {
+		return !this.isAlteravel();
+	}
 }
