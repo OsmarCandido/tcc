@@ -17,58 +17,51 @@ public class Funcionario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue
 	private Long idFuncionario;
-	
-	@Column(name="Nome",length=100,nullable=false)
 	private String nome;
-	
-	@Column(name="Telefone",length=14,nullable=false)
 	private String telefone;
-	
-	@Column(name="Cpf",length=14,nullable=false)
 	private String cpf;
-	
-	@Column(name="Login",length=10,nullable=false)
 	private String login;
-	
-	@Column(name="senha",length=10,nullable=false)
 	private String senha;
-	
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name="perfil_id", nullable=false)
 	private Perfil perfil;
 	
-	
-//Get	
+//Get
+	@Id
+	@GeneratedValue
 	public Long getIdFuncionario() {
 		return idFuncionario;
 
 	}
     
+	@Column(name="Nome",length=100,nullable=false)
 	public String getNome() {
 		return nome;
 	}
 
+	@Column(name="Telefone",length=14,nullable=false)
 	public String getTelefone() {
 		return telefone;
 	}
 
+	@Column(name="Cpf",length=14,nullable=false)
 	public String getCpf() {
 		return cpf;
 	}
 
+	@Column(name="Login",length=10,nullable=false)
 	public String getLogin() {
 		return login;
 	}
 
+	@Column(name="senha",length=10,nullable=false)
 	public String getSenha() {
 		return senha;
 	}
 
-	@Column(name="perfil_id")                                    //@Enumerated(EnumType.STRING)
+	@NotNull
+	@ManyToOne
+	@JoinColumn
+	@Column(name="perfil_id", nullable=false)                                    //@Enumerated(EnumType.STRING)
 	public Perfil getPerfil() {
 		return perfil;
 	}

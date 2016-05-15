@@ -4,6 +4,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Inject;
 
 import com.sgbr.model.Funcionario;
 import com.sgbr.repository.Funcionarios;
@@ -12,7 +13,7 @@ import com.sgbr.util.cdi.CDIServiceLocator;
 @FacesConverter(forClass = Funcionario.class)
 public class FuncionarioConverter implements Converter{
 	
-	
+	@Inject
 	private Funcionarios funcionarios;
 	
 	public FuncionarioConverter(){
@@ -22,7 +23,6 @@ public class FuncionarioConverter implements Converter{
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		Funcionario retorno = null;
-		
 		if(value != null){
 			Long id = new Long(value);
 			retorno = funcionarios.porIdFuncionario(id);
@@ -34,11 +34,10 @@ public class FuncionarioConverter implements Converter{
 	public String getAsString(FacesContext context, UIComponent component, Object value) {
 		
 		if(value != null){
-			return ((Funcionario)value).getIdFuncionario().toString();
-			
+			Funcionario funcionario = (Funcionario) value;
+			return funcionario.getIdFuncionario() == null ? null : funcionario.getIdFuncionario().toString();
+			//return ((Funcionario)value).getIdFuncionario().toString();		
 		}
 		return " ";
 	}
-
-	
 }

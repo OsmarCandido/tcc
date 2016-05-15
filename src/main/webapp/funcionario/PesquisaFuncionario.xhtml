@@ -26,10 +26,10 @@
 		<p:panelGrid columns="2" id="painel" style="width: 100%; margin-top:20px" 
   				columnClasses="rotulo, campo">
    		<p:outputLabel value="Id Funcionario" for="idFuncionario" />
-   		<p:inputText id="idFuncionario" size="20" value="#{pesquisaFuncionariosBean.filtro.idFuncionario}" />
+   		<p:inputText id="idFuncionario" size="15" value="#{pesquisaFuncionariosBean.filtro.idFuncionario}" />
 
 			<p:outputLabel value="Nome" for="nome" />
-			<p:inputText id="nome" size="100" maxlenght="255" value="#{pesquisaFuncionariosBean.filtro.nome}" />
+			<p:inputText id="nome" size="80" maxlenght="255" value="#{pesquisaFuncionariosBean.filtro.nome}" />
 
 			
 		</p:panelGrid>
@@ -45,7 +45,7 @@
 			<p:column headerText="Nome" style="text-aling: center; width: 80px">
 				<h:outputText value="#{funcionario.nome}" />
 			</p:column>
-			<p:column headerText="Telefone" style="text-aling: center; width: 15px">
+			<p:column headerText="Telefone" style="text-aling: center; width: 20px">
 				<h:outputText value="#{funcionario.telefone}" />
 			</p:column>
 			<p:column headerText="CPF" style="text-aling: center; width:10px">

@@ -13,7 +13,7 @@ public class FuncionarioFilter implements Serializable {
 		return idFuncionario;
 	}
 
-	public void setIdProduto(String idProduto) {
+	public void setIdFuncionario(String idFuncionario) {
 		this.idFuncionario = idFuncionario == null ? null : idFuncionario.toUpperCase();
 	}
 
