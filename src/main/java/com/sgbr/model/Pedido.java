@@ -173,7 +173,7 @@ public class Pedido implements Serializable {
 	}
 
 	@Transient
-	public boolean isEmitido() {
+	public boolean isFechado() {
 		return StatusPedido.FECHADO.equals(this.getStatus());
 	}
 
