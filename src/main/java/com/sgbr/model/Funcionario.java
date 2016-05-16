@@ -60,8 +60,7 @@ public class Funcionario implements Serializable {
 
 	@NotNull
 	@ManyToOne
-	@JoinColumn
-	@Column(name="perfil_id", nullable=false)                                    //@Enumerated(EnumType.STRING)
+	@JoinColumn(name="perfil_id", nullable=false)                                    //@Enumerated(EnumType.STRING)
 	public Perfil getPerfil() {
 		return perfil;
 	}
@@ -72,9 +71,6 @@ public class Funcionario implements Serializable {
 		this.nome = nome;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 
 	public void setIdFuncionario(Long idFuncionario) {
 		this.idFuncionario = idFuncionario;
