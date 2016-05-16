@@ -10,6 +10,7 @@ import javax.inject.Named;
 import com.sgbr.model.Produto;
 import com.sgbr.repository.Produtos;
 import com.sgbr.repository.filter.ProdutoFilter;
+import com.sgbr.util.jsf.FacesUtil;
 
 @Named
 @ViewScoped
@@ -23,12 +24,23 @@ public class PesquisaProdutosBean implements Serializable {
 	private ProdutoFilter filtro;
 	private List<Produto> produtosFiltrados;
 	
+	
+	private Produto produtoSelecionado;
+	
 	public PesquisaProdutosBean() {
 		filtro = new ProdutoFilter();
 	}
 	
 	public void pesquisar() {
 		produtosFiltrados = produtos.filtrados(filtro);
+	}
+	
+	public void excluir(){
+		System.out.println("Produto selecionado2: " + produtoSelecionado.getDescricao());
+		produtos.remover(produtoSelecionado);
+		produtosFiltrados.remove(produtoSelecionado);
+		 
+		FacesUtil.addInfoMessage("Produto: " + produtoSelecionado.getDescricao() + " excluído com sucesso");
 	}
 	
 	public List<Produto> getProdutosFiltrados() {
@@ -38,5 +50,15 @@ public class PesquisaProdutosBean implements Serializable {
 	public ProdutoFilter getFiltro() {
 		return filtro;
 	}
+
+	public Produto getProdutoSelecionado() {
+		return produtoSelecionado;
+	}
+
+	public void setProdutoSelecionado(Produto produtoSelecionado) {
+		this.produtoSelecionado = produtoSelecionado;
+	}
+	
+	
 	
 }
