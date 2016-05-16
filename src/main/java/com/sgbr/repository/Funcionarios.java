@@ -56,11 +56,11 @@ public class Funcionarios implements Serializable {
 	public List<Funcionario> filtrados(FuncionarioFilter filtro) {
 		Session session = manager.unwrap(Session.class);
 		Criteria criteria = session.createCriteria(Funcionario.class);
-
+		
 		if (StringUtils.isNotBlank(filtro.getIdFuncionario())) {
-			criteria.add(Restrictions.eq("idFuncionario", filtro.getIdFuncionario()));
+			criteria.add(Restrictions.eq("idFuncionario", Long.parseLong(filtro.getIdFuncionario())));
 		}
-
+		
 		if (StringUtils.isNotBlank(filtro.getNome())) {
 			criteria.add(Restrictions.ilike("nome", filtro.getNome(), MatchMode.ANYWHERE));
 		}
