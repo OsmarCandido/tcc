@@ -100,12 +100,14 @@
 						title="Editar">
 						<f:param name="produto" value="#{produto.idProduto}" />
 					</p:button>
-					<p:commandButton type="button" icon="ui-icon-trash" title="Excluir"
-						onclick="PF('confirmacaoExclusao').show()" severity="alert"
+
+						<p:commandButton icon="ui-icon-trash" title="Excluir"
+						oncomplete="PF('confirmacaoExclusao').show()" severity="alert"
 							process="@this" update=":frmPesquisa:confirmacaoExclusaoDialog">
 						<f:setPropertyActionListener target="#{pesquisaProdutosBean.produtoSelecionado}"
 							value="#{produto}" />
 					</p:commandButton>
+					
 				</p:column>
 			</p:dataTable>
 
