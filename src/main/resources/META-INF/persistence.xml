@@ -12,12 +12,17 @@
   <!-- dados da conexao -->
    <property name="javax.persistence.jdbc.driver" 
        value="com.mysql.jdbc.Driver" />
-  <property name="javax.persistence.jdbc.url" 
-      value="jdbc:mysql://localhost:3306/sgbr" />
-  <property name="javax.persistence.jdbc.user" 
-      value="root" />
-  <property name="javax.persistence.jdbc.password" 
-      value="123mudar." />
+       
+       <!--  Conexão para local host -->
+  <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sgbr" />
+  
+  
+<!--   <property name="javax.persistence.jdbc.url" value="jdbc:mysql://sgbr.c4aii9sogbci.us-west-2.rds.amazonaws.com/sgbr"/>  -->
+  
+  <property name="javax.persistence.jdbc.user"  value="root" />
+  
+  
+  <property name="javax.persistence.jdbc.password" value="123mudar." />
 
    <!--  propriedades do hibernate -->
    <property name="hibernate.dialect" 
@@ -27,7 +32,14 @@
 
   <!--  atualiza o banco, gera as tabelas se for preciso -->
 <!--   <property name="hibernate.hbm2ddl.auto" value="create" /> -->
-  
+
+<!-- Gerenciamento de Pool de conexões. -->
+			<property name="hibernate.c3p0.min_size" value="5" />
+			<property name="hibernate.c3p0.max_size" value="20" />
+			<property name="hibernate.c3p0.timeout" value="300" />
+			<property name="hibernate.c3p0.max_statements" value="50" />
+			<property name="hibernate.c3p0.idle_test_period" value="3000" />
+
   <property name="hibernate.hbm2ddl.auto" value="update" />
     
    </properties>
