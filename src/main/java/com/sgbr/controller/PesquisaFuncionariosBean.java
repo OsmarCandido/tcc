@@ -10,6 +10,7 @@ import javax.inject.Named;
 import com.sgbr.model.Funcionario;
 import com.sgbr.repository.Funcionarios;
 import com.sgbr.repository.filter.FuncionarioFilter;
+import com.sgbr.util.jsf.FacesUtil;
 
 @Named
 @ViewScoped
@@ -22,6 +23,8 @@ public class PesquisaFuncionariosBean implements Serializable {
 	
 	private FuncionarioFilter filtro;
 	private List<Funcionario> funcionariosFiltrados;
+	
+	private Funcionario funcionarioSelecionado;
 	
 	public PesquisaFuncionariosBean() {
 		filtro = new FuncionarioFilter();
@@ -39,4 +42,20 @@ public class PesquisaFuncionariosBean implements Serializable {
 		return filtro;
 	}
 	
+	public void excluir(){
+		System.out.println("Funcionario selecionado2: " + funcionarioSelecionado.getNome());
+		funcionarios.remover(funcionarioSelecionado);
+		funcionariosFiltrados.remove(funcionarioSelecionado);
+		 
+		FacesUtil.addInfoMessage("Funcionario: " + funcionarioSelecionado.getNome() + " excluído com sucesso");
+	}
+
+	public Funcionario getFuncionarioSelecionado() {
+		return funcionarioSelecionado;
+	}
+
+	public void setFuncionarioSelecionado(Funcionario funcionarioSelecionado) {
+		this.funcionarioSelecionado = funcionarioSelecionado;
+	}
+
 }

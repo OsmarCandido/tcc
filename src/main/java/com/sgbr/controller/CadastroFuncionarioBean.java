@@ -27,6 +27,8 @@ public class CadastroFuncionarioBean implements Serializable {
 	
 	private Funcionario funcionario;
 	
+	private Perfil perfilPai;
+	
 	private List<Perfil> perfils;
 	
 	public CadastroFuncionarioBean() {
@@ -51,8 +53,20 @@ public class CadastroFuncionarioBean implements Serializable {
 		return funcionario;
 	}
 
+	/*public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+		
+		if(this.funcionario != null){
+			this.perfis = this.funcionario.getPerfil().getPerfilPai();
+		}
+	}*/
+	
 	public List<Perfil> getPerfils() {
 		return perfils;
+	}
+
+	public boolean isEditando(){
+		return this.funcionario.getIdFuncionario() != null; 
 	}
 
 }

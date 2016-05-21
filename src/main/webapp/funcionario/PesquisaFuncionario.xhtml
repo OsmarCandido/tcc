@@ -7,71 +7,89 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="titulo">Pesquisa de Funcionário </ui:define>
-	<ui:define name="corpo">
-	<h:form>
-		<h1>Pesquisa de Funcionário</h1>
-		
-		<p:messages autoUpdate="true" closable="true" />
+		<ui:define name="corpo">
+		<h:form id="frmPesquisa">
+			<h1>Pesquisa de Funcionário</h1>
 
-		<p:toolbar style="margin-top: 20px">
-			<p:toolbarGroup>
-			<p:commandButton value="Pesquisar" action="#{pesquisaFuncionariosBean.pesquisar}"
-	    				update="@form" />
-			</p:toolbarGroup>
-			<p:toolbarGroup align="right">
-	    			<p:button value="Novo" outcome="/funcionario/CadastroFuncionario" />
-	    	</p:toolbarGroup>
-		</p:toolbar>
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:commandButton value="Pesquisar"
+						action="#{pesquisaFuncionariosBean.pesquisar}" update="@form" />
+				</p:toolbarGroup>
+				<p:toolbarGroup align="right">
+					<p:button value="Novo" outcome="/funcionario/CadastroFuncionario" />
+				</p:toolbarGroup>
+			</p:toolbar>
 
-		<p:panelGrid columns="2" id="painel" style="width: 100%; margin-top:20px" 
-  				columnClasses="rotulo, campo">
-   		<p:outputLabel value="Id Funcionario" for="idFuncionario" />
-   		<p:inputText id="idFuncionario" size="15" value="#{pesquisaFuncionariosBean.filtro.idFuncionario}" />
+			<p:panelGrid columns="2" id="painel"
+				style="width: 100%; margin-top:20px" columnClasses="rotulo, campo">
+				<p:outputLabel value="Id Funcionario" for="idFuncionario" />
+				<p:inputText id="idFuncionario" size="15"
+					value="#{pesquisaFuncionariosBean.filtro.idFuncionario}" />
 
-			<p:outputLabel value="Nome" for="nome" />
-			<p:inputText id="nome" size="80" maxlenght="255" value="#{pesquisaFuncionariosBean.filtro.nome}" />
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" size="80" maxlenght="255"
+					value="#{pesquisaFuncionariosBean.filtro.nome}" />
+			</p:panelGrid>
 
-			
-		</p:panelGrid>
-		
-		<p:dataTable id="funcionariosTable"
-			value="#{pesquisaFuncionariosBean.funcionariosFiltrados}" var="funcionario"
-			style="margin-top: 40px" emptyMessage="Funcionario não encontrado."
-			rows="20" paginator="true" paginatorAlwaysVisible="false" paginatorPosition="botton">
-			
-			<p:column headerText="Id Funcionario" style="text-aling: center; width: 20px">
-   				<h:outputText value="#{funcionario.idFuncionario}" />
-  			</p:column>
-			<p:column headerText="Nome" style="text-aling: center; width: 80px">
-				<h:outputText value="#{funcionario.nome}" />
-			</p:column>
-			<p:column headerText="Telefone" style="text-aling: center; width: 20px">
-				<h:outputText value="#{funcionario.telefone}" />
-			</p:column>
-			<p:column headerText="CPF" style="text-aling: center; width:10px">
-				<h:outputText value="#{funcionario.cpf}" />
-			</p:column>
-			<p:column headerText="Perfil" style="text-aling: center; width: 15px">
-				<h:outputText value="#{funcionario.perfil.perfilPai.descricao}"/>
-			</p:column>
-			<p:column headerText="Usuário" style="text-aling: center; width: 20px">
-				<h:outputText value="#{funcionario.login}" />
-			</p:column>
-			 <p:column headerText="Senha" style="text-aling: center; width: 15px">
-				<h:outputText value="#{funcionario.senha}" />
-			</p:column> 
-			<p:column style="width: 50px; text-align:center">
-   <p:button icon="ui-icon-pencil" title="Editar"/>
-            <p:commandButton icon="ui-icon-trash" title="Excluir" oncomplete="confimacaoExclusao.show()" />   
-  </p:column>
-  </p:dataTable>
-  
-             <p:confirmDialog header="Exclusão de Funcionario" message="Tem certeza que deseja excluir o Funcionario"
-  widgetVar="confirmacaoExclusao">
-  <p:button value="Não" onclick="confirmacaoExclusao.hide(); return false;" />
-  <p:commandButton value="Sim" oncomplete="confimacaoExclusao.hide();" />
-  </p:confirmDialog>
-		
+			<p:dataTable id="funcionariosTable"
+				value="#{pesquisaFuncionariosBean.funcionariosFiltrados}"
+				var="funcionario" style="margin-top: 40px"
+				emptyMessage="Funcionario não encontrado." rows="20"
+				paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="botton">
+
+				<p:column headerText="Id Funcionario"
+					style="text-aling: center; width: 20px">
+					<h:outputText value="#{funcionario.idFuncionario}" />
+				</p:column>
+				<p:column headerText="Nome" style="text-aling: center; width: 80px">
+					<h:outputText value="#{funcionario.nome}" />
+				</p:column>
+				<p:column headerText="Telefone"
+					style="text-aling: center; width: 20px">
+					<h:outputText value="#{funcionario.telefone}" />
+				</p:column>
+				<p:column headerText="CPF" style="text-aling: center; width:10px">
+					<h:outputText value="#{funcionario.cpf}" />
+				</p:column>
+				<p:column headerText="Perfil"
+					style="text-aling: center; width: 15px">
+					<h:outputText value="#{funcionario.perfil.perfilPai.descricao}" />
+				</p:column>
+				<p:column headerText="Usuário"
+					style="text-aling: center; width: 20px">
+					<h:outputText value="#{funcionario.login}" />
+				</p:column>
+				<p:column headerText="Senha" style="text-aling: center; width: 15px">
+					<h:outputText value="#{funcionario.senha}" />
+				</p:column>
+
+				<p:column style="width: 50px; text-align:center">
+					<p:button outcome="/funcionario/CadastroFuncionario"
+						icon="ui-icon-pencil" title="Editar">
+						<f:param name="funcionario" value="#{funcionario.idFuncionario}" />
+					</p:button>
+
+					<p:commandButton icon="ui-icon-trash" title="Excluir"
+						oncomplete="PF('confirmacaoExclusao').show()" severity="alert"
+						process="@this" update=":frmPesquisa:confirmacaoExclusaoDialog">
+						<f:setPropertyActionListener
+							target="#{pesquisaFuncionarioBean.funcionarioSelecionado}"
+							value="#{funcionario}" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+
+			<p:confirmDialog header="Exclusão de funcionario"
+				message="Tem certeza que deseja excluir o funcionario #{pesquisaFuncionariosBean.funcionarioSelecionado.nome}"
+				widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
+				<p:button value="Não"
+					oncomplete="PF('confirmacaoExclusao').hide(); return false;" />
+				<p:commandButton value="Sim"
+					action="#{pesquisaFuncionariosBean.excluir}" immediate="true"
+					oncomplete="PF('confirmacaoExclusao').hide()" />
+			</p:confirmDialog>
 		</h:form>
 	</ui:define>
 </ui:composition>
