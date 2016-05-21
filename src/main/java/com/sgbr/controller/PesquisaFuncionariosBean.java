@@ -24,7 +24,7 @@ public class PesquisaFuncionariosBean implements Serializable {
 	private FuncionarioFilter filtro;
 	private List<Funcionario> funcionariosFiltrados;
 	
-	private Funcionario funcionarioSelecionado;
+	private Funcionario funcionarioSelecionado = new Funcionario();
 	
 	public PesquisaFuncionariosBean() {
 		filtro = new FuncionarioFilter();

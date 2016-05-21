@@ -55,7 +55,7 @@
 				</p:column>
 				<p:column headerText="Perfil"
 					style="text-aling: center; width: 15px">
-					<h:outputText value="#{funcionario.perfil.perfilPai.descricao}" />
+					<h:outputText value="#{funcionario.perfil.descricao}" />
 				</p:column>
 				<p:column headerText="Usuário"
 					style="text-aling: center; width: 20px">
@@ -75,7 +75,7 @@
 						oncomplete="PF('confirmacaoExclusao').show()" severity="alert"
 						process="@this" update=":frmPesquisa:confirmacaoExclusaoDialog">
 						<f:setPropertyActionListener
-							target="#{pesquisaFuncionarioBean.funcionarioSelecionado}"
+							target="#{pesquisaFuncionariosBean.funcionarioSelecionado}"
 							value="#{funcionario}" />
 					</p:commandButton>
 				</p:column>
