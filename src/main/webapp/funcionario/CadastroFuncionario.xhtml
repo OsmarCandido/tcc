@@ -33,38 +33,44 @@
 				</p:toolbarGroup>
 			</p:toolbar>
 
-	      <!--  Alterado em 09/05/2016 (Osmar)
-	          <p:outputLabel value="Id Funcionario" for="idFuncionario" />
+			<!--  Alterado em 09/05/2016 (Osmar)
+	          <p:outputLabel value="Id Funcionário" for="idFuncionario" />
 				<p:inputText id="idFuncionario" size="8" maxlenght="8"
 					value="#{cadastroFuncionarioBean.funcionario.idFuncionario}" />   -->
 
 			<p:panelGrid columns="2" id="painel"
 				style="width: 100%; margin-top:35px" columnClasses="rotulo, campo">
-					
-				<p:outputLabel value="Nome" for="nome" />
-				<p:inputText id="nome" size="100" maxlenght="255" value="#{cadastroFuncionarioBean.funcionario.nome}"/>
 
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" required="true" size="80" maxlength="130"
+					value="#{cadastroFuncionarioBean.funcionario.nome}" />
+				
 				<p:outputLabel for="Telefone" value="Telefone" />
-				<p:inputMask id="Telefone" value="#{cadastroFuncionarioBean.funcionario.telefone}"
+				<p:inputMask id="Telefone" required="true" 
+					value="#{cadastroFuncionarioBean.funcionario.telefone}"
 					mask="(99)9999-9999?9" />
 
 				<p:outputLabel value="CPF" for="Cpf" />
-				<p:inputMask id="Cpf" value="#{cadastroFuncionarioBean.funcionario.cpf}"
+				<p:inputMask id="Cpf" required="true" 
+					value="#{cadastroFuncionarioBean.funcionario.cpf}"
 					mask="999.999.999-99" />
 
 				<p:outputLabel value="Perfil" for="perfil" />
-				<p:selectOneMenu id="perfil" value="#{cadastroFuncionarioBean.funcionario.perfil}">
+				<p:selectOneMenu id="perfil"
+					value="#{cadastroFuncionarioBean.funcionario.perfil}">
 					<f:selectItem itemLabel="Selecione a perfil" />
 					<f:selectItems value="#{cadastroFuncionarioBean.perfils}"
 						var="perfil" itemValue="#{perfil}" itemLabel="#{perfil.descricao}" />
 				</p:selectOneMenu>
 
 				<h:outputLabel value="Login" for="Login" />
-				<p:inputText id="Login" maxlength="10" value="#{cadastroFuncionarioBean.funcionario.login}"/>
+				<p:inputText id="Login" maxlength="10" required="true" 
+					value="#{cadastroFuncionarioBean.funcionario.login}" />
 
 				<p:outputLabel value="Senha" for="senha" />
-				<p:password id="senha" maxlength="10"
-					value="#{cadastroFuncionarioBean.funcionario.senha}" feedback="true" />
+				<p:password id="senha" maxlength="10" required="true" 
+					value="#{cadastroFuncionarioBean.funcionario.senha}"
+					feedback="true" />
 
 			</p:panelGrid>
 		</h:form>
