@@ -28,6 +28,7 @@ public class PesquisaFuncionariosBean implements Serializable {
 	
 	public PesquisaFuncionariosBean() {
 		filtro = new FuncionarioFilter();
+		
 	}
 	
 	public void pesquisar() {
@@ -43,7 +44,6 @@ public class PesquisaFuncionariosBean implements Serializable {
 	}
 	
 	public void excluir(){
-		System.out.println("Funcionario selecionado2: " + funcionarioSelecionado.getNome());
 		funcionarios.remover(funcionarioSelecionado);
 		funcionariosFiltrados.remove(funcionarioSelecionado);
 		 

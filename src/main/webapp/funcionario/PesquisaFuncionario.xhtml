@@ -10,6 +10,7 @@
 		<ui:define name="corpo">
 		<h:form id="frmPesquisa">
 			<h1>Pesquisa de Funcionário</h1>
+			<p:messages autoUpdate="true" closable="true" />
 
 			<p:toolbar style="margin-top: 20px">
 				<p:toolbarGroup>
@@ -88,7 +89,8 @@
 					oncomplete="PF('confirmacaoExclusao').hide(); return false;" />
 				<p:commandButton value="Sim"
 					action="#{pesquisaFuncionariosBean.excluir}" immediate="true"
-					oncomplete="PF('confirmacaoExclusao').hide()" />
+					oncomplete="PF('confirmacaoExclusao').hide()" process="@this"
+						update=":frmPesquisa:funcionariosTable"/>
 			</p:confirmDialog>
 		</h:form>
 	</ui:define>

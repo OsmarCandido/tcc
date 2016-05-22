@@ -17,13 +17,14 @@ public class CadastroFuncionarioService implements Serializable {
 	@Transactional
 	public Funcionario salvar(Funcionario funcionario) {
 		
-		//Alterado 09/05/2016 (Osmar) 
+		//Alterado 09/05/2016 (Osmar)
+		//Alterado 22/05/2016 (Ricardo)
 		
-		//Funcionario funcionarioExistente = funcionarios.porIdFuncionario(funcionario.getIdFuncionario());
+		Funcionario funcionarioExistente = funcionarios.porCpf(funcionario.getCpf());
 		
-	//	if (funcionarioExistente != null && !funcionarioExistente.equals(funcionario)) {
-	//		throw new NegocioException("Existe um funcionario com esse Id.");
-	//	}
+		if (funcionarioExistente != null && !funcionarioExistente.equals(funcionario)) {
+			throw new NegocioException("Já existe um funcionario cadastrado com esse cpf.");
+		}
 		
 		return funcionarios.guardar(funcionario);
 	}

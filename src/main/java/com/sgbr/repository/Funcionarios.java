@@ -77,6 +77,15 @@ public class Funcionarios implements Serializable {
 				.setParameter("nome", nome.toUpperCase() + "%").getResultList();
 	}
 	
+	public Funcionario porCpf(String cpf) {
+		try {
+			return manager
+					.createQuery("from Funcionario where upper(cpf) = :cpf", Funcionario.class)
+					.setParameter("cpf", cpf.toUpperCase()).getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		}
+	}
 	
    //  Início Controle de acesso (11/05/2016)
 	

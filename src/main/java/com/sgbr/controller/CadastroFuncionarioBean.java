@@ -42,24 +42,19 @@ public class CadastroFuncionarioBean implements Serializable {
 	}
 				
 	public void salvar() {
-		System.out.println("Perfil: " + funcionario.getPerfil().getDescricao());
-		System.out.println("Id: " + funcionario.getIdFuncionario());
-		System.out.println("Perfil Id: " + funcionario.getPerfil().getId());
 		this.funcionario = cadastroFuncionarioService.salvar(this.funcionario);
 
+		FacesUtil.addInfoMessage("Funcionário cadastrado com sucesso");
 	}
 
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
 
-//	public void setFuncionario(Funcionario funcionario) {
-//		this.funcionario = funcionario;
-//		
-//		if(this.funcionario != null){
-//			this.perfis = this.funcionario.getPerfil();
-//		
-//	}
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+				
+	}
 	
 	public List<Perfil> getPerfils() {
 		return perfils;
