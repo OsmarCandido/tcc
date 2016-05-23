@@ -3,6 +3,7 @@ package com.sgbr.controller;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -32,6 +33,11 @@ public class PesquisaFuncionariosBean implements Serializable {
 	}
 	
 	public void pesquisar() {
+		funcionariosFiltrados = funcionarios.filtrados(filtro);
+	}
+	
+	@PostConstruct
+	public void init(){
 		funcionariosFiltrados = funcionarios.filtrados(filtro);
 	}
 	

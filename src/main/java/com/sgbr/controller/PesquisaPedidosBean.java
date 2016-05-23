@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -33,10 +34,18 @@ public class PesquisaPedidosBean implements Serializable {
 
 	public void pesquisar() {
 		pedidosFiltrados = pedidos.filtrados(filtro);
+		
 	}
+	
+	@PostConstruct
+	public void init(){
+	    pedidosFiltrados = pedidos.filtrados(filtro);
+	}
+	
 	
 	public StatusPedido[] getStatuses() {
 		return StatusPedido.values();
+		
 	}
 	
 	public List<Pedido> getPedidosFiltrados() {
