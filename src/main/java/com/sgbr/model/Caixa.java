@@ -2,13 +2,17 @@ package com.sgbr.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,10 +26,11 @@ public class Caixa implements Serializable {
 
 	private Long id_funcionario;
 	private Long id_caixa;
-	private BigDecimal valor_caixa = BigDecimal.ZERO;;
+	private BigDecimal valor_caixa = BigDecimal.ZERO;
 	private Date data_caixa;
 	private Date hora_abertura;
 	private Date hora_fechamento;
+	private List<Pedido> pedidosFaturados = new ArrayList<>();
 	
 
 	@Id
@@ -113,5 +118,17 @@ public class Caixa implements Serializable {
 	@Column(nullable = false)
 	private Pagamento pagamento;
 
+	@OneToMany(mappedBy = "caixa", cascade = CascadeType.ALL, orphanRemoval = true)
+	public List<Pedido> getPedidosFaturados() {
+		return pedidosFaturados;
+	}
+
+
+	public void setPedidosFaturados(List<Pedido> pedidosFaturados) {
+		this.pedidosFaturados = pedidosFaturados;
+	}
+	
+	
+	
 }
 

@@ -277,4 +277,14 @@ public class Pedido implements Serializable {
 	public boolean isNaoAlteravel() {
 		return !this.isAlteravel();
 	}
+	
+	@Transient
+	public boolean isAguardandoPagamento(){
+		return this.isExistente() && this.isFechado();
+	}
+	
+	@Transient
+	public boolean isNaoAguardandoPagamento(){
+		return !isAguardandoPagamento();
+	}
 }

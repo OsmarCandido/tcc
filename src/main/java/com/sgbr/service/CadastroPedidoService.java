@@ -26,7 +26,7 @@ public class CadastroPedidoService implements Serializable {
 		
 		pedido.recalcularValorTotal();
 		
-		if(pedido.isNaoAlteravel()){
+		if(pedido.isNaoAlteravel() && pedido.isNaoAguardandoPagamento()){
 			throw new NegocioException("Pedido não pode ser alterado no status "
 					+ pedido.getStatus().getDescricao() + ".");
 		}
@@ -37,6 +37,10 @@ public class CadastroPedidoService implements Serializable {
 		}
 		if (pedido.isValorTotalNegativo()) {
 			throw new NegocioException("Valor total do pedido não pode ser negativo.");
+		}
+		
+		if (pedido.isFechado()) {
+			pedido.setStatus(StatusPedido.PAGO);
 		}
 		
 		pedido = this.pedidos.guardar(pedido);

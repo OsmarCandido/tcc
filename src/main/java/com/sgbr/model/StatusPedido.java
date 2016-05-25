@@ -4,7 +4,8 @@ public enum StatusPedido {
 	ORCAMENTO("orçamento"),
 	ABERTO("aberto"),
 	FECHADO("fechado"),
-	CANCELADO("cancelado");
+	CANCELADO("cancelado"),
+	PAGO("pago");
 	
 private String descricao;
 	

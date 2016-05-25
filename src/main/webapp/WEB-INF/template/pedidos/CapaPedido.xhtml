@@ -47,7 +47,7 @@
 		<p:outputLabel value="Comissão" for="comissaoAtendimento" />
 		<p:inputText id="comissaoAtendimento" size="10" maxlength="10"
 			styleClass="moeda" value="#{cadastroPedidoBean.pedido.valorComissao}"
-				disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" >
+				disabled="#{cadastroPedidoBean.pedido.naoAguardandoPagamento}" >
 			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
 			<p:ajax event="change" process="@this" update="totalPedido"
 				listener="#{cadastroPedidoBean.recalcularPedido}" />
@@ -56,7 +56,7 @@
 		<p:outputLabel value="Desconto" for="valorDesconto" />
 		<p:inputText id="valorDesconto" size="10" maxlength="10"
 			styleClass="moeda" value="#{cadastroPedidoBean.pedido.valorDesconto}" 
-				disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" >
+				disabled="#{cadastroPedidoBean.pedido.naoAguardandoPagamento}" >
 			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
 			<p:ajax event="change" process="@this" update="totalPedido"
 				listener="#{cadastroPedidoBean.recalcularPedido}" />
