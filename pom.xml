@@ -110,6 +110,16 @@
 			<scope>provided</scope>
 		</dependency>
 		
+		<!-- Incluso em 27/05/2016 - Osmar- Relatórios -->
+		
+		<dependency>
+		
+		<groupId>net.sf.jasperreports</groupId>
+        <artifactId>jasperreports</artifactId>		
+		<version>5.1.2</version>
+		<scope>compile </scope>
+		</dependency>
+		
 		<!-- Incluso em 10/05/2016 - Osmar- Para finds -->
 
       <dependency>
