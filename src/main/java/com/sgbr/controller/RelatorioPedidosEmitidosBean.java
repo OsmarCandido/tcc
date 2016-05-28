@@ -5,8 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.enterprise.context.Dependent;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -18,7 +17,7 @@ import org.hibernate.Session;
 
 import com.sgbr.util.report.ExecutorRelatorio;
 
-@Dependent
+
 @Named
 @RequestScoped
 public class RelatorioPedidosEmitidosBean implements Serializable {
