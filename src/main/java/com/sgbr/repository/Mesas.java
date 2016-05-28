@@ -15,6 +15,7 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
+import com.sgbr.model.Funcionario;
 import com.sgbr.model.Mesa;
 import com.sgbr.model.Produto;
 import com.sgbr.repository.filter.MesaFilter;
@@ -73,8 +74,12 @@ public class Mesas implements Serializable {
 	}
 
 	public List<Produto> porNome(String nome) {
-		return this.manager.createQuery("from Produto where upper(descricao) like :descricao", Produto.class)
+		return this.manager.createQuery("from Mesa where upper(descricao) like :descricao", Produto.class)
 				.setParameter("descricao", nome.toUpperCase() + "%").getResultList();
+	}
+	
+	public List<Mesa> mesas(){
+		return this.manager.createQuery("From Mesa",Mesa.class).getResultList();
 	}
 
 }

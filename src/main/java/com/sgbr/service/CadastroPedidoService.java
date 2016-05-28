@@ -31,10 +31,10 @@ public class CadastroPedidoService implements Serializable {
 					+ pedido.getStatus().getDescricao() + ".");
 		}
 		
-		
 		if(pedido.getItens().isEmpty()){
 			throw new NegocioException("Pedido deve conter pelo menos um item");
 		}
+		
 		if (pedido.isValorTotalNegativo()) {
 			throw new NegocioException("Valor total do pedido não pode ser negativo.");
 		}

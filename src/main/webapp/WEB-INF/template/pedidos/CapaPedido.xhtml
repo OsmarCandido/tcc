@@ -22,10 +22,19 @@
 		<p:outputLabel value="Status" />
 		<h:outputText value="#{cadastroPedidoBean.pedido.status.descricao}" />
 
-		<p:outputLabel value="Hora Pedido" />
-		<h:outputText value="#{cadastroPedidoBean.pedido.dataCriacao}">
+		<p:outputLabel value="Hora Pedido" rendered="#{cadastroPedidoBean.pedido.existente}"/>
+		<h:outputText value="#{cadastroPedidoBean.pedido.dataCriacao}"
+			rendered="#{cadastroPedidoBean.pedido.existente}" >
 			<f:convertDateTime pattern="HH:mm:ss" />
 		</h:outputText>
+	
+		<p:outputLabel value="Mesa" for="mesa" />
+		<p:selectOneMenu id="mesa"
+			value="#{cadastroPedidoBean.pedido.mesa}" disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" >
+			<f:selectItem itemLabel="Selecione" />
+			<f:selectItems value="#{cadastroPedidoBean.mesas}"
+				var="mesa" itemvalue="#{mesa}" itemLabel="#{mesa.idMesa}" />
+		</p:selectOneMenu>
 
 		<p:outputLabel value="Funcionario" for="funcionario" />
 		<p:selectOneMenu id="funcionario"
@@ -38,25 +47,26 @@
 		<p:outputLabel value="Forma de pagamento" for="pagamento" />
 		<p:selectOneMenu id="pagamento"
 			value="#{cadastroPedidoBean.pedido.pagamento}" disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" >
-			<f:selectItem itemLabel="Selecione" />
 			<f:selectItems value="#{cadastroPedidoBean.pagamento}"
 				var="pagamento" itemValue="#{pagamento}"
 				itemLabel="#{pagamento.descricao}" />
 		</p:selectOneMenu>
 
 		<p:outputLabel value="Comissão" for="comissaoAtendimento" />
-		<p:inputText id="comissaoAtendimento" size="10" maxlength="10"
-			styleClass="moeda" value="#{cadastroPedidoBean.pedido.valorComissao}"
-				disabled="#{cadastroPedidoBean.pedido.naoAguardandoPagamento}" >
-			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
-			<p:ajax event="change" process="@this" update="totalPedido"
+		<h:panelGroup>
+			<p:selectBooleanCheckbox id="comissaoAtendimento" value="#{cadastroPedidoBean.comissionado}" > 
+				<p:ajax event="change" process="@this" update="totalPedido valorComissao"
 				listener="#{cadastroPedidoBean.recalcularPedido}" />
-		</p:inputText>
-
+			</p:selectBooleanCheckbox>
+			<h:outputText id="valorComissao"  value="#{cadastroPedidoBean.pedido.valorComissao}">
+				<f:convertNumber type="currency" />
+			</h:outputText>
+		</h:panelGroup>
+		
 		<p:outputLabel value="Desconto" for="valorDesconto" />
 		<p:inputText id="valorDesconto" size="10" maxlength="10"
 			styleClass="moeda" value="#{cadastroPedidoBean.pedido.valorDesconto}" 
-				disabled="#{cadastroPedidoBean.pedido.naoAguardandoPagamento}" >
+				disabled="#{cadastroPedidoBean.pedido.naoAguardandoPagamento}">
 			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
 			<p:ajax event="change" process="@this" update="totalPedido"
 				listener="#{cadastroPedidoBean.recalcularPedido}" />

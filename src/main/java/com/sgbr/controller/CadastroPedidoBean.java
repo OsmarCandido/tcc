@@ -11,10 +11,12 @@ import javax.inject.Named;
 
 import com.sgbr.model.Funcionario;
 import com.sgbr.model.ItemPedido;
+import com.sgbr.model.Mesa;
 import com.sgbr.model.Pagamento;
 import com.sgbr.model.Pedido;
 import com.sgbr.model.Produto;
 import com.sgbr.repository.Funcionarios;
+import com.sgbr.repository.Mesas;
 import com.sgbr.repository.Produtos;
 import com.sgbr.service.CadastroPedidoService;
 import com.sgbr.util.jsf.FacesUtil;
@@ -27,7 +29,10 @@ public class CadastroPedidoBean implements Serializable {
 
 	@Inject
 	private Funcionarios funcionarios;
-
+	
+	@Inject
+	private Mesas mesas_repository;
+	
 	@Inject
 	private Produtos produtos;
 
@@ -37,13 +42,16 @@ public class CadastroPedidoBean implements Serializable {
 	@Produces
 	@PedidoEdicao
 	private Pedido pedido;
-
+	
+	private List<Mesa> mesas;
 	private List<Funcionario> vendedores;
 
 	private Long idProduto;
 
 	private Produto produtoLinhaEditavel;
-
+	
+	private boolean comissionado;
+	
 	public CadastroPedidoBean() {
 		limpar();
 	}
@@ -51,7 +59,8 @@ public class CadastroPedidoBean implements Serializable {
 	public void inicializar() {
 		if (FacesUtil.isNotPostback()) {
 			this.vendedores = this.funcionarios.vendedores();
-
+			this.mesas = this.mesas_repository.mesas();
+			
 			this.pedido.adicionarItemVazio();
 
 			this.recalcularPedido();
@@ -80,6 +89,7 @@ public class CadastroPedidoBean implements Serializable {
 
 	public void recalcularPedido() {
 		if (this.pedido != null) {
+			this.pedido.calcularComissao(this.isComissionado());
 			this.pedido.recalcularValorTotal();
 		}
 	}
@@ -106,14 +116,12 @@ public class CadastroPedidoBean implements Serializable {
 				FacesUtil.addErrorMessage("já existe item com o produto informado");
 			} else {
 				item.setProduto(this.produtoLinhaEditavel);
-				System.out.println(item.getProduto().getDescricao());
-				System.out.println(item.getQuantidade());
 				item.setValorUnitario(this.produtoLinhaEditavel.getValorVenda());
 
 				this.pedido.adicionarItemVazio();
 				this.produtoLinhaEditavel = null;
 				this.idProduto = null;
-
+				this.pedido.calcularComissao(this.isComissionado());
 				this.pedido.recalcularValorTotal();
 			}
 		}
@@ -127,6 +135,7 @@ public class CadastroPedidoBean implements Serializable {
 				this.getPedido().getItens().remove(linha);
 			}
 		}
+		this.pedido.calcularComissao(this.isComissionado());
 		this.pedido.recalcularValorTotal();
 	}
 
@@ -154,6 +163,10 @@ public class CadastroPedidoBean implements Serializable {
 		this.pedido = pedido;
 	}
 
+	public List<Mesa> getMesas() {
+		return mesas;
+	}
+
 	public List<Funcionario> getVendedores() {
 		return vendedores;
 	}
@@ -178,4 +191,13 @@ public class CadastroPedidoBean implements Serializable {
 		return this.pedido.getIdPedido() != null; 
 	}
 
+	public boolean isComissionado() {
+		return comissionado;
+	}
+
+	public void setComissionado(boolean comissionado) {
+		this.comissionado = comissionado;
+	}
+
+	
 }

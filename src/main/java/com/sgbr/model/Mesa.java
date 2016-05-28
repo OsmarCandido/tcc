@@ -42,7 +42,7 @@ public class Mesa implements Serializable {
 		return status;
 	}    
 	
-	@Column(name="nome",length=6,nullable=false)
+	@Column(name="nome",length=15,nullable=false)
 	public String getNome() {
 		return nome;
 	}

@@ -38,6 +38,7 @@ public class Pedido implements Serializable {
 	private StatusPedido status = StatusPedido.ABERTO;
 	private Pagamento pagamento;
 	private Funcionario funcionario;
+	private Mesa mesa;
 	private List<ItemPedido> itens = new ArrayList<>();
 
 	@Id
@@ -110,6 +111,17 @@ public class Pedido implements Serializable {
 
 	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
+	}
+	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "mesa", nullable = false)
+	public Mesa getMesa() {
+		return mesa;
+	}
+
+	public void setMesa(Mesa mesa) {
+		this.mesa = mesa;
 	}
 
 	@NotNull
@@ -214,19 +226,32 @@ public class Pedido implements Serializable {
 
 	@Transient
 	public BigDecimal getValorSubtotal() {
-		return this.getValorTotal().subtract(this.getValorComissao()).add(this.getValorDesconto());
+		return this.calcularSubtotal();
+	}
+	
+	public BigDecimal calcularSubtotal(){
+		BigDecimal subtotal = BigDecimal.ZERO;
+		for (ItemPedido item : this.getItens()) {
+			if (item.getProduto() != null && item.getProduto().getIdProduto() != null) {
+				subtotal = subtotal.add(item.getValorTotal());
+			}
+		}
+		return subtotal;
+	}
+	
+	public void calcularComissao(boolean comissionado){
+
+		if(comissionado)
+			this.setValorComissao(this.getValorSubtotal().multiply(BigDecimal.valueOf(0.10)));
+		else {
+			this.setValorComissao(BigDecimal.ZERO);
+		}
 	}
 
 	public void recalcularValorTotal() {
 		BigDecimal total = BigDecimal.ZERO;
-
+		total = total.add(this.getValorSubtotal());
 		total = total.add(this.getValorComissao()).subtract(this.getValorDesconto());
-
-		for (ItemPedido item : this.getItens()) {
-			if (item.getProduto() != null && item.getProduto().getIdProduto() != null) {
-				total = total.add(item.getValorTotal());
-			}
-		}
 		this.setValorTotal(total);
 	}
 
