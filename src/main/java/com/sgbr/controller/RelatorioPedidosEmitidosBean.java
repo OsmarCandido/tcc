@@ -45,7 +45,7 @@ public class RelatorioPedidosEmitidosBean implements Serializable {
 		parametros.put("data_fim", this.dataFim);
 			
 		
-		ExecutorRelatorio executor = new ExecutorRelatorio("/relatorios/pedidos_emitidos_sintetico.jasper",
+		ExecutorRelatorio executor = new ExecutorRelatorio("/relatorios/pedidosemitidossintetico.jasper",
 				this.response, parametros, "Pedidos Emitidos.pdf");
 		
 
