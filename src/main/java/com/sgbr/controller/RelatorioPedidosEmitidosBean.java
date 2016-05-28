@@ -5,8 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.enterprise.context.Dependent;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -18,9 +17,9 @@ import org.hibernate.Session;
 
 import com.sgbr.util.report.ExecutorRelatorio;
 
-@Dependent
+
 @Named
-@RequestScoped
+@ViewScoped
 public class RelatorioPedidosEmitidosBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
