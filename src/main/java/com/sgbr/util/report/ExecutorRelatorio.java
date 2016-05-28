@@ -27,7 +27,7 @@ public class ExecutorRelatorio implements Work {
 		this.caminhoRelatorio = caminhoRelatorio;
 		this.response = response;
 		this.parametros = parametros;
-		this.nomeArquivoSaida = nomeArquivoSaida;
+		this.setNomeArquivoSaida(nomeArquivoSaida);
 	}
 
 	@Override
@@ -46,6 +46,14 @@ public class ExecutorRelatorio implements Work {
 		} catch (Exception e) {
 			throw new SQLException("Erro ao executar relatorio" + this.caminhoRelatorio, e);
 		}
+	}
+
+	public String getNomeArquivoSaida() {
+		return nomeArquivoSaida;
+	}
+
+	public void setNomeArquivoSaida(String nomeArquivoSaida) {
+		this.nomeArquivoSaida = nomeArquivoSaida;
 	}
 
 

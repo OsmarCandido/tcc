@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.enterprise.context.Dependent;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -17,7 +18,7 @@ import org.hibernate.Session;
 
 import com.sgbr.util.report.ExecutorRelatorio;
 
-
+@Dependent
 @Named
 @RequestScoped
 public class RelatorioPedidosEmitidosBean implements Serializable {
@@ -38,12 +39,15 @@ public class RelatorioPedidosEmitidosBean implements Serializable {
 	private EntityManager manager;
 
 	public void emitir(){
+		
 		Map<String, Object> parametros = new HashMap<>();
 		parametros.put("data_inicio", this.dataInicio);
 		parametros.put("data_fim", this.dataFim);
-
+			
+		
 		ExecutorRelatorio executor = new ExecutorRelatorio("/relatorios/pedidos_emitidos_sintetico.jasper",
 				this.response, parametros, "Pedidos Emitidos.pdf");
+		
 
 		Session session = manager.unwrap(Session.class);
 		session.doWork(executor);
