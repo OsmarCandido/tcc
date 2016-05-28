@@ -24,11 +24,10 @@ public class ExecutorRelatorio implements Work {
 	
 	public ExecutorRelatorio(String caminhoRelatorio, HttpServletResponse response, Map<String, Object> parametros,
 			String nomeArquivoSaida) {
-		super();
 		this.caminhoRelatorio = caminhoRelatorio;
 		this.response = response;
 		this.parametros = parametros;
-		this.setNomeArquivoSaida(nomeArquivoSaida);
+		this.nomeArquivoSaida = nomeArquivoSaida;
 	}
 
 	@Override
@@ -49,12 +48,5 @@ public class ExecutorRelatorio implements Work {
 		}
 	}
 
-	public String getNomeArquivoSaida() {
-		return nomeArquivoSaida;
-	}
-
-	public void setNomeArquivoSaida(String nomeArquivoSaida) {
-		this.nomeArquivoSaida = nomeArquivoSaida;
-	}
 
 }
