@@ -22,8 +22,8 @@ public class ExecutorRelatorio implements Work {
 	private Map<String, Object> parametros;
 	private String nomeArquivoSaida;
 	
-	public ExecutorRelatorio(String caminhoRelatorio, HttpServletResponse response, Map<String, Object> parametros,
-			String nomeArquivoSaida) {
+	public ExecutorRelatorio(String caminhoRelatorio, HttpServletResponse response, Map<String, Object> parametros, String nomeArquivoSaida) 
+	{
 		this.caminhoRelatorio = caminhoRelatorio;
 		this.response = response;
 		this.parametros = parametros;
