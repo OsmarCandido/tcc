@@ -1,13 +1,15 @@
 package com.sgbr.controller;
 
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.enterprise.context.Dependent;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotNull;
@@ -16,63 +18,57 @@ import org.hibernate.Session;
 
 import com.sgbr.util.report.ExecutorRelatorio;
 
-
+@Dependent
+@Named
+@RequestScoped
 public class RelatorioPedidosEmitidosBean implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
-private Date dataInicio;
-private Date dataFim;
 
 
-@Inject
-private FacesContext facesContext;
+	private Date dataInicio;
+	private Date dataFim;
 
-@Inject
-private HttpServletResponse response;
+	@Inject
+	private FacesContext facesContext;
 
-@Inject 
-private EntityManager manager;
+	@Inject
+	private HttpServletResponse response;
 
+	@Inject
+	private EntityManager manager;
 
-public void emitir(){
-    Map<String, Object> parametros = new HashMap<>();
-    parametros.put("data_inicio", this.dataInicio);
-    parametros.put("data_fim", this.dataFim);
-    
-    
-	ExecutorRelatorio executor = new ExecutorRelatorio("/relatorios/pedidos_emitidos_sintetico.jasper",
-			this.response, parametros, "Pedidos Emitidos.pdf");
-	
-	Session session = manager.unwrap(Session.class);
-    session.doWork(executor);
-    
-    facesContext.responseComplete();
-    
-}
+	public void emitir(){
+		Map<String, Object> parametros = new HashMap<>();
+		parametros.put("data_inicio", this.dataInicio);
+		parametros.put("data_fim", this.dataFim);
 
+		ExecutorRelatorio executor = new ExecutorRelatorio("/relatorios/pedidos_emitidos_sintetico.jasper",
+				this.response, parametros, "Pedidos Emitidos.pdf");
 
-@NotNull
-public Date getDataInicio(){
-	return dataInicio;
-}
+		Session session = manager.unwrap(Session.class);
+		session.doWork(executor);
 
-public void setDataInicio(Date dataInicio) {
-	this.dataInicio = dataInicio;
-}
+		facesContext.responseComplete();
 
+	}
 
-@NotNull
-public Date getDataFim() {
-	return dataFim;
-}
+	@NotNull
+	public Date getDataInicio() {
+		return dataInicio;
+	}
 
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
+	}
 
-public void setDataFim(Date dataFim) {
-	this.dataFim = dataFim;
-}
+	@NotNull
+	public Date getDataFim() {
+		return dataFim;
+	}
 
-
-
+	public void setDataFim(Date dataFim) {
+		this.dataFim = dataFim;
+	}
 
 }
