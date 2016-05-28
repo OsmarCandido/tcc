@@ -21,7 +21,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     <!-- controle de acesso as paginas  -->
 
      <intercept-url pattern="/Index.xhtml" access="isAuthenticated()"/> 
-     <intercept-url pattern="/caixa/**" access="hasAnyRole('Administrador' , 'Caixa')"/> 
+     <intercept-url pattern="/caixa/**" access="hasAnyRole('Administrador','Caixa')"/>  
      <intercept-url pattern="/funcionario/**" access="hasAnyRole('Administrador')"/> 
      <intercept-url pattern="/relatorio/**" access="hasAnyRole('Administrador')"/> 
      <intercept-url pattern="/funcionario/PesquisaFuncionario.xhtml" access="hasAnyRole('Administrador')"/> 
