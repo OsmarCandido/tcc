@@ -32,9 +32,9 @@ public class ExecutorRelatorio implements Work {
 
 	@Override
 	public void execute(Connection connection) throws SQLException{
-		
-		InputStream relatorioStream = this.getClass().getResourceAsStream(this.caminhoRelatorio);
 		try {
+			InputStream relatorioStream = this.getClass().getResourceAsStream(this.caminhoRelatorio);
+			
 			JasperPrint print = JasperFillManager.fillReport(relatorioStream, this.parametros, connection);
 			
 			JRExporter exportador = new JRPdfExporter();
