@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="pedidos_emitidos" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4e9d1872-f31f-455c-96c3-06e26dbdf8b6">
+	<property name="ireport.zoom" value="1.3310000000000013"/>
+	<property name="ireport.x" value="44"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="data_inicio" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_fim" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     pedido.`idPedido` AS Codigo_do_Pedido,
+     pedido.`data_criacao` AS Data_Criação,
+     pedido.`status` AS Status_do_Pedido,
+     pedido.`valor_total` AS Valor_Total,
+     funcionario.`Nome` AS Nome_Funcionario
+FROM
+     `funcionario` funcionario INNER JOIN `pedido` pedido ON funcionario.`idFuncionario` = pedido.`funcionario`
+WHERE
+     pedido.`status` = "FECHADO"
+ AND pedido.`data_criacao` BETWEEN $P{data_inicio} and $P{data_fim}
+ORDER BY
+     pedido.`data_criacao` ASC]]>
+	</queryString>
+	<field name="Codigo_do_Pedido" class="java.lang.Long"/>
+	<field name="Data_Criação" class="java.sql.Timestamp"/>
+	<field name="Status_do_Pedido" class="java.lang.String"/>
+	<field name="Valor_Total" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Nome_Funcionario" class="java.lang.String"/>
+	<variable name="Valor_Total_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{Valor_Total}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="14" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="57" splitType="Stretch">
+			<staticText>
+				<reportElement x="237" y="6" width="381" height="45" uuid="690b47f2-d49e-4f0c-95f1-e885137abda3"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Pedidos Emitidos]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="6" width="104" height="39" uuid="68eebf87-a292-487e-99ff-260acd922c6d"/>
+				<imageExpression><![CDATA["C:\\Users\\o.junior\\Desktop\\logo.jpg"]]></imageExpression>
+			</image>
+			<textField pattern="EEE, d MMM yyyy HH:mm:ss Z">
+				<reportElement x="641" y="6" width="175" height="20" uuid="b0f52e48-c928-4f55-867c-b454397066c1"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="160" height="20" uuid="0fd9f2c6-7fdd-4323-8837-c33970c0ab4a"/>
+				<textElement>
+					<font isBold="true" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Codigo do Pedido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="0" width="160" height="20" uuid="3d2803f7-0092-4e14-ac59-5c1d04b04927"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data de Criação]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="0" width="160" height="20" uuid="74b548bc-e535-49af-9ac9-bceaccb7507f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status do Pedido]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="480" y="0" width="160" height="20" uuid="012f490c-b6d5-4444-aa82-b61853d4df6f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome Funcionario]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="20" width="800" height="1" uuid="68a3cd79-f867-47fd-ae53-a6edc496a9b6"/>
+			</line>
+			<staticText>
+				<reportElement x="641" y="1" width="161" height="20" uuid="890a2d89-12a1-4600-af61-57e2cdeec4d6"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="160" height="20" uuid="6fbf5369-33d1-4883-9f81-17d429484685"/>
+				<textFieldExpression><![CDATA[$F{Codigo_do_Pedido}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="160" y="0" width="160" height="20" uuid="411aff86-9b72-46ca-b687-5cb315f206d2"/>
+				<textFieldExpression><![CDATA[$F{Data_Criação}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="0" width="160" height="20" uuid="b9c59362-b0e0-48a5-b48e-43aa396610a9"/>
+				<textFieldExpression><![CDATA[$F{Status_do_Pedido}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="480" y="2" width="160" height="20" uuid="209820d5-839c-4a74-bc19-15fe38fb2ff7"/>
+				<textFieldExpression><![CDATA[$F{Nome_Funcionario}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="639" y="2" width="161" height="20" uuid="d436a8ad-c168-4906-9f2a-024c86643512"/>
+				<textFieldExpression><![CDATA[$F{Valor_Total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50">
+			<textField>
+				<reportElement x="680" y="30" width="80" height="20" uuid="635e05fa-46fc-4dd4-8ddd-58a4162fe24d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="760" y="30" width="40" height="20" uuid="7330ac8c-10b4-4a8b-8758-bdc461339d06"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="50">
+			<textField pattern="¤ #,##0.00">
+				<reportElement x="641" y="30" width="159" height="20" uuid="34b3d09f-1879-4b83-8876-b681dc71166f"/>
+				<textFieldExpression><![CDATA["Valor Total:"+ $V{Valor_Total_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -39,6 +39,7 @@ public class ExecutorRelatorio implements Work {
 			
 			JRExporter exportador = new JRPdfExporter();
 			exportador.setParameter(JRExporterParameter.OUTPUT_STREAM, response.getOutputStream());
+			System.out.println("coco:" + print.getPages().size());
 			exportador.setParameter(JRExporterParameter.JASPER_PRINT, print);
 			
 			response.setContentType("application/pdf");
