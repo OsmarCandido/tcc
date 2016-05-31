@@ -46,8 +46,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       
        <!--  <user-service> 
  <user name="teste" password="teste" authorities="Caixa"/> 
-     <user name="admin" password="admin" authorities="Administrador"/>  
-       
+     <user name="admin" password="admin" authorities="Administrador"/>       
    </user-service>  -->
    
     </authentication-provider>
