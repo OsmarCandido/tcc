@@ -52,9 +52,8 @@ public class RelatorioPedidosEmitidosBean implements Serializable {
 		session.doWork(executor);
 
 		facesContext.responseComplete();
-
 	}
-
+	
 	@NotNull
 	public Date getDataInicio() {
 		return dataInicio;
