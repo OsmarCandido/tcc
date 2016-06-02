@@ -3,7 +3,7 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="codigo_pedido" class="java.lang.Long">
+	<parameter name="codigo_pedido" class="java.lang.Double">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -14,7 +14,11 @@
      produto.`valorVenda` AS produto_valorVenda,
      item_pedido.`quantidade` AS item_pedido_quantidade
 FROM
-     `produto` produto INNER JOIN `item_pedido` item_pedido ON produto.`idProduto` = item_pedido.`produto_id`]]>
+     `produto` produto INNER JOIN `item_pedido` item_pedido ON produto.`idProduto` = item_pedido.`produto_id`
+WHERE
+     item_pedido.`pedido_id` = $P{codigo_pedido}
+ORDER BY
+     item_pedido.`quantidade` ASC]]>
 	</queryString>
 	<field name="item_pedido_pedido_id" class="java.lang.Long"/>
 	<field name="produto_idProduto" class="java.lang.Long"/>
@@ -28,7 +32,7 @@ FROM
 		<band splitType="Stretch"/>
 	</title>
 	<pageHeader>
-		<band height="64" splitType="Stretch">
+		<band height="65" splitType="Stretch">
 			<image>
 				<reportElement x="0" y="0" width="107" height="38" uuid="1c3cbd3c-5b7f-4afd-8bbc-751d4e98bbfd"/>
 				<imageExpression><![CDATA["C:\\Users\\o.junior\\Desktop\\logo.jpg"]]></imageExpression>
@@ -44,20 +48,23 @@ FROM
 				<reportElement x="426" y="0" width="129" height="20" uuid="86ab981f-dc1a-4cd6-b883-3eef35328482"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="212" y="39" width="100" height="20" uuid="697a2d1d-87f4-4a1d-9382-ff34409d0dad"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pedido nº: " + $F{item_pedido_pedido_id}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="25" splitType="Stretch">
+		<band height="24" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="111" height="20" uuid="2824ced4-9c44-4fd6-803d-48a13690394c"/>
-				<text><![CDATA[Codigo Pedido]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="155" y="0" width="111" height="20" uuid="0299a9e9-6820-4ed1-8435-0f1a398aa1f8"/>
+				<reportElement x="0" y="0" width="111" height="20" uuid="0299a9e9-6820-4ed1-8435-0f1a398aa1f8"/>
 				<text><![CDATA[Descrição do Produto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="299" y="0" width="111" height="20" uuid="65e5bedc-c3d1-42c8-b9ca-50cebe57b9cf"/>
+				<reportElement x="212" y="0" width="111" height="20" uuid="65e5bedc-c3d1-42c8-b9ca-50cebe57b9cf"/>
 				<text><![CDATA[Valor Venda]]></text>
 			</staticText>
 			<staticText>
@@ -69,15 +76,11 @@ FROM
 	<detail>
 		<band height="21" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="111" height="20" uuid="bf158e5a-26eb-4553-92ba-44216e4d7d15"/>
-				<textFieldExpression><![CDATA[$F{item_pedido_pedido_id}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="155" y="0" width="111" height="20" uuid="820bd0d6-6e19-4fb7-a611-5de5870f8280"/>
+				<reportElement x="0" y="0" width="111" height="20" uuid="820bd0d6-6e19-4fb7-a611-5de5870f8280"/>
 				<textFieldExpression><![CDATA[$F{produto_descricao}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="299" y="0" width="111" height="20" uuid="73023289-efdc-4933-bd70-f6e2bb7cc258"/>
+				<reportElement x="212" y="0" width="111" height="20" uuid="73023289-efdc-4933-bd70-f6e2bb7cc258"/>
 				<textFieldExpression><![CDATA[$F{produto_valorVenda}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -99,6 +102,10 @@ FROM
 			<textField evaluationTime="Report">
 				<reportElement x="515" y="34" width="40" height="20" uuid="7255ed67-0095-4f21-a003-5b89d252155b"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="334" y="21" width="100" height="20" uuid="77401ce6-7c34-44cf-a706-1965c202761e"/>
+				<textFieldExpression><![CDATA[$F{item_pedido_pedido_id}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
