@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ProdutosAcomprar" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9b953be6-008a-494a-878a-46392df86c94">
+	<property name="ireport.zoom" value="1.0000000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     produto.`descricao` AS produto_descricao,
+     produto.`quantidadeMinima` AS produto_quantidadeMinima,
+     produto.`quantidade_estoque` AS produto_quantidade_estoque,
+     categoria.`descricao` AS categoria_descricao,
+     produto.`dataValidade` AS produto_dataValidade
+FROM
+     `categoria` categoria INNER JOIN `produto` produto ON categoria.`id` = produto.`categoria_id`
+WHERE
+     produto.`quantidade_estoque` <= produto.`quantidadeMinima`
+ORDER BY
+     produto.`quantidadeMinima` ASC]]>
+	</queryString>
+	<field name="produto_descricao" class="java.lang.String"/>
+	<field name="produto_quantidadeMinima" class="java.lang.Integer"/>
+	<field name="produto_quantidade_estoque" class="java.lang.Integer"/>
+	<field name="categoria_descricao" class="java.lang.String"/>
+	<field name="produto_dataValidade" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="6" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="58" splitType="Stretch">
+			<textField pattern="EEE, d MMM yyyy HH:mm:ss Z">
+				<reportElement x="669" y="0" width="133" height="20" uuid="17fcf732-6bfd-465d-8105-e842e55b8c21"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="304" y="0" width="265" height="41" uuid="85b3128e-1ceb-4e2e-b254-0a035f9db451"/>
+				<textElement>
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Produtos a Comprar]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="100" height="41" uuid="d3a28e5f-ca9e-42e4-ba6b-32154d379812"/>
+				<imageExpression><![CDATA["C:\\Users\\o.junior\\Desktop\\logo.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="111" height="20" uuid="f68849b1-d148-4d1e-a8cc-d99e6d6aebc3"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="1" width="111" height="20" uuid="25513f7c-2e7b-42d8-8ade-3841c186e5cd"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quantidade Mínima]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="479" y="1" width="111" height="20" uuid="cdf785b9-0d79-4aea-9e94-63ee7182ecc7"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quantidade em Estoque]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="137" y="1" width="111" height="20" uuid="79b30d6e-898f-4819-a0c0-609b8e409261"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Categoria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="652" y="1" width="111" height="20" uuid="35da5e25-e645-46ed-a084-2668333fe6aa"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data de Validade]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="20" width="802" height="1" uuid="974f1a06-30ff-42b7-b5b4-1b1d632423b6"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="111" height="20" uuid="48df721a-0143-4a77-a6dc-331ccb18ba89"/>
+				<textFieldExpression><![CDATA[$F{produto_descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="304" y="0" width="111" height="20" uuid="164c1988-0348-4b47-a5b0-9595bf18652f"/>
+				<textFieldExpression><![CDATA[$F{produto_quantidadeMinima}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="479" y="0" width="111" height="20" uuid="bcb86f0d-467d-4b33-a468-16cfb7d37cb8"/>
+				<textFieldExpression><![CDATA[$F{produto_quantidade_estoque}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="652" y="0" width="111" height="20" uuid="2eea9bb1-07f0-4ea6-9261-c83fa17ee501"/>
+				<textFieldExpression><![CDATA[$F{produto_dataValidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="137" y="0" width="111" height="20" uuid="a70ed8f6-7577-4800-a317-655e82161f13"/>
+				<textFieldExpression><![CDATA[$F{categoria_descricao}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField evaluationTime="Report">
+				<reportElement x="762" y="34" width="40" height="20" uuid="7d627601-f6be-48a8-9a23-fedd73789029"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="682" y="34" width="80" height="20" uuid="d4b935e1-f589-4793-a309-3e5363564195"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
