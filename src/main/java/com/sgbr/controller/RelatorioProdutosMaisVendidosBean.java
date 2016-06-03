@@ -51,6 +51,7 @@ public class RelatorioProdutosMaisVendidosBean implements Serializable {
 		Session session = manager.unwrap(Session.class);
 		session.doWork(executor);
 
+		
 		facesContext.responseComplete();
 	}
 	
