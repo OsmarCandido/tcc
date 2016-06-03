@@ -64,7 +64,7 @@ ORDER BY
 				<text><![CDATA[Quantidade Mínima]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="479" y="1" width="111" height="20" uuid="cdf785b9-0d79-4aea-9e94-63ee7182ecc7"/>
+				<reportElement x="479" y="1" width="132" height="20" uuid="cdf785b9-0d79-4aea-9e94-63ee7182ecc7"/>
 				<textElement textAlignment="Justified">
 					<font isBold="true"/>
 				</textElement>
@@ -100,7 +100,7 @@ ORDER BY
 				<textFieldExpression><![CDATA[$F{produto_quantidadeMinima}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="479" y="0" width="111" height="20" uuid="bcb86f0d-467d-4b33-a468-16cfb7d37cb8"/>
+				<reportElement x="479" y="0" width="132" height="20" uuid="bcb86f0d-467d-4b33-a468-16cfb7d37cb8"/>
 				<textFieldExpression><![CDATA[$F{produto_quantidade_estoque}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
