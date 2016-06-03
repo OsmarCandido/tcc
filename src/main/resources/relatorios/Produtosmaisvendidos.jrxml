@@ -4,6 +4,12 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<property name="ireport.callouts" value="##Thu Jun 02 14:29:57 BRT 2016"/>
+	<parameter name="data_inicio" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_fim" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
      SUM(quantidade) AS total,
@@ -11,14 +17,17 @@
      item_pedido.`quantidade` AS item_pedido_quantidade,
      pedido.`status` AS pedido_status,
      produto.`idProduto` AS produto_idProduto,
-     categoria.`descricao` AS categoria_descricao
+     categoria.`descricao` AS categoria_descricao,
+     pedido.`data_criacao` AS pedido_data_criacao
 FROM
      `produto` produto INNER JOIN `item_pedido` item_pedido ON produto.`idProduto` = item_pedido.`produto_id`
      INNER JOIN `pedido` pedido ON item_pedido.`pedido_id` = pedido.`idPedido`
      INNER JOIN `categoria` categoria ON produto.`categoria_id` = categoria.`id`
-
-     WHERE pedido.`status` = ("FECHADO" OR "PAGO")
-     GROUP BY produto.`descricao`]]>
+WHERE
+     pedido.`status` = ("FECHADO" OR "PAGO")
+     AND pedido.`data_criacao` BETWEEN $P{data_inicio} and $P{data_fim}
+GROUP BY
+     produto.`descricao`]]>
 	</queryString>
 	<field name="total" class="java.math.BigDecimal"/>
 	<field name="produto_descricao" class="java.lang.String"/>
@@ -26,6 +35,7 @@ FROM
 	<field name="pedido_status" class="java.lang.String"/>
 	<field name="produto_idProduto" class="java.lang.Long"/>
 	<field name="categoria_descricao" class="java.lang.String"/>
+	<field name="pedido_data_criacao" class="java.sql.Timestamp"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -49,6 +59,13 @@ FROM
 				</textElement>
 				<text><![CDATA[Produtos mais Vendido]]></text>
 			</staticText>
+			<textField pattern="dd/MM/yy">
+				<reportElement x="66" y="39" width="432" height="20" uuid="423fe4d2-67ec-4844-8272-ef99a5ee8800"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pedidos mais Vendidos do dia: "   + $P{data_inicio}  +   "  Até  " +  $P{data_fim}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
