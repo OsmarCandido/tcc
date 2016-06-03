@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -18,7 +18,7 @@ public class Mesa implements Serializable {
 	
 	private Long idMesa;
 	private String nome;
-	private Status status;
+	private StatusMesa status;
     
 	public void setIdMesa(Long idMesa) {
 		this.idMesa = idMesa;
@@ -30,35 +30,31 @@ public class Mesa implements Serializable {
 		return idMesa;
 	}
 	
-	
-	
-	
-	/* Gets*/
-	
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name="status_id",nullable = false)
-	public Status getStatus() {
-		return status;
-	}    
+	/* Gets*/   
 	
 	@Column(name="nome",length=15,nullable=false)
 	public String getNome() {
 		return nome;
 	}
-
 	
+	@NotNull
+	@Enumerated(EnumType.STRING)
+	@Column(name = "status",nullable = false, length = 20)
+	public StatusMesa getStatus() {
+		return status;
+	}
 	
 	/*Set*/
-	
+		
+
+	public void setStatus(StatusMesa status) {
+		this.status = status;
+	}
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
     
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -20,6 +20,7 @@ import com.sgbr.model.StatusPedido;
 import com.sgbr.repository.Funcionarios;
 import com.sgbr.repository.Mesas;
 import com.sgbr.repository.Produtos;
+import com.sgbr.service.CadastroMesaService;
 import com.sgbr.service.CadastroPedidoService;
 import com.sgbr.service.EstoqueService;
 import com.sgbr.util.jsf.FacesUtil;
@@ -41,6 +42,10 @@ public class CadastroPedidoBean implements Serializable {
 
 	@Inject
 	private CadastroPedidoService cadastroPedidoService;
+
+	@Inject
+	private CadastroMesaService cadastroMesaService;
+
 	
 	@Inject
 	EstoqueService estoqueService;
@@ -86,6 +91,7 @@ public class CadastroPedidoBean implements Serializable {
 		this.pedido.removerItemVazio();
 		try{
 			this.pedido = this.cadastroPedidoService.salvar(this.pedido);
+			
 			FacesUtil.addInfoMessage("Pedido salvo com sucesso!");
 			
 		}finally{

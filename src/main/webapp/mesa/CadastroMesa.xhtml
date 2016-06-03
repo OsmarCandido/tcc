@@ -9,47 +9,46 @@
 
 	<ui:define name="titulo"> Cadastro de Mesa </ui:define>
 	<ui:define name="corpo">
-		
+
 		<f:metadata>
 			<f:param value="dummy" />
-			<f:event listener="#{cadastroMesaBean.inicializar}" 
+			<f:event listener="#{cadastroMesaBean.inicializar}"
 				type="preRenderView" />
 		</f:metadata>
-	
+
 		<h:form>
-		<h1>Cadastro de Mesa</h1>
-		<p:messages autoUpdate="true" closable="true" />
-		
-		<p:toolbar style="margin-top: 20px">
-			<p:toolbarGroup>
-				<p:button value="Novo" outcome="/mesa/CadastroMesa"/>
-				<p:commandButton value="Salvar" id="botaoSalvar" 
-					action="#{cadastroMesaBean.salvar}" ajax="false" />
-			</p:toolbarGroup>
-			
-			<p:toolbarGroup align="right">
-			<p:button value="Status" outcome="/mesa/StatusMesa"/>
-			</p:toolbarGroup>
-					</p:toolbar>
+			<h1>Cadastro de Mesa</h1>
+			<p:messages autoUpdate="true" closable="true" />
 
-		<p:panelGrid columns="2" id="painel"
-			style="width: 100%; margin-top:35px" columnClasses="rotulo, campo">
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:button value="Novo" outcome="/mesa/CadastroMesa" />
+					<p:commandButton value="Salvar" id="botaoSalvar"
+						action="#{cadastroMesaBean.salvar}" ajax="false" />
+				</p:toolbarGroup>
 
-			<p:outputLabel value="Id Mesa" for="idMesa"  />
-			<p:inputText id="idMesa" size="8" maxlenght="8" 
-				value="#{cadastroMesaBean.mesa.idMesa}" />
-			
-			<p:outputLabel value="Nome" for="nomeMesa"  />
-			<p:inputText id="nomeMesa" size="6" maxlenght="6" 
-				value="#{cadastroMesaBean.mesa.nome}" />
-			
-			<p:outputLabel value="Status" for="status" />
-			<p:selectOneMenu id="status" value="#{cadastroMesaBean.mesa.status}" >
-				<f:selectItem itemLabel="Status da Mesa" />
-				<f:selectItems value= "#{cadastroMesaBean.listaStatus}" var="status"
-					itemValue="#{status}" itemLabel="#{status.descricao}"/>
- 			</p:selectOneMenu>   
+				<p:toolbarGroup align="right">
+					<p:button value="Status" outcome="/mesa/StatusMesa" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:panelGrid columns="2" id="painel"
+				style="width: 100%; margin-top:35px" columnClasses="rotulo, campo">
+
+				<p:outputLabel value="Id Mesa" for="idMesa" />
+				<p:inputText id="idMesa" size="8" maxlenght="8"
+					value="#{cadastroMesaBean.mesa.idMesa}" />
+
+				<p:outputLabel value="Nome" for="nomeMesa" />
+				<p:inputText id="nomeMesa" size="6" maxlenght="6"
+					value="#{cadastroMesaBean.mesa.nome}" />
+
+				<p:outputLabel value="Status" for="status" />
+				<p:selectOneMenu id="status" value="#{cadastroMesaBean.mesa.status}">
+					<f:selectItems value="#{cadastroMesaBean.status}" var="status"
+						itemValue="#{status}" itemLabel="#{status.descricao}" />
+				</p:selectOneMenu>
 			</p:panelGrid>
-			</h:form>
+		</h:form>
 	</ui:define>
 </ui:composition>
