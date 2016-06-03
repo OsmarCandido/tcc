@@ -69,7 +69,7 @@ ORDER BY
 			</staticText>
 			<staticText>
 				<reportElement x="444" y="0" width="111" height="20" uuid="20091e01-95eb-428d-9ff6-e8ddc46f49ad"/>
-				<text><![CDATA[Quantidade Solicitada]]></text>
+				<text><![CDATA[Quantidade ]]></text>
 			</staticText>
 		</band>
 	</columnHeader>

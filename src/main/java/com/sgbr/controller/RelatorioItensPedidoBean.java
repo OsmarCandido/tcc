@@ -20,7 +20,7 @@ import com.sgbr.util.report.ExecutorRelatorio;
 
 @Named
 @ViewScoped
-public class RelatorioProdutosMaisVendidosBean implements Serializable {
+public class RelatorioItensPedidoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -44,8 +44,8 @@ public class RelatorioProdutosMaisVendidosBean implements Serializable {
 		parametros.put("data_fim", this.dataFim);
 			
 		
-		ExecutorRelatorio executor = new ExecutorRelatorio("/relatorios/Produtosmaisvendidos.jasper",
-				this.response, parametros, "Produtos Mais Vendidos.pdf");
+		ExecutorRelatorio executor = new ExecutorRelatorio("/relatorios/itenspedido.jasper",
+				this.response, parametros, "Itens Pedido.pdf");
 		
 
 		Session session = manager.unwrap(Session.class);
@@ -53,7 +53,6 @@ public class RelatorioProdutosMaisVendidosBean implements Serializable {
 
 		facesContext.responseComplete();
 	}
-	
 	@NotNull
 	public Date getDataInicio() {
 		return dataInicio;
