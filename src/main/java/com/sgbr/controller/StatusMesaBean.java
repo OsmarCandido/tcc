@@ -44,7 +44,6 @@ public class StatusMesaBean implements Serializable {
 		
 	
 	public void excluir(){
-		System.out.println("Mesa selecionado: " + mesaSelecionado.getStatus());
 		mesas.remover(mesaSelecionado);
 		mesasFiltrados.remove(mesaSelecionado);
 		 

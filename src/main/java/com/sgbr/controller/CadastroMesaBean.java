@@ -39,8 +39,6 @@ public class CadastroMesaBean implements Serializable {
 	}
 	
 	public void salvar() {
-		System.out.println("salvando mesa");
-		System.out.println("Status = " + this.mesa.getStatus());
 		this.mesa = cadastroMesaService.salvar(this.mesa);
 	}
 	

@@ -105,8 +105,6 @@ public class ItemPedido implements Serializable {
 	
 	@Transient
 	public BigDecimal getValorTotal(){
-		System.out.println(this.getValorUnitario());
-		System.out.println(this.getQuantidade());
 		return this.getValorUnitario().multiply(new BigDecimal(this.getQuantidade()));
 	}
 	

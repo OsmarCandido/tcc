@@ -31,7 +31,7 @@ public class EmissaoPedidoService implements Serializable{
 					+ pedido.getStatus().getDescricao() + "."); 
 		}
 		
-		this.estoqueService.baixarItensEstoque(pedido);
+		//this.estoqueService.baixarItensEstoque(pedido);
 		
 		pedido.setStatus(StatusPedido.FECHADO);
 		pedido = this.pedidos.guardar(pedido);

@@ -8,7 +8,7 @@
 		<p:toolbarGroup>
 			<p:button value="Novo" outcome="/pedidos/CadastroPedido"/>
   			<p:commandButton value="Salvar" action="#{cadastroPedidoBean.salvar}" 
-  				update="@form"	disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" />
+  				process="@form" update="@form"	disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" />
   		</p:toolbarGroup>
 		<p:toolbarGroup align="right">
 			<p:commandButton value="Emitir" action="#{emissaoPedidoBean.emitirPedido}"

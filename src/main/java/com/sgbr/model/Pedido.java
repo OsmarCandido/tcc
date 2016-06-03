@@ -31,6 +31,7 @@ public class Pedido implements Serializable {
 	private Long idPedido;
 	private Date dataCriacao;
 	private String observacao;
+	private boolean comissionado = true;
 	private BigDecimal valorComissao = BigDecimal.ZERO;
 	private BigDecimal valorDesconto = BigDecimal.ZERO;
 	private BigDecimal subTotal = BigDecimal.ZERO;
@@ -239,9 +240,9 @@ public class Pedido implements Serializable {
 		return subtotal;
 	}
 	
-	public void calcularComissao(boolean comissionado){
+	public void calcularComissao(){
 
-		if(comissionado)
+		if(this.isComissionado())
 			this.setValorComissao(this.getValorSubtotal().multiply(BigDecimal.valueOf(0.10)));
 		else {
 			this.setValorComissao(BigDecimal.ZERO);
@@ -311,5 +312,13 @@ public class Pedido implements Serializable {
 	@Transient
 	public boolean isNaoAguardandoPagamento(){
 		return !isAguardandoPagamento();
+	}
+	
+	public boolean isComissionado() {
+		return comissionado;
+	}
+
+	public void setComissionado(boolean comissionado) {
+		this.comissionado = comissionado;
 	}
 }

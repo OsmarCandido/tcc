@@ -43,7 +43,6 @@ public class PesquisaProdutosBean implements Serializable {
 	
 	
 	public void excluir(){
-		System.out.println("Produto selecionado2: " + produtoSelecionado.getDescricao());
 		produtos.remover(produtoSelecionado);
 		produtosFiltrados.remove(produtoSelecionado);
 		 

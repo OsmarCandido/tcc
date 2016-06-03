@@ -25,7 +25,7 @@
 		<p:outputLabel value="Hora Pedido" rendered="#{cadastroPedidoBean.pedido.existente}"/>
 		<h:outputText value="#{cadastroPedidoBean.pedido.dataCriacao}"
 			rendered="#{cadastroPedidoBean.pedido.existente}" >
-			<f:convertDateTime pattern="HH:mm:ss" />
+			<f:convertDateTime pattern="HH:mm" />
 		</h:outputText>
 	
 		<p:outputLabel value="Mesa" for="mesa" />
@@ -54,7 +54,8 @@
 
 		<p:outputLabel value="Comissão" for="comissaoAtendimento" />
 		<h:panelGroup>
-			<p:selectBooleanCheckbox id="comissaoAtendimento" value="#{cadastroPedidoBean.comissionado}" > 
+			<p:selectBooleanCheckbox id="comissaoAtendimento" value="#{cadastroPedidoBean.pedido.comissionado}" 
+				disabled="#{cadastroPedidoBean.pedido.naoAguardandoPagamento}"> 
 				<p:ajax event="change" process="@this" update="totalPedido valorComissao"
 				listener="#{cadastroPedidoBean.recalcularPedido}" />
 			</p:selectBooleanCheckbox>
