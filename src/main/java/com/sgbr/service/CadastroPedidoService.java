@@ -6,7 +6,6 @@ import java.util.Date;
 import javax.inject.Inject;
 
 import com.sgbr.model.Pedido;
-import com.sgbr.model.StatusMesa;
 import com.sgbr.model.StatusPedido;
 import com.sgbr.repository.Pedidos;
 import com.sgbr.util.jpa.Transactional;
@@ -26,7 +25,6 @@ public class CadastroPedidoService implements Serializable {
 		if (pedido.isNovo()) {
 			pedido.setDataCriacao(new Date());
 			pedido.setStatus(StatusPedido.ABERTO);
-			pedido.getMesa().setStatus(StatusMesa.OCUPADA);
 		}
 
 		pedido.recalcularValorTotal();
@@ -46,7 +44,6 @@ public class CadastroPedidoService implements Serializable {
 
 		if (pedido.isFechado()) {
 			pedido.setStatus(StatusPedido.PAGO);
-			pedido.getMesa().setStatus(StatusMesa.DISPONIVEL);
 		}
 
 		if (!pedido.isNovo()) {
