@@ -12,23 +12,9 @@
 		<h:outputText value="#{cadastroPedidoBean.pedido.idPedido}"
 			rendered="#{cadastroPedidoBean.pedido.existente}" />
 
-		<p:outputLabel value="Data Pedido"
-			rendered="#{cadastroPedidoBean.pedido.existente}" />
-		<h:outputText value="#{cadastroPedidoBean.pedido.dataCriacao}"
-			rendered="#{cadastroPedidoBean.pedido.existente}">
-			<f:convertDateTime pattern="dd/MM/yyyy" />
-		</h:outputText>
-
 		<p:outputLabel value="Status" />
 		<h:outputText value="#{cadastroPedidoBean.pedido.status.descricao}" />
-
-		<p:outputLabel value="Hora Pedido"
-			rendered="#{cadastroPedidoBean.pedido.existente}" />
-		<h:outputText value="#{cadastroPedidoBean.pedido.dataCriacao}"
-			rendered="#{cadastroPedidoBean.pedido.existente}">
-			<f:convertDateTime pattern="HH:mm" />
-		</h:outputText>
-
+		
 		<p:outputLabel value="Mesa" for="mesa" />
 		<h:panelGroup>
 			<p:selectOneMenu id="mesa" value="#{cadastroPedidoBean.pedido.mesa}"
@@ -40,6 +26,27 @@
 			<h:outputText value="#{cadastroPedidoBean.pedido.mesa.nome}" 
 				rendered="#{cadastroPedidoBean.pedido.existente}" />
 		</h:panelGroup>
+		
+		<p:outputLabel value="Data Pedido"
+			rendered="#{cadastroPedidoBean.pedido.existente}" />
+		<h:outputText value="#{cadastroPedidoBean.pedido.dataCriacao}"
+			rendered="#{cadastroPedidoBean.pedido.existente}">
+			<f:convertDateTime pattern="dd/MM/yyyy" />
+		</h:outputText>
+		
+		<p:outputLabel value="Hora Pedido"
+			rendered="#{cadastroPedidoBean.pedido.existente}" />
+		<h:outputText value="#{cadastroPedidoBean.pedido.dataCriacao}"
+			rendered="#{cadastroPedidoBean.pedido.existente}">
+			<f:convertDateTime pattern="HH:mm" />
+		</h:outputText>
+		
+		<p:outputLabel value="Hora de encerramento"
+			rendered="#{cadastroPedidoBean.pedido.existente}" />
+		<h:outputText value="#{cadastroPedidoBean.pedido.encerramento}"
+			rendered="#{cadastroPedidoBean.pedido.existente}">
+			<f:convertDateTime pattern="HH:mm" />
+		</h:outputText>
 
 		<p:outputLabel value="Funcionario" for="funcionario" />
 		<p:selectOneMenu id="funcionario"

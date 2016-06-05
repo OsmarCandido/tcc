@@ -1,6 +1,7 @@
 package com.sgbr.service;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -38,10 +39,12 @@ public class EmissaoPedidoService implements Serializable{
 		//this.estoqueService.baixarItensEstoque(pedido);
 		
 		pedido.setStatus(StatusPedido.FECHADO);
-		System.out.println(pedido.getMesa().getStatus());
+		
+		pedido.setEncerramento(new Date());
+		
 		pedido.getMesa().setStatus(StatusMesa.DISPONIVEL);
 		cadastroMesaService.salvar(pedido.getMesa());
-		System.out.println(pedido.getMesa().getStatus());
+		
 		pedido = this.pedidos.guardar(pedido);
 		
 		return pedido;

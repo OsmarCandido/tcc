@@ -30,6 +30,7 @@ public class Pedido implements Serializable {
 
 	private Long idPedido;
 	private Date dataCriacao;
+	private Date encerramento;
 	private String observacao;
 	private boolean comissionado = true;
 	private BigDecimal valorComissao = BigDecimal.ZERO;
@@ -61,6 +62,16 @@ public class Pedido implements Serializable {
 
 	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
+	}
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "encerramento")
+	public Date getEncerramento() {
+		return encerramento;
+	}
+
+	public void setEncerramento(Date encerramento) {
+		this.encerramento = encerramento;
 	}
 
 	@Column(columnDefinition = "text")
@@ -314,6 +325,7 @@ public class Pedido implements Serializable {
 		return !isAguardandoPagamento();
 	}
 	
+	@Transient
 	public boolean isComissionado() {
 		return comissionado;
 	}
