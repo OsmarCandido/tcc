@@ -43,6 +43,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 
      <authentication-manager>  
      <authentication-provider user-service-ref="appUserDetailsService"> 
+	 <!--<password-encoder hash="md5"/>-->
       
        <!--  <user-service> 
  <user name="teste" password="teste" authorities="Caixa"/> 

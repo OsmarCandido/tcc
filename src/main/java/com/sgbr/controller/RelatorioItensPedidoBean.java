@@ -58,5 +58,4 @@ public class RelatorioItensPedidoBean implements Serializable {
 	public void setCodigoPedido(Double codigoPedido) {
 		this.codigoPedido = codigoPedido;
 	}
-
 }
