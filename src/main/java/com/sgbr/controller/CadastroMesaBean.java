@@ -41,11 +41,9 @@ public class CadastroMesaBean implements Serializable {
 		return mesa;
 	}
 
-
 	public Mesa getMesa() {
 		return mesa;
 	}
-
 
 	public void setMesa(Mesa mesa) {
 		this.mesa = mesa;
@@ -54,7 +52,6 @@ public class CadastroMesaBean implements Serializable {
 	public CadastroMesaService getCadastroMesaService() {
 		return cadastroMesaService;
 	}
-
 
 	public void setCadastroMesaService(CadastroMesaService cadastroMesaService) {
 		this.cadastroMesaService = cadastroMesaService;

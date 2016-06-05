@@ -16,6 +16,8 @@ import com.sgbr.model.Mesa;
 import com.sgbr.model.Pagamento;
 import com.sgbr.model.Pedido;
 import com.sgbr.model.Produto;
+import com.sgbr.model.StatusMesa;
+import com.sgbr.model.StatusPedido;
 import com.sgbr.repository.Funcionarios;
 import com.sgbr.repository.Mesas;
 import com.sgbr.repository.Produtos;
@@ -30,12 +32,19 @@ public class CadastroPedidoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	private List<Mesa> mesas;
+	private List<Funcionario> vendedores;
+
+	private Long idProduto;
+
+	private Produto produtoLinhaEditavel;
+
 	@Inject
 	private Funcionarios funcionarios;
-	
+
 	@Inject
 	private Mesas mesas_repository;
-	
+
 	@Inject
 	private Produtos produtos;
 
@@ -44,24 +53,17 @@ public class CadastroPedidoBean implements Serializable {
 
 	@Inject
 	private CadastroMesaService cadastroMesaService;
-	
+
 	@Inject
 	EstoqueService estoqueService;
-	
+
 	@Produces
 	@PedidoEdicao
 	private Pedido pedido;
-	
-	private List<Mesa> mesas;
-	private List<Funcionario> vendedores;
 
-	private Long idProduto;
-
-	private Produto produtoLinhaEditavel;
-	
 	@Inject
 	private Event<PedidoAlteradoEvent> pedidoAlteradoEvent;
-	
+
 	public CadastroPedidoBean() {
 		limpar();
 	}
@@ -69,8 +71,8 @@ public class CadastroPedidoBean implements Serializable {
 	public void inicializar() {
 		if (FacesUtil.isNotPostback()) {
 			this.vendedores = this.funcionarios.vendedores();
-			this.mesas = this.mesas_repository.mesas();
-			
+			this.mesas = this.mesas_repository.mesasDisponiveis();
+
 			this.pedido.adicionarItemVazio();
 			this.recalcularPedido();
 		}
@@ -79,24 +81,28 @@ public class CadastroPedidoBean implements Serializable {
 	private void limpar() {
 		pedido = new Pedido();
 	}
-	
-	public void pedidoAlterado(@Observes PedidoAlteradoEvent event){
+
+	public void pedidoAlterado(@Observes PedidoAlteradoEvent event) {
 		this.pedido = event.getPedido();
 	}
-	
+
 	public void salvar() {
 
 		this.pedido.removerItemVazio();
-		try{
+		try {
+			if (this.pedido.isNovo()) {
+				this.pedido.getMesa().setStatus(StatusMesa.OCUPADA);
+				cadastroMesaService.salvar(this.pedido.getMesa());
+			}
 			this.pedido = this.cadastroPedidoService.salvar(this.pedido);
-			cadastroMesaService.salvar(this.pedido.getMesa());
 			FacesUtil.addInfoMessage("Pedido salvo com sucesso!");
 			
-		}finally{
+		} finally {
 			this.pedido.adicionarItemVazio();
 		}
 		this.pedidoAlteradoEvent.fire(new PedidoAlteradoEvent(this.pedido));
 	}
+	
 
 	public void recalcularPedido() {
 		if (this.pedido != null) {
@@ -165,11 +171,12 @@ public class CadastroPedidoBean implements Serializable {
 	public Pagamento[] getPagamento() {
 		return Pagamento.values();
 	}
+	
 
 	public Pedido getPedido() {
 		return pedido;
 	}
-	
+
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
 	}
@@ -197,9 +204,9 @@ public class CadastroPedidoBean implements Serializable {
 	public void setIdProduto(Long idProduto) {
 		this.idProduto = idProduto;
 	}
-	
-	public boolean isEditando(){
-		return this.pedido.getIdPedido() != null; 
+
+	public boolean isEditando() {
+		return this.pedido.getIdPedido() != null;
 	}
 	
 }

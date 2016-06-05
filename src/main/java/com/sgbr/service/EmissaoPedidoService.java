@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.inject.Inject;
 
 import com.sgbr.model.Pedido;
+import com.sgbr.model.StatusMesa;
 import com.sgbr.model.StatusPedido;
 import com.sgbr.repository.Pedidos;
 import com.sgbr.util.jpa.Transactional;
@@ -18,6 +19,9 @@ public class EmissaoPedidoService implements Serializable{
 	
 	@Inject
 	CadastroPedidoService cadastroPedidoService;
+	
+	@Inject
+	private CadastroMesaService cadastroMesaService;
 	
 	@Inject
 	private Pedidos pedidos;
@@ -34,6 +38,10 @@ public class EmissaoPedidoService implements Serializable{
 		//this.estoqueService.baixarItensEstoque(pedido);
 		
 		pedido.setStatus(StatusPedido.FECHADO);
+		System.out.println(pedido.getMesa().getStatus());
+		pedido.getMesa().setStatus(StatusMesa.DISPONIVEL);
+		cadastroMesaService.salvar(pedido.getMesa());
+		System.out.println(pedido.getMesa().getStatus());
 		pedido = this.pedidos.guardar(pedido);
 		
 		return pedido;

@@ -18,6 +18,7 @@ import org.hibernate.criterion.Restrictions;
 import com.sgbr.model.Funcionario;
 import com.sgbr.model.Mesa;
 import com.sgbr.model.Produto;
+import com.sgbr.model.StatusMesa;
 import com.sgbr.repository.filter.MesaFilter;
 import com.sgbr.service.NegocioException;
 import com.sgbr.util.jpa.Transactional;
@@ -80,6 +81,11 @@ public class Mesas implements Serializable {
 	
 	public List<Mesa> mesas(){
 		return this.manager.createQuery("From Mesa",Mesa.class).getResultList();
+	}
+	
+	public List<Mesa> mesasDisponiveis(){
+		return this.manager.createQuery("From Mesa where upper(status) like :status",Mesa.class)
+				.setParameter("status", StatusMesa.DISPONIVEL).getResultList();
 	}
 
 }
