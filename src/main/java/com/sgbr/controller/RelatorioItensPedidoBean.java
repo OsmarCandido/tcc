@@ -1,7 +1,6 @@
 package com.sgbr.controller;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -25,8 +24,7 @@ public class RelatorioItensPedidoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 
-	private Date dataInicio;
-	private Date dataFim;
+	private Double codigoPedido;
 
 	@Inject
 	private FacesContext facesContext;
@@ -40,8 +38,7 @@ public class RelatorioItensPedidoBean implements Serializable {
 	public void emitir(){
 		
 		Map<String, Object> parametros = new HashMap<>();
-		parametros.put("data_inicio", this.dataInicio);
-		parametros.put("data_fim", this.dataFim);
+		parametros.put("codigo_pedido", this.codigoPedido);
 			
 		
 		ExecutorRelatorio executor = new ExecutorRelatorio("/relatorios/itenspedido.jasper",
@@ -54,21 +51,12 @@ public class RelatorioItensPedidoBean implements Serializable {
 		facesContext.responseComplete();
 	}
 	@NotNull
-	public Date getDataInicio() {
-		return dataInicio;
+	public Double getCodigoPedido() {
+		return codigoPedido;
 	}
 
-	public void setDataInicio(Date dataInicio) {
-		this.dataInicio = dataInicio;
-	}
-
-	@NotNull
-	public Date getDataFim() {
-		return dataFim;
-	}
-
-	public void setDataFim(Date dataFim) {
-		this.dataFim = dataFim;
+	public void setCodigoPedido(Double codigoPedido) {
+		this.codigoPedido = codigoPedido;
 	}
 
 }

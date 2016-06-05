@@ -22,15 +22,11 @@
 	    	
 	    	<p:panelGrid columns="2" id="painel" style="width: 100%; margin-top: 20px"
 	    			columnClasses="rotulo, campo">
-	    		<p:outputLabel value="Selecione o Período" />
+	    		<p:outputLabel value="Digite o nº do pedido:" />
 	    		<h:panelGroup>
-		    		<p:calendar value="#{relatorioItensPedidoBean.dataInicio}" label="data inicio" 
-		    			pattern="dd/MM/yyyy" size="8" />
+		    		<p:inputText value="#{relatorioItensPedidoBean.codigoPedido}"  label="Número do Pedido:" 
+		    			 size="10" />
 		    		<p:spacer width="8" />
-		    		<h:outputText value="a" />
-		    		<p:spacer width="8" />
-		    		<p:calendar value="#{relatorioItensPedidoBean.dataFim}" label="Data final" 
-		    			pattern="dd/MM/yyyy" size="8" />
 		    	</h:panelGroup>
 	    	</p:panelGrid>
     	</h:form>
