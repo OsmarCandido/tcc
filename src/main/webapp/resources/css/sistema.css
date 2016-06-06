@@ -28,6 +28,7 @@ header {
 }
 
 header > div {
+	direction:initial;
     position: relative;
 	margin-left: 10px
 }
