@@ -38,8 +38,7 @@ public class RelatorioProdutosAComprarBean implements Serializable {
 	public void emitir(){
 		
 		Map<String, Object> parametros = new HashMap<>();
-//		parametros.put("data_inicio", this.dataInicio);
-//		parametros.put("data_fim", this.dataFim);
+
 		ExecutorRelatorio executor = new ExecutorRelatorio("/relatorios/ProdutosAcomprar.jasper",
 				this.response, parametros, "Produtos a Comprar.pdf");
 		
@@ -50,22 +49,4 @@ public class RelatorioProdutosAComprarBean implements Serializable {
 		facesContext.responseComplete();
 	}
 	
-//	@NotNull
-//	public Date getDataInicio() {
-//		return dataInicio;
-//	}
-
-//	public void setDataInicio(Date dataInicio) {
-//		this.dataInicio = dataInicio;
-//	}
-
-//	@NotNull
-//	public Date getDataFim() {
-//		return dataFim;
-//	}
-//
-//	public void setDataFim(Date dataFim) {
-//		this.dataFim = dataFim;
-//	}
-
 }
