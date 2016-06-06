@@ -16,7 +16,7 @@
 			<p:commandButton value="Registrar pagamento" action="#{cadastroPedidoBean.salvar}"
 				process="@form" update="@form" disabled="#{cadastroPedidoBean.pedido.naoAguardandoPagamento}" />
 			<p:commandButton value="Cancelar" action="#{cancelamentoPedidoBean.cancelarPedido}" 
-				process="@this" update="@form" disabled="#{cadastroPedidobean.pedido.naoCancelavel}" />
+				process="@form" update="@form" disabled="#{cadastroPedidobean.pedido.naoCancelavel}" />
 			<p:separator/>
 			<p:button value="Pesquisa" outcome="/pedidos/PesquisaPedido" />
 		</p:toolbarGroup>

@@ -35,9 +35,7 @@ public class EmissaoPedidoService implements Serializable{
 			throw new NegocioException("Pedido não pode ser fechado com status " 
 					+ pedido.getStatus().getDescricao() + "."); 
 		}
-		
-		//this.estoqueService.baixarItensEstoque(pedido);
-		
+
 		pedido.setStatus(StatusPedido.FECHADO);
 		
 		pedido.setEncerramento(new Date());
