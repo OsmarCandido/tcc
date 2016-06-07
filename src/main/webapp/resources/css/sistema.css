@@ -40,7 +40,7 @@ header > div {
 footer {
 padding: 0 20px;
     text-align: left;
-    font-size: 12px;
+    font-size: 13px;
     line-height: 30px;
     height: 30px;
 	padding: 0px 14px;
@@ -138,8 +138,13 @@ h1 {
 .menu-sistema .ui-icon-triangle-1-s {
     background: url(#{resource['img:seta-para-baixo.png']}) no-repeat;
 }
+
 /* Menu sistema inicio */
 
 .ui-state-disabled{
 	opacity: 0.80 !important;
+}
+
+.home{
+    background-image: url('../img/icon/home64.png') !important;
 }

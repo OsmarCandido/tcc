@@ -3,6 +3,7 @@ package com.sgbr.util.report;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +21,7 @@ public class ExecutorRelatorio implements Work {
 	private String caminhoRelatorio;
 	private HttpServletResponse response;
 	private Map<String, Object> parametros;
+	
 	private String nomeArquivoSaida;
 	
 	public ExecutorRelatorio(String caminhoRelatorio, HttpServletResponse response, Map<String, Object> parametros, String nomeArquivoSaida) 
@@ -29,7 +31,6 @@ public class ExecutorRelatorio implements Work {
 		this.parametros = parametros;
 		this.nomeArquivoSaida = nomeArquivoSaida;
 	}
-
 	@Override
 	public void execute(Connection connection) throws SQLException{
 		try {
@@ -39,9 +40,10 @@ public class ExecutorRelatorio implements Work {
 			
 			JRExporter exportador = new JRPdfExporter();
 			exportador.setParameter(JRExporterParameter.OUTPUT_STREAM, response.getOutputStream());
+						
 			System.out.println("Relatório impresso:" + print.getPages().size());
 			exportador.setParameter(JRExporterParameter.JASPER_PRINT, print);
-			
+				
 			response.setContentType("application/pdf");
 	        exportador.exportReport();		
 		} catch (Exception e) {
