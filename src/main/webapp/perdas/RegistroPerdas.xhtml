@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui">
+
+	<ui:define name="titulo">Registro de Perdas</ui:define>
+	<ui:define name="corpo">
+		<h:form id="frmPesquisa">
+			<h1>Registro de Perdas</h1>			
+
+	<p:dataTable value="#{cadastroPedidoBean.pedido.itens}" var="item" rowIndexVar="linha" 
+		id="tabelaPerdas">
+		<p:column headerText="IdProduto"
+			style="text-align: center; width: 100px">
+			<h:outputText value="#{item.produto.idProduto}" rendered="#{item.produtoAssociado}" />
+			<p:inputText size="8" value="#{cadastroPedidoBean.idProduto}" label="idProduto"
+				rendered="#{not item.produtoAssociado}">
+				<p:ajax event="change" process="@this" update="tabelaItens :frmCadastro:totalPedido :frmCadastro:subTotal :frmCadastro:valorComissao" 
+					listener="#{cadastroPedidoBean.carregarProdutoPorIdProduto}" />
+			</p:inputText>
+		</p:column>
+
+		<p:column headerText="Produto">
+			<h:outputText value="#{item.produto.descricao}" rendered="#{item.produtoAssociado}"/>
+			<p:autoComplete styleClass="produto-tabela" value="#{cadastroPedidoBean.produtoLinhaEditavel}"
+				completeMethod="#{cadastroPedidoBean.completarProduto}" 
+					var="produto" itemLabel="#{produto.descricao}" itemValue="#{produto}"
+					forceSelection="true" rendered="#{not item.produtoAssociado}">
+				<p:ajax event="itemSelect" update="tabelaItens :frmCadastro:totalPedido :frmCadastro:subTotal" 
+					listener="#{cadastroPedidoBean.carregarProdutoLinhaEditavel}"/>
+			</p:autoComplete>
+		</p:column>
+
+		<p:column headerText="Valor unitário"
+			style="text-align: center; width: 120px">
+			<h:outputText size="8" value="#{item.valorUnitario}">
+				<f:convertNumber type="currency"/>
+			</h:outputText>
+		</p:column>
+
+
+		<p:column headerText="Quantidade" style="text-align: center; width: 120px" >
+			<p:spinner size="6" value="#{item.quantidade}" disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" >
+				<p:ajax event="change" process="@this"
+					update="tabelaItens :frmCadastro:totalPedido :frmCadastro:subTotal :frmCadastro:valorComissao" 
+						listener="#{cadastroPedidoBean.atualizarQuantidade(item, linha)}"/>
+			</p:spinner>
+		</p:column>
+
+		<p:column headerText="Estoque"
+			style="text-align: center; width: 120px">
+			<h:outputText value="#{item.produto.quantidadeEstoque}" 
+				style="#{item.estoqueInsuficiente ? 'color: red' : '' }" />
+			<h:graphicImage library="img" width="10%" name="alerta.png" id="semEstoque"
+				style="vertical-align: bottom, margin-left: 5px" rendered="#{item.estoqueInsuficiente}" />
+		</p:column>
+
+		<p:column headerText="Valor total"
+			style="text-align: center; width: 120px">
+			<h:outputText size="8" value="#{item.valorTotal}">
+				<f:convertNumber type="currency"/>
+			</h:outputText>
+		</p:column>
+
+		<p:columnGroup type="footer">
+			<p:row>
+				<p:column colspan="5" footerText="Subtotal"	style="text-align: right"  />
+				<p:column footerText="#{cadastroPedidoBean.pedido.valorSubtotal}" />	
+			</p:row>
+			<h:outputText />
+		</p:columnGroup>
+	</p:dataTable>
+</ui:composition>
