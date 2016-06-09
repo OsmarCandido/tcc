@@ -6,15 +6,15 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:define name="titulo">Status Mesa</ui:define>
+	<ui:define name="titulo">Pesquisa de Mesa</ui:define>
 	<ui:define name="corpo">
 		<h:form id="frmPesquisa">
-			<h1>Status Mesa</h1>
+			<h1>Pesquisa de Mesa</h1>
 
 			<p:toolbar style="margin-top: 20px">
 				<!-- <p:toolbarGroup>
 					<p:commandButton value="Pesquisar"
-						action="#{statusMesaBean.pesquisar}" update="@form" />
+						action="#{pesquisaMesaBean.pesquisar}" update="@form" />
 				</p:toolbarGroup> -->
 				<p:toolbarGroup align="right">
 					<p:button value="Novo" outcome="/mesa/CadastroMesa" />
@@ -25,14 +25,14 @@
 				style="width: 100%; margin-top:20px" columnClasses="rotulo, campo">
 				<p:outputLabel value="Id Mesa" for="idMesa" />
 				<p:inputText id="idMesa" size="20"
-					value="#{statusMesaBean.filtro.idMesa}" />
+					value="#{pesquisaMesaBean.filtro.idMesa}" />
 
 				<p:outputLabel value="Nome" for="nome" />
 				<p:inputText id="nome" size="60"
-					value="#{statusMesaBean.filtro.nome}" />
+					value="#{pesquisaMesaBean.filtro.nome}" />
 			</p:panelGrid> -->
 
-			<p:dataTable id="mesasTable" value="#{statusMesaBean.mesasFiltrados}"
+			<p:dataTable id="mesasTable" value="#{pesquisaMesaBean.mesasFiltrados}"
 				var="mesa" style="margin-top: 20px"
 				emptyMessage="Mesa não encontrada." rows="20" paginator="true"
 				paginatorAlwaysVisible="false" paginatorPosition="bottom">
@@ -57,17 +57,17 @@
 						oncomplete="PF('confirmacaoExclusao').show()" severity="alert"
 						process="@this" update=":frmPesquisa:confirmacaoExclusaoDialog">
 						<f:setPropertyActionListener
-							target="#{statusMesaBean.mesaSelecionado}" value="#{mesa}" />
+							target="#{pesquisaMesaBean.mesaSelecionado}" value="#{mesa}" />
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 
 			<p:confirmDialog header="Exclusão de mesa"
-				message="Tem certeza que deseja excluir a mesa #{statusMesaBean.mesaSelecionado.nome}"
+				message="Tem certeza que deseja excluir a mesa #{pesquisaMesaBean.mesaSelecionado.nome}"
 				widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
 				<p:button value="Não"
 					oncomplete="PF('confirmacaoExclusao').hide(); return false;" />
-				<p:commandButton value="Sim" action="#{statusMesaBean.excluir}"
+				<p:commandButton value="Sim" action="#{pesquisaMesaBean.excluir}"
 					immediate="true" oncomplete="PF('confirmacaoExclusao').hide()" />
 			</p:confirmDialog>
 		</h:form>

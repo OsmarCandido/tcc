@@ -15,7 +15,7 @@ import com.sgbr.util.jsf.FacesUtil;
 
 @Named
 @ViewScoped
-public class StatusMesaBean implements Serializable {
+public class PesquisaMesaBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -28,7 +28,7 @@ public class StatusMesaBean implements Serializable {
 	
 	private Mesa mesaSelecionado;
 	
-	public StatusMesaBean() {
+	public PesquisaMesaBean() {
 		filtro = new MesaFilter();
 	}
 	
