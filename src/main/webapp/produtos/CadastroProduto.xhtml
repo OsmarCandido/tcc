@@ -51,7 +51,7 @@
 				</p:inputText>
 			
 				<p:outputLabel value="Data De Validade: " for="dataValidade" />
-				<p:calendar id="dataValidade" value="#{cadastroProdutoBean.produto.dataValidade}" />
+				<p:calendar id="dataValidade" locale="pt_BR" value="#{cadastroProdutoBean.produto.dataValidade}" />
  
 
 				<p:outputLabel value="Categoria" for="categoria" />
@@ -70,29 +70,31 @@
 				</p:selectOneMenu>
 
 				<p:outputLabel value="Estoque" for="estoque" />
-				<p:inputText id="estoque" size="10" maxlenght="4"
+				<p:inputText id="estoque" size="10" maxlength="3"
 					value="#{cadastroProdutoBean.produto.quantidadeEstoque}" />
 
 				<p:outputLabel value="Quantidade Maxima" for="quantidadeMaxima" />
-				<p:inputText id="quantidadeMaxima" size="10" maxlenght="10"
+				<p:inputText id="quantidadeMaxima" size="10" maxlength="3" 
 					value="#{cadastroProdutoBean.produto.quantidadeMaxima}" />
 				
 				<p:outputLabel value="Quantidade Minima" for="quantidadeMinima" />
-				<p:inputText id="quantidadeMinima" size="10" maxlenght="10"
+				<p:inputText id="quantidadeMinima" size="10" maxlength="3" 
 					value="#{cadastroProdutoBean.produto.quantidadeMinima}" />
- 
-				<p:outputLabel value="Valor Custo" for="valorCusto" />
-				<p:inputText id="valorCusto" size="10" maxlenght="10" styleClass="moeda"
-					value="#{cadastroProdutoBean.produto.valorCusto}" >
-				<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
-				</p:inputText>
-			
+ 			
 				<p:outputLabel value="Valor Venda" for="valorVenda" />
 				<p:inputText id="valorVenda" size="10" maxlenght="10" styleClass="moeda"
 					value="#{cadastroProdutoBean.produto.valorVenda}" >
 				<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
-				</p:inputText>
+				 </p:inputText>
+				 			
 			</p:panelGrid>
 		</h:form>
 	</ui:define>
 </ui:composition>
+
+                <!-- Retirado em 09/06/2016 08:59 Osmar Candido -->
+	            <!-- <p:outputLabel value="Valor Custo" for="valorCusto" /> -->
+				<!-- <p:inputText id="valorCusto" size="10" maxlenght="10" styleClass="moeda" -->
+				<!-- value="#{cadastroProdutoBean.produto.valorCusto}" > -->
+				<!-- <f:convertNumber maxFractionDigits="2" minFractionDigits="2" /> -->
+				<!-- </p:inputText> -->	

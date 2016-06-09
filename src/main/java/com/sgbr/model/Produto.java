@@ -106,7 +106,7 @@ public class Produto implements Serializable {
 	public BigDecimal getValorVenda() {
 		return valorVenda;
 	}
-	//@NotNull
+	//@Null
 	@Column(precision = 10, scale = 2, nullable = false)
 	public BigDecimal getValorCusto() {
 		return valorCusto;

@@ -11,7 +11,7 @@
   				process="@form" update="@form"	disabled="#{cadastroPedidoBean.pedido.naoAlteravel}" />
   		</p:toolbarGroup>
 		<p:toolbarGroup align="right">
-			<p:commandButton value="Emitir" action="#{emissaoPedidoBean.emitirPedido}"
+			<p:commandButton value="Fechar" action="#{emissaoPedidoBean.emitirPedido}"
 				process="@form" update="@form" disabled="#{cadastroPedidoBean.pedido.naoFechavel}" />
 			<p:commandButton value="Registrar pagamento" action="#{cadastroPedidoBean.salvar}"
 				process="@form" update="@form" disabled="#{cadastroPedidoBean.pedido.naoAguardandoPagamento}" />

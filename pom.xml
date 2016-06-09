@@ -126,8 +126,13 @@
 			<artifactId>groovy-all</artifactId>
 			<version>2.4.6</version>
 		</dependency>
-
-
+		
+	<!-- Incluso em 10/05/2016 - Osmar- Para finds -->
+	<dependency>
+    		<groupId>jfree</groupId>
+    		<artifactId>jfreechart</artifactId>
+    		<version>1.0.8a</version>
+	</dependency>
 		<!-- Incluso em 10/05/2016 - Osmar- Para finds -->
 
 		<dependency>

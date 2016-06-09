@@ -6,6 +6,7 @@
    xmlns:ui="http://java.sun.com/jsf/facelets"
    xmlns:p="http://primefaces.org/ui">
 <h:head>
+    <h:outputScript name="resouces/js/locales.js" library="js"></h:outputScript>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><ui:insert name="titulo">Sistemas de Gerenciamento de Bar e Restaurante</ui:insert></title>
 	<h:outputStylesheet library="css" name="sistema.css" />
@@ -75,6 +76,36 @@
 	<footer>Sistema de Gerenciamento de Bar e Restaurante <a href="www.sgbr.com.br"
 		target="_blanck">http://www.sgbr.com.br</a> </footer>
 		
+		
+	<script>	
+	PrimeFaces.locales['pt_BR'] = {
+	    closeText: 'Fechar',
+	    prevText: 'Anterior',
+	    nextText: 'Próximo',
+	    currentText: 'Começo',
+	    monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+	    monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun', 'Jul','Ago','Set','Out','Nov','Dez'],
+	    dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
+	    dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
+	    dayNamesMin: ['D','S','T','Q','Q','S','S'],
+	    weekHeader: 'Semana',
+	    firstDay: 0,
+	    isRTL: false,
+	    showMonthAfterYear: false,
+	    yearSuffix: '',
+	    timeOnlyTitle: 'Só Horas',
+	    timeText: 'Tempo',
+	    hourText: 'Hora',
+	    minuteText: 'Minuto',
+	    secondText: 'Segundo',
+	    ampm: false,
+	    month: 'Mês',
+	    week: 'Semana',
+	    day: 'Dia',
+	    allDayText : 'Todo o Dia'
+	};		
+	</script>	
+			
 	<script>
 	function configuraMoeda(){
 		$(".moeda").maskMoney({decimal : "," , thousands : "." , allowZero : true})
