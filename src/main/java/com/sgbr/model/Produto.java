@@ -16,6 +16,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -108,7 +109,7 @@ public class Produto implements Serializable {
 	}
 	
 	
-	//@NotNull
+    @Null
 	@Column(precision = 10, scale = 2, nullable = false)
 	public BigDecimal getValorCusto() {
 		return valorCusto;
