@@ -37,19 +37,47 @@ header > div {
 	padding: 0px 8px
 }
 
-footer {
-padding: 0 20px;
-    text-align: left;
-    font-size: 13px;
-    line-height: 30px;
-    height: 30px;
-	padding: 0px 14px;
-	margin-bottom: 7px
-	width: 100%;
-    background-color: #fff;
-    position: relative;
-    bottom: 0;
+#footer {
+   position:fixed;
+   left:0px;
+   right : 10px;
+   bottom:5px;
+   height:30px;
+   width:100%;
+   text-align: right;
 }
+
+
+#footer > footer { 
+ position:absolute;
+ width:100%;
+ text-align:center;
+ padding-bottom:0px; 
+}
+
+
+
+
+
+/* footer { */
+		
+/* padding: 0 20px; */
+/*     text-align: left; */
+/*     font-size: 13px; */
+/*     line-height: 30px; */
+/*     height: 30px; */
+/* 	padding: 0px 14px; */
+/* 	margin-bottom: 7px */
+/* 	width: 100%; */
+/*     background-color: #fff; */
+/*     position: absolute; */
+/*     bottom: 0; */
+/* } */
+
+
+/* .element.style { */
+/*     margin-top: 50px !important; */
+/* } */
 
 h1 {
 	font-size: 24px;

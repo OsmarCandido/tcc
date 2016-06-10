@@ -133,8 +133,6 @@ public class Produto implements Serializable {
 		this.idProduto = idProduto;
 	}
 
-	
-
 /*	public void setValorUnitario(BigDecimal valorUnitario) {
 		this.valorUnitario = valorUnitario;
 	}
