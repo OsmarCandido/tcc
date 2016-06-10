@@ -148,3 +148,18 @@ h1 {
 .home{
     background-image: url('../img/icon/home64.png') !important;
 }
+
+
+/* .ui-button, button.ui-button.ui-state-default, .ui-button.ui-state-default { */
+/*     border: 1px solid #1f89ce; */
+/*     color: #fff; */
+/*     background: #2399e5; */
+/* } */
+
+/* .ui-widget-content a { */
+/*     color: #FFF; */
+/* } */
+
+.branco {
+	color: #fff;
+}

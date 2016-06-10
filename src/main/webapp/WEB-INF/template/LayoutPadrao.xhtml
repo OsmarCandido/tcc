@@ -35,21 +35,21 @@
 				
 				<h:form style="display: inline-block">
 					<p:menubar styleClass="menu-sistema">
-				<p:menuitem value = "Home" outcome="/index.xhtml" icon="home64.png"/>
-				<p:menuitem value = "Perdas" outcome="/perdas/RegistroPerdas.xhtml"/>
-				<p:menuitem value = "Caixa" outcome="/caixa/ControleCaixa.xhtml"/>
-				<p:submenu label="Cadastros">
+				<p:menuitem value = "Home" outcome="/index.xhtml" icon="fa fa-fw fa-home branco"/>
+				<p:menuitem value = "Perdas" outcome="/perdas/RegistroPerdas.xhtml" icon="fa fa-fw fa-trash-o branco"/>
+				<p:menuitem value = "Caixa" outcome="/caixa/ControleCaixa.xhtml" icon="fa fa-fw fa-credit-card branco"/>
+				<p:submenu label="Cadastros" icon="fa fa-fw fa-edit branco">
 					<p:menuitem value="Funcionarios" outcome="/funcionario/CadastroFuncionario.xhtml"/>
 					<p:separator/>
 					<p:menuitem value="Produtos" outcome="/produtos/CadastroProduto.xhtml"/>
 					<p:separator/>
 					<p:menuitem value="Mesa" outcome="/mesa/CadastroMesa.xhtml"/>
 				</p:submenu>
-				<p:submenu label="Pedidos">
+				<p:submenu label="Pedidos" icon="fa fa-fw fa-tablet branco">
 					<p:menuitem value="Novo Pedido" outcome="/pedidos/CadastroPedido.xhtml"/>
 					<p:menuitem value="Pesquisa" outcome="/pedidos/PesquisaPedido.xhtml"/>
 				</p:submenu>
-			<p:submenu label="Relatórios">
+			<p:submenu label="Relatórios"  icon="fa fa-fw fa-file-text-o branco" >
 				    <p:menuitem value = "Pedidos Emitidos" outcome="/relatorio/Relatoriopedidosemitidos.xhtml"/>	
 					<p:separator/>
 					<p:menuitem value="Produtos a Comprar" outcome="/relatorio/Relatorioprodutosacomprar.xhtml"/>
@@ -60,8 +60,10 @@
 					<p:separator/>
 					<p:menuitem value="Total de comissão" outcome="/relatorio/Relatoriocomissaosgbr.xhtml"/>
 					<p:separator/>
+					<p:menuitem value="Listagem de Funcionário" outcome="/relatorio/Relatoriofuncionario.xhtml"/>
+					<p:separator/>
 				</p:submenu>
-				<p:menuitem value="Sair" url="/j_spring_security_logout"/>
+				<p:menuitem value="Sair" url="/j_spring_security_logout" icon="fa fa-fw fa-power-off branco"/>
 			</p:menubar>
 		</h:form>
 	</div>
