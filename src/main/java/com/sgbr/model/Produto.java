@@ -109,7 +109,7 @@ public class Produto implements Serializable {
 	}
 	
 	
-    @Null
+    //@NotNull
 	@Column(precision = 10, scale = 2, nullable = false)
 	public BigDecimal getValorCusto() {
 		return valorCusto;

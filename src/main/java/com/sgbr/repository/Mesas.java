@@ -15,7 +15,6 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
-import com.sgbr.model.Funcionario;
 import com.sgbr.model.Mesa;
 import com.sgbr.model.Produto;
 import com.sgbr.model.StatusMesa;
