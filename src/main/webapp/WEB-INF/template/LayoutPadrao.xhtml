@@ -27,7 +27,6 @@
 		<h:link>  
 			<h:graphicImage width="135px" library="img" name="logo.png" outcome="/index.xhtml"/>
 		</h:link>
-		
 		<div style="float: right; margin-right: 110px">
 				<span style="float: left; height: 30px; line-height: 30px; margin-right: 60px">
 				Olá #{seguranca.nomeFuncionario}
@@ -61,6 +60,10 @@
 					<p:menuitem value="Total de comissão" outcome="/relatorio/Relatoriocomissaosgbr.xhtml"/>
 					<p:separator/>
 					<p:menuitem value="Listagem de Funcionário" outcome="/relatorio/Relatoriofuncionario.xhtml"/>
+					<p:separator/>
+					<p:menuitem value="Status Mesa" outcome="/relatorio/Relatoriolistagemdemesa.jasper"/>
+					<p:separator/>
+					<p:menuitem value="Status Mesa" outcome="/relatorio/Relatoriolistagemdemesa.jasper"/>
 					<p:separator/>
 				</p:submenu>
 				<p:menuitem value="Sair" url="/j_spring_security_logout" icon="fa fa-fw fa-power-off branco"/>
