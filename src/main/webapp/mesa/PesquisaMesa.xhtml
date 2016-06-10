@@ -38,20 +38,20 @@
 				paginatorAlwaysVisible="false" paginatorPosition="bottom">
 
 				<p:column headerText="Id Mesa"
-					style="text-aling: center; width: 20px">
+					style="text-align: center; width: 20px">
 					<h:outputText value="#{mesa.idMesa}" />
 				</p:column>
 
-				<p:column headerText="Nome" style="text-aling: center; width: 100px">
+				<p:column headerText="Nome" style="text-align: center; width: 100px">
 					<h:outputText value="#{mesa.nome}" />
 				</p:column>
 
 				<p:column headerText="Status"
-					style="text-aling: center; width: 15px">
+					style="text-align: center; width: 15px">
 					<h:outputText value="#{mesa.status.descricao}" />
 				</p:column>
 
-				<p:column style="width: 50px; text-align:center">
+				<p:column headerText="Ação" style="width: 50px; text-align:center">
 					
 					<p:commandButton icon="ui-icon-trash" title="Excluir"
 						oncomplete="PF('confirmacaoExclusao').show()" severity="alert"

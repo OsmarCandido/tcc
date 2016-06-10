@@ -41,32 +41,32 @@
 				paginatorPosition="botton">
 
 				<p:column headerText="Código de funcionário"
-					style="text-aling: center; width: 3px">
+					style="text-align: center; width: 3px">
 					<h:outputText value="#{funcionario.idFuncionario}" />
 				</p:column>
-				<p:column headerText="Nome" style="text-aling: center; width: 80px">
+				<p:column headerText="Nome" style="text-align: center; width: 80px">
 					<h:outputText value="#{funcionario.nome}" />
 				</p:column>
 				<p:column headerText="Telefone"
-					style="text-aling: center; width: 14px">
+					style="text-align: center; width: 14px">
 					<h:outputText value="#{funcionario.telefone}" />
 				</p:column>
-				<p:column headerText="CPF" style="text-aling: center; width:20px">
+				<p:column headerText="CPF" style="text-align: center; width:20px">
 					<h:outputText value="#{funcionario.cpf}" />
 				</p:column>
 				<p:column headerText="Perfil"
-					style="text-aling: center; width: 15px">
+					style="text-align: center; width: 15px">
 					<h:outputText value="#{funcionario.perfil.descricao}" />
 				</p:column>
 				<p:column headerText="Usuário"
-					style="text-aling: center; width: 20px">
+					style="text-align: center; width: 20px">
 					<h:outputText value="#{funcionario.login}" />
 				</p:column>
 <!-- 				<p:column headerText="Senha" style="text-aling: center; width: 12px"> -->
 <!-- 					<h:outputText value="#{funcionario.senha}" /> -->
 <!-- 				</p:column> -->
 
-				<p:column style="width: 15px; text-align:center">
+				<p:column headerText="Ações" style="width: 15px; text-align:center">
 					<p:button outcome="/funcionario/CadastroFuncionario"
 						icon="ui-icon-pencil" title="Editar">
 						<f:param name="funcionario" value="#{funcionario.idFuncionario}" />

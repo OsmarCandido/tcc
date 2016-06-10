@@ -6,7 +6,7 @@
 
 	<p:dataTable value="#{cadastroPedidoBean.pedido.itens}" var="item" rowIndexVar="linha" 
 		id="tabelaItens">
-		<p:column headerText="IdProduto"
+		<p:column headerText="Código de Produto"
 			style="text-align: center; width: 100px">
 			<h:outputText value="#{item.produto.idProduto}" rendered="#{item.produtoAssociado}" />
 			<p:inputText size="8" value="#{cadastroPedidoBean.idProduto}" label="idProduto"

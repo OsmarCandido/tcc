@@ -43,6 +43,7 @@ public class CadastroPedidoService implements Serializable {
 		}
 
 		if (pedido.isFechado()) {
+			
 			pedido.setStatus(StatusPedido.PAGO);
 		}
 
