@@ -75,14 +75,15 @@
 					update="totalPedido valorComissao"
 					listener="#{cadastroPedidoBean.recalcularPedido}" />
 			</p:selectBooleanCheckbox>
+			<p:spacer width="10" height="10"/>
 			<h:outputText id="valorComissao"
 				value="#{cadastroPedidoBean.pedido.valorComissao}">
-				<f:convertNumber type="currency" />
+				<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
 			</h:outputText>
 		</h:panelGroup>
 
 		<p:outputLabel value="Desconto" for="valorDesconto" />
-		<p:inputText id="valorDesconto" size="10" maxlength="10"
+		<p:inputText id="valorDesconto" size="9" maxlength="10"
 			styleClass="moeda" value="#{cadastroPedidoBean.pedido.valorDesconto}"
 			disabled="#{cadastroPedidoBean.pedido.naoAguardandoPagamento}">
 			<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />

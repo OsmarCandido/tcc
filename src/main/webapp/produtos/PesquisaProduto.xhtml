@@ -40,83 +40,86 @@
 				paginatorPosition="bottom">
 
 				<p:column headerText="Id Produto"
-					style="text-aling: center; width: 20px">
+					style="text-align: center; width: 20px">
 					<h:outputText value="#{produto.idProduto}" />
 				</p:column>
 
 				<p:column headerText="Descrição"
-					style="text-aling: center; width: 100px">
+					style="text-align: center; width: 100px">
 					<h:outputText value="#{produto.descricao}" />
 				</p:column>
 
-				<p:column headerText="Preço" style="text-aling: center; width: 10px">
+				<p:column headerText="Preço" style="text-align: center; width: 10px">
 					<h:outputText value="#{produto.preco}">
 						<f:convertNumber type="currency" />
 					</h:outputText>
 				</p:column>
 
 				<p:column headerText="Data de Validade"
-					style="text-aling: center; width:20px">
-					<h:outputText value="#{pedido.dataValidade}">
+					style="text-align: center; width:20px">
+					<h:outputText value="#{produto.dataValidade}">
 						<f:convertDateTime pattern="dd/MM/yyyy" />
 					</h:outputText>
 				</p:column>
 
 				<p:column headerText="Categoria"
-					style="text-aling: center; width: 15px">
+					style="text-align: center; width: 15px">
 					<h:outputText value="#{produto.categoria.categoriaPai.descricao}" />
 				</p:column>
 
 				<p:column headerText="Estoque"
-					style="text-aling: center; width: 15px">
+					style="text-align: center; width: 15px">
 					<h:outputText value="#{produto.quantidadeEstoque}" />
 				</p:column>
 
 				<p:column headerText="Qtd. Minima"
-					style="text-aling: center; width: 20px">
+					style="text-align: center; width: 20px">
 					<h:outputText value="#{produto.quantidadeMinima}" />
 				</p:column>
 
 				<p:column headerText="Qtd. Máxima"
-					style="text-aling: center; width: 20px">
+					style="text-align: center; width: 20px">
 					<h:outputText value="#{produto.quantidadeMaxima}" />
 				</p:column>
 
-					<p:column headerText="Valor Custo"
-					style="text-aling: center; width: 15px">
+				<p:column headerText="Valor Custo"
+					style="text-align: center; width: 15px">
 					<h:outputText value="#{produto.valorCusto}">
-					<f:convertNumber type="currency" />
+						<f:convertNumber type="currency" />
 					</h:outputText>
-					</p:column>
+				</p:column>
 
 				<p:column headerText="Valor Venda"
-					style="text-aling: center; width: 15px">
+					style="text-align: center; width: 15px">
 					<h:outputText value="#{produto.valorVenda}">
 						<f:convertNumber type="currency" />
 					</h:outputText>
 				</p:column>
-				<p:column style="width: 50px; text-align:center">
+				<p:column headerText="Ações" style="width: 50px; text-align:center">
 					<p:button outcome="/produtos/CadastroProduto" icon="ui-icon-pencil"
 						title="Editar">
 						<f:param name="produto" value="#{produto.idProduto}" />
 					</p:button>
 
-						<p:commandButton icon="ui-icon-trash" title="Excluir"
+					<p:commandButton icon="ui-icon-trash" title="Excluir"
 						oncomplete="PF('confirmacaoExclusao').show()" severity="alert"
-							process="@this" update=":frmPesquisa:confirmacaoExclusaoDialog">
-						<f:setPropertyActionListener target="#{pesquisaProdutosBean.produtoSelecionado}"
+						process="@this" update=":frmPesquisa:confirmacaoExclusaoDialog">
+						<f:setPropertyActionListener
+							target="#{pesquisaProdutosBean.produtoSelecionado}"
 							value="#{produto}" />
 					</p:commandButton>
-					
+
 				</p:column>
 			</p:dataTable>
 
-			<p:confirmDialog header="Exclusão de produto" 
+			<p:confirmDialog header="Exclusão de produto"
 				message="Tem certeza que deseja excluir o produto #{pesquisaProdutosBean.produtoSelecionado.descricao}"
-					widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
-				<p:button value="Não" oncomplete="PF('confirmacaoExclusao').hide(); return false;" />
-				<p:commandButton value="Sim" action="#{pesquisaProdutosBean.excluir}" immediate="true" 
-					oncomplete="PF('confirmacaoExclusao').hide()"/>
+				widgetVar="confirmacaoExclusao" id="confirmacaoExclusaoDialog">
+				<p:button value="Não"
+					oncomplete="PF('confirmacaoExclusao').hide(); return false;" />
+				<p:commandButton value="Sim"
+					action="#{pesquisaProdutosBean.excluir}" immediate="true"
+					oncomplete="PF('confirmacaoExclusao').hide()" />
 			</p:confirmDialog>
 		</h:form>
 	</ui:define>

@@ -1,7 +1,6 @@
 package com.sgbr.model;
 
 public enum StatusPedido {
-	ORCAMENTO("orçamento"),
 	ABERTO("aberto"),
 	FECHADO("fechado"),
 	CANCELADO("cancelado"),
