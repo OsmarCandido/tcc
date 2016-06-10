@@ -95,7 +95,7 @@ public class CadastroPedidoBean implements Serializable {
 				cadastroMesaService.salvar(this.pedido.getMesa());
 			}
 			this.pedido = this.cadastroPedidoService.salvar(this.pedido);
-			FacesUtil.addInfoMessage("Pedido salvo com sucesso!");
+			FacesUtil.addInfoMessage("Pedido registrado com sucesso!");
 			
 		} finally {
 			this.pedido.adicionarItemVazio();
@@ -113,9 +113,7 @@ public class CadastroPedidoBean implements Serializable {
 
 	public void carregarProdutoPorIdProduto() {
 
-		System.out.println("carregando Produto Por IdProduto");
 		if (this.idProduto != null) {
-			System.out.println("IdProduto nao esta vazio");
 			produtoLinhaEditavel = produtos.porIdProduto(this.idProduto);
 			this.carregarProdutoLinhaEditavel();
 		}

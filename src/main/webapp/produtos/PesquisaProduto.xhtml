@@ -24,7 +24,7 @@
 
 			<p:panelGrid columns="2" id="painel"
 				style="width: 100%; margin-top:20px" columnClasses="rotulo, campo">
-				<p:outputLabel value="Id Produto" for="idProduto" />
+				<p:outputLabel value="Código de Produto" for="idProduto" />
 				<p:inputText id="idProduto" size="20"
 					value="#{pesquisaProdutosBean.filtro.idProduto}" />
 
@@ -39,7 +39,7 @@
 				rows="20" paginator="true" paginatorAlwaysVisible="false"
 				paginatorPosition="bottom">
 
-				<p:column headerText="Id Produto"
+				<p:column headerText="Código de Produto"
 					style="text-align: center; width: 20px">
 					<h:outputText value="#{produto.idProduto}" />
 				</p:column>
@@ -48,7 +48,7 @@
 					style="text-align: center; width: 100px">
 					<h:outputText value="#{produto.descricao}" />
 				</p:column>
-
+				
 				<p:column headerText="Preço" style="text-align: center; width: 10px">
 					<h:outputText value="#{produto.preco}">
 						<f:convertNumber type="currency" />
@@ -81,15 +81,15 @@
 					style="text-align: center; width: 20px">
 					<h:outputText value="#{produto.quantidadeMaxima}" />
 				</p:column>
-
-				<p:column headerText="Valor Custo"
-					style="text-align: center; width: 15px">
+				
+				<p:column headerText="Valor de Compra" style="text-align: center; width: 10px">
 					<h:outputText value="#{produto.valorCusto}">
 						<f:convertNumber type="currency" />
 					</h:outputText>
 				</p:column>
+				
 
-				<p:column headerText="Valor Venda"
+				<p:column headerText="Valor de Revenda"
 					style="text-align: center; width: 15px">
 					<h:outputText value="#{produto.valorVenda}">
 						<f:convertNumber type="currency" />

@@ -24,7 +24,6 @@ public class CadastroMesaBean implements Serializable {
 
 	public void inicializar(){
 		if(FacesUtil.isNotPostback()){
-				System.out.println("inicializando..."); 
 		}
 	}
 	
