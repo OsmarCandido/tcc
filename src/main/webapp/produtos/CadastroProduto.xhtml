@@ -80,13 +80,7 @@
 				<p:outputLabel value="Quantidade Minima" for="quantidadeMinima" />
 				<p:inputText id="quantidadeMinima" size="10" maxlength="3" 
 					value="#{cadastroProdutoBean.produto.quantidadeMinima}" />
-					
-			    <p:outputLabel value="Valor de compra" for="valorCusto" />
-				<p:inputText id="valorCusto" size="10" maxlenght="10" styleClass="moeda"
-				value="#{cadastroProdutoBean.produto.valorCusto}" >
-				<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
-				</p:inputText>
-
+		
 				<p:outputLabel value="Valor de Revenda" for="valorVenda" />
 				<p:inputText id="valorVenda" size="10" maxlenght="10" styleClass="moeda"
 					value="#{cadastroProdutoBean.produto.valorVenda}" >
@@ -99,5 +93,12 @@
 		</h:form>
 	</ui:define>
 </ui:composition>
+
+
+<!--     <p:outputLabel value="Valor de compra" for="valorCusto" /> -->
+<!-- 				<p:inputText id="valorCusto" size="10" maxlenght="10" styleClass="moeda" -->
+<!-- 				value="#{cadastroProdutoBean.produto.valorCusto}" > -->
+<!-- 				<f:convertNumber maxFractionDigits="2" minFractionDigits="2" /> -->
+<!-- 				</p:inputText> -->
                
 	    	
