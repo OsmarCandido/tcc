@@ -2,10 +2,16 @@ package com.sgbr.controller;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
 
 import com.sgbr.model.Funcionario;
 import com.sgbr.model.Perfil;
@@ -42,11 +48,20 @@ public class CadastroFuncionarioBean implements Serializable {
 	}
 				
 	public void salvar() {
+		  Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+          Set<ConstraintViolation<Funcionario>> violations = validator.validate(funcionario);
+          FacesContext fc = FacesContext.getCurrentInstance();
+          if (violations.isEmpty()) {    
 		this.funcionario = cadastroFuncionarioService.salvar(this.funcionario);
+		fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Salvo", "Registro salvo com sucesso"));
 
-		FacesUtil.addInfoMessage("Funcionário cadastrado com sucesso");
 	}
-
+          else{
+              for (ConstraintViolation cv : violations) {
+                      fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, cv.getMessage(), null));
+                } 
+        }       
+	}
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}

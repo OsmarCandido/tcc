@@ -23,13 +23,13 @@
 
 			<p:toolbar style="margin-top: 20px;">
 				<p:toolbarGroup>
-					<p:button value="Novo" outcome="/funcionario/CadastroFuncionario" />
-					<p:commandButton value="Salvar" id="botaoSalvar"
+					<p:button value="Novo" outcome="/funcionario/CadastroFuncionario" icon="fa fa-fw fa-plus"/>
+					<p:commandButton value="Salvar" id="botaoSalvar"  icon="fa fa-fw fa-save" 
 						action="#{cadastroFuncionarioBean.salvar}" ajax="false" />
 
 				</p:toolbarGroup>
 				<p:toolbarGroup align="right">
-					<p:button value="Pesquisa"
+					<p:button value="Pesquisa" icon="fa fa-fw fa-search"
 						outcome="/funcionario/PesquisaFuncionario" />
 				</p:toolbarGroup>
 			</p:toolbar>

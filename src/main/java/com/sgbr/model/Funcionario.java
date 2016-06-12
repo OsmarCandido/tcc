@@ -2,6 +2,7 @@ package com.sgbr.model;
 
 import java.io.Serializable;
 
+import com.devmedia.artigo.validator.CPF;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+
+
 @Entity
 @Table (name = "funcionario")
 public class Funcionario implements Serializable {
@@ -19,7 +22,7 @@ public class Funcionario implements Serializable {
 	
 	private Long idFuncionario;
 	private String nome;
-	private String telefone;
+	private String telefone;	
 	private String cpf;
 	private String login;
 	private String senha;
@@ -43,7 +46,8 @@ public class Funcionario implements Serializable {
 		return telefone;
 	}
 
-	@Column(name="Cpf",length=14,nullable=false)
+    @CPF
+	@Column(name="Cpf",nullable=false)
 	public String getCpf() {
 		return cpf;
 	}

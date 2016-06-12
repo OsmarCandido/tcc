@@ -23,14 +23,14 @@
 			<!-- Cadastro Produto -->
 			<p:toolbar style="margin-top: 20px">
 				<p:toolbarGroup>
-					<p:button value="Novo" outcome="/produtos/CadastroProduto" />
-					<p:commandButton value="Salvar" id="botaoSalvar" 
+					<p:button value="Novo" outcome="/produtos/CadastroProduto" icon="fa fa-fw fa-plus"/>
+					<p:commandButton value="Salvar" id="botaoSalvar"  icon="fa fa-fw fa-save" 
 						action="#{cadastroProdutoBean.salvar}" ajax="false" />
 				</p:toolbarGroup>
 
 				<!-- Pesquisa -->
 				<p:toolbarGroup align="right">
-					<p:button value="Pesquisa" outcome="/produtos/PesquisaProduto" />
+					<p:button value="Pesquisa" icon="fa fa-fw fa-search" outcome="/produtos/PesquisaProduto" />
 				</p:toolbarGroup>
 			</p:toolbar>
 			 
