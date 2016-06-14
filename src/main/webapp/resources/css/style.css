@@ -1,0 +1,45 @@
+*{margin: 0; padding: 0;-webkit-box-sizing: border-box;-moz-box-sizing: border-box; box-sizing: border-box;}
+html{font-family: verdana, sans-serif;}
+img{width: 100%; max-width: 100%; float: right;border:none;}
+.clear{clear: both;}
+ul li{list-style-type: none;}
+p{margin: 15px 0; }
+.font-zero{font-size: 0;}
+.padding-top{padding-top: 40px;}
+
+form{float: left; width: 100%; padding: 0%;}
+label{float: left; width: 100%; margin-bottom: 0.4%;}
+input,select, textarea{padding: 1.4%; margin-bottom: 1em; width: 100%;}
+.logar{margin-right: 2%; background-color: #0E3D44;}
+input, select, textarea{width: 98%;}
+
+.topo,.rodape{background-color: #fff;padding: 18px 0;}
+.rodape{font-weight: 600;color: #4F4F51;font-size: 0.8em;}
+.rodape .direitos{float: left; width: 50%;   }
+.rodape .dev{ width: 240px; float: right; text-align: right;}
+
+
+.container{float: left; width: 100%;  padding: 0%;background-color: rgba(9, 29, 56, 0);}
+.login{background-image: url(#{resource['images:bg-login.jpg']}); background-position: center center; background-repeat: no-repeat; background-attachment: fixed; background-size: cover; background-color: #464646; }
+.topo,.rodape{background-color: #fff;padding: 18px 0;}
+.content{margin: 0 auto; width: 80%; max-width: 1200px;}
+.logo{float: left; width: 23%;font-size: 0;}
+.conteudo-direito{float: left; width: 78%; margin-bottom: 66px;}
+.login .acessarLogin{width: 40%; margin-right: 0%; margin: 20% auto; background-color: White; padding: 3%;opacity:0.9;border-radius: 5px;box-shadow: 0px 0px 22px #362F29;}
+
+.login .rodape{position: fixed; bottom: 0;}
+.acessarLogin h2, .cadastrarLogin h2{margin-bottom: 1em; font-size: 1.2em;color: #0E3D44;}
+.acessarLogin h2 span, .cadastrarLogin h2 span{float: left;width: 30px;margin-top: -7px;}
+.imgDev{float: right;width: 80px;margin-top: -17px;}
+
+.grid-login {
+	background-color: #f2f2f2;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	margin-top: 8px;
+	padding: 10px;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0px;
+	font-weight: normal;
+}
