@@ -47,13 +47,13 @@ header > div {
    text-align: right;
 }
 
-
 #footer > footer { 
  position:absolute;
  width:100%;
  text-align:center;
  padding-bottom:0px; 
 }
+
 /* footer { */
 		
 /* padding: 0 20px; */

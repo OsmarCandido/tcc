@@ -20,7 +20,7 @@ input, select, textarea{width: 98%;}
 
 
 .container{float: left; width: 100%;  padding: 0%;background-color: rgba(9, 29, 56, 0);}
-.login{background-image: url(#{resource['images:bg-login.jpg']}); background-position: center center; background-repeat: no-repeat; background-attachment: fixed; background-size: cover; background-color: #464646; }
+.login{background-image: url(#{resource['img:index.jpg']}); background-position: center center; background-repeat: no-repeat; background-attachment: fixed; background-size: cover; background-color: #464646; }
 .topo,.rodape{background-color: #fff;padding: 18px 0;}
 .content{margin: 0 auto; width: 80%; max-width: 1200px;}
 .logo{float: left; width: 23%;font-size: 0;}
