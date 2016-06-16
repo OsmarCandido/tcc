@@ -33,6 +33,13 @@ header > div {
 	margin-left: 10px
 }
 
+#chart{
+ width:100%;
+ height:100%
+ margin:20px 0;		
+}
+
+
 #conteudo {
 	padding: 0px 8px
 }

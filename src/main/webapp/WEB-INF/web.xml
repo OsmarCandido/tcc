@@ -7,7 +7,32 @@
 	<listener>
 		<listener-class>org.jboss.weld.environment.servlet.Listener</listener-class>
 	</listener>
-
+	
+	
+	<!-- VThema primefaces-->
+		<context-param>
+		   <param-name>primefaces.THEME</param-name>
+  
+  
+   <!-- para colocar o thema, é só digitar o thema desejado no campo abaixo -->
+		   <param-value>home</param-value>  
+	
+		</context-param>
+		
+		
+	<!--  
+	<<<<Nome dos temas disponivel - somente alterar para o nome que quiser >>>>>
+					afterdark/afternoon/afterwork/all-themes/aristo/black-tie	 
+					blitzer/bluesky/bootstrap/casablanca/cruze/cupertino	 
+					dark-hive/delta/dot-luv/eggplant/excite-bike/flick 
+					glass-x/home/hot-sneaks/humanity/le-frog/midnight	 
+					mint-choc/overcast/pepper-grinder/redmond/rocket 
+					sam/smoothness/south-street/start/sunny/swanky-purse	 
+					themes-project/trontastic/ui-darkness/ui-lightness	 
+					vader -->
+					
+	
+	
 	<!-- Validação CPF 31/05/2016 -->
 	<context-param>
 		<param-name>primefaces.CLIENT_SIDE_VALIDATION</param-name>
@@ -17,7 +42,7 @@
 		<param-name>primefaces.TRANSFORM_METADATA</param-name>
 		<param-value>true</param-value>
 	</context-param>
-
+	
 	<!-- Security 10/05/2016 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
