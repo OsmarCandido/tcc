@@ -18,13 +18,6 @@
 				<h:form>
 
 			<p:toolbar style="margin-top: 20px">
-				<p:toolbarGroup>
-					<p:commandButton value="Pesquisar" action="#{controleCaixaBean.pesquisar}"
-	    				update="@form" />
-				</p:toolbarGroup>
-				<p:toolbarGroup align="right">
-	    			<p:button value="Novo" outcome="/pedidos/CadastroPedido" />
-	    		</p:toolbarGroup>
 			</p:toolbar>
 
 			<p:dataTable id="pedidosTable"
@@ -45,21 +38,21 @@
 
 				<p:column headerText="Hora Pedido" style="text-align: center; width: 20px">
 					<h:outputText value="#{pedido.dataCriacao}">
-	    				<f:convertDateTime pattern="HH:mm:ss" />
+	    				<f:convertDateTime pattern="HH:mm" />
 	    			</h:outputText>
 				</p:column>
 
-				<p:column headerText="Funcionario" style="text-aling: center; width: 40px">
+				<p:column headerText="Funcionario" style="text-align: center; width: 40px">
 					<h:outputText value="#{pedido.funcionario.nome}"/>
 				</p:column>
 
-				<p:column headerText="Valor Pedido"	style="text-aling: center; width: 20px">
+				<p:column headerText="Valor Pedido"	style="text-align: center; width: 20px">
 					<h:outputText value="#{pedido.valorTotal}">
 	    				<f:convertNumber type="currency"/>
 	    			</h:outputText>
 				</p:column>
 
-				<p:column headerText="Status" style="text-aling: center; width: 20px">
+				<p:column headerText="Status" style="text-align: center; width: 20px">
 					<h:outputText value="#{pedido.status.descricao}"/>
 				</p:column>
 

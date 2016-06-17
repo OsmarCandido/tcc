@@ -61,7 +61,7 @@
 		<p:selectOneMenu id="pagamento"
 			value="#{cadastroPedidoBean.pedido.pagamento}"
 			disabled="#{cadastroPedidoBean.pedido.naoAlteravel}">
-			<f:selectItems value="#{cadastroPedidoBean.pagamento}"
+			<f:selectItems value="#{cadastroPedidoBean.formaPagamento}"
 				var="pagamento" itemValue="#{pagamento}"
 				itemLabel="#{pagamento.descricao}" />
 		</p:selectOneMenu>

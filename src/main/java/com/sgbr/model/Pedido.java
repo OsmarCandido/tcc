@@ -38,7 +38,7 @@ public class Pedido implements Serializable {
 	private BigDecimal subTotal = BigDecimal.ZERO;
 	private BigDecimal valorTotal = BigDecimal.ZERO;
 	private StatusPedido status = StatusPedido.ABERTO;
-	private Pagamento pagamento;
+	private FormaPagamento pagamento;
 	private Funcionario funcionario;
 	private Mesa mesa;
 	private List<ItemPedido> itens = new ArrayList<>();
@@ -117,11 +117,11 @@ public class Pedido implements Serializable {
 	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(name = "pagamento", nullable = false, length = 20)
-	public Pagamento getPagamento() {
+	public FormaPagamento getPagamento() {
 		return pagamento;
 	}
 
-	public void setPagamento(Pagamento pagamento) {
+	public void setPagamento(FormaPagamento pagamento) {
 		this.pagamento = pagamento;
 	}
 	

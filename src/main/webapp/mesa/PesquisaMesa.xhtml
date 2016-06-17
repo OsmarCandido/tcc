@@ -21,23 +21,12 @@
 				</p:toolbarGroup>
 			</p:toolbar>
 
-			<!-- <p:panelGrid columns="2" id="painel"
-				style="width: 100%; margin-top:20px" columnClasses="rotulo, campo">
-				<p:outputLabel value="Id Mesa" for="idMesa" />
-				<p:inputText id="idMesa" size="20"
-					value="#{pesquisaMesaBean.filtro.idMesa}" />
-
-				<p:outputLabel value="Nome" for="nome" />
-				<p:inputText id="nome" size="60"
-					value="#{pesquisaMesaBean.filtro.nome}" />
-			</p:panelGrid> -->
-
 			<p:dataTable id="mesasTable" value="#{pesquisaMesaBean.mesasFiltrados}"
 				var="mesa" style="margin-top: 20px"
 				emptyMessage="Mesa não encontrada." rows="20" paginator="true"
 				paginatorAlwaysVisible="false" paginatorPosition="bottom">
 
-				<p:column headerText="Id Mesa"
+				<p:column headerText="Número da Mesa"
 					style="text-align: center; width: 20px">
 					<h:outputText value="#{mesa.idMesa}" />
 				</p:column>

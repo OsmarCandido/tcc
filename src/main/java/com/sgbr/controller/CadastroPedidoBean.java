@@ -10,14 +10,13 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.sgbr.model.FormaPagamento;
 import com.sgbr.model.Funcionario;
 import com.sgbr.model.ItemPedido;
 import com.sgbr.model.Mesa;
-import com.sgbr.model.Pagamento;
 import com.sgbr.model.Pedido;
 import com.sgbr.model.Produto;
 import com.sgbr.model.StatusMesa;
-import com.sgbr.model.StatusPedido;
 import com.sgbr.repository.Funcionarios;
 import com.sgbr.repository.Mesas;
 import com.sgbr.repository.Produtos;
@@ -166,11 +165,10 @@ public class CadastroPedidoBean implements Serializable {
 		return existeItem;
 	}
 
-	public Pagamento[] getPagamento() {
-		return Pagamento.values();
+	public FormaPagamento[] getFormaPagamento() {
+		return FormaPagamento.values();
 	}
 	
-
 	public Pedido getPedido() {
 		return pedido;
 	}

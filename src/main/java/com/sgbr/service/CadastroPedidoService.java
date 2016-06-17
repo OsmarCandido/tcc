@@ -5,8 +5,11 @@ import java.util.Date;
 
 import javax.inject.Inject;
 
+import com.sgbr.model.Caixa;
+import com.sgbr.model.Pagamento;
 import com.sgbr.model.Pedido;
 import com.sgbr.model.StatusPedido;
+import com.sgbr.repository.Caixas;
 import com.sgbr.repository.Pedidos;
 import com.sgbr.util.jpa.Transactional;
 
@@ -16,9 +19,20 @@ public class CadastroPedidoService implements Serializable {
 
 	@Inject
 	private Pedidos pedidos;
+	
+	@Inject
+	private Caixa caixa;
+	
+	
 
 	@Inject
 	EstoqueService estoqueService;
+	
+	@Inject
+	RegistraPagamentoService registraPagamentoService;
+	
+	@Inject
+	CadastroCaixaService cadastroCaixaService;
 
 	@Transactional
 	public Pedido salvar(Pedido pedido) {
@@ -26,7 +40,8 @@ public class CadastroPedidoService implements Serializable {
 			pedido.setDataCriacao(new Date());
 			pedido.setStatus(StatusPedido.ABERTO);
 		}
-
+		
+		caixa = new Caixa();
 		pedido.recalcularValorTotal();
 
 		if (pedido.isNaoAlteravel() && pedido.isNaoAguardandoPagamento()) {
@@ -43,6 +58,18 @@ public class CadastroPedidoService implements Serializable {
 		}
 
 		if (pedido.isFechado()) {
+			Pagamento pagamento = new Pagamento();
+			this.caixa.setData_caixa(pedido.getDataCriacao());
+			this.caixa.setFuncionario(pedido.getFuncionario());
+			
+			caixa = cadastroCaixaService.salvar(this.caixa);
+			
+			pagamento.setPedido(pedido);
+			pagamento.setForma(pedido.getPagamento());
+			pagamento.setValor(pedido.getValorTotal());
+			pagamento.setCaixa(caixa);
+			
+			registraPagamentoService.salvar(pagamento);
 			
 			pedido.setStatus(StatusPedido.PAGO);
 		}
