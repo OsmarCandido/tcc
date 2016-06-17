@@ -17,7 +17,7 @@
 <!--  <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/sgbr" /> -->
  
    <property name="javax.persistence.jdbc.url" value="jdbc:mysql://sgbr.c4aii9sogbci.us-west-2.rds.amazonaws.com/sgbr"/>
-  
+  -
   <property name="javax.persistence.jdbc.user"  value="root" />
   
   
