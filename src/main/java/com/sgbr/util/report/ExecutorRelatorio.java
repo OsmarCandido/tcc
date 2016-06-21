@@ -4,11 +4,8 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletResponse;
-
 import org.hibernate.jdbc.Work;
-
 import net.sf.jasperreports.engine.JRExporter;
 import net.sf.jasperreports.engine.JRExporterParameter;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -47,7 +44,7 @@ public class ExecutorRelatorio implements Work {
 			response.setHeader("Content-Disposition", "attachment; filename=\"" + this.nomeArquivoSaida + "\"" );
 	       
 			exportador.exportReport();
-	        
+			
 		} catch (Exception e) {
 			throw new SQLException("Erro ao executar relatorio" + this.caminhoRelatorio, e);
 		}
