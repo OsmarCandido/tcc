@@ -52,6 +52,7 @@ header > div {
    height:30px;
    width:100%;
    text-align: right;
+   z-index: -1;
 }
 
 #footer > footer { 
@@ -59,7 +60,6 @@ header > div {
  width:100%;
  text-align:center;
  padding-bottom:0px; 
- z-index: -1;
 }
 
 /* footer { */
