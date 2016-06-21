@@ -3,7 +3,6 @@ package com.sgbr.util.report;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -43,9 +42,12 @@ public class ExecutorRelatorio implements Work {
 						
 			System.out.println("Relatório impresso:" + print.getPages().size());
 			exportador.setParameter(JRExporterParameter.JASPER_PRINT, print);
-				
+	
 			response.setContentType("application/pdf");
-	        exportador.exportReport();		
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + this.nomeArquivoSaida + "\"" );
+	       
+			exportador.exportReport();
+	        
 		} catch (Exception e) {
 			throw new SQLException("Erro ao executar relatorio" + this.caminhoRelatorio, e);
 		}
