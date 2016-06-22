@@ -41,9 +41,9 @@ public class ExecutorRelatorio implements Work {
 			exportador.setParameter(JRExporterParameter.JASPER_PRINT, print);
 	
 			response.setContentType("application/pdf");
-//			response.setHeader("Content-Disposition", "attachment; filename=\"" + this.nomeArquivoSaida + "\"" );
+           // Serve para fazer o download automatico do PDF
+		   // response.setHeader("Content-Disposition", "attachment; filename=\"" + this.nomeArquivoSaida + "\"" );
 			exportador.exportReport();
-			
 		} catch (Exception e) {
 			throw new SQLException("Erro ao executar relatorio" + this.caminhoRelatorio, e);
 		}
