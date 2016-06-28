@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -29,18 +30,19 @@ public class Caixa implements Serializable {
 
 	private Long id;
 	private Funcionario funcionario;
-	private Date data_caixa;
-	private Date hora_abertura;
-	private Date hora_fechamento;
+	private Date data_caixa = new Date();
+	private StatusCaixa status = StatusCaixa.ABERTO;
+	private Date horaAbertura = new Date();
+	private Date horaFechamento;
 	private List<Pagamento> pagamentos = new ArrayList<>();
-	private BigDecimal valor_caixa = BigDecimal.ZERO;
+	private BigDecimal valorInicial = BigDecimal.ZERO;
+	private BigDecimal valorTotal = BigDecimal.ZERO;
 
 	@Id
 	@GeneratedValue
 	public Long getId() {
 		return id;
 	}
-
 
 	public void setId(Long id) {
 		this.id = id;
@@ -53,20 +55,26 @@ public class Caixa implements Serializable {
 		return funcionario;
 	}
 
-
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
 
-
-	@Column(name = "valor_caixa",  precision = 10, scale = 2)
-	public BigDecimal getValor_caixa() {
-		return valor_caixa;
+	@Column(name = "valor_inicial", precision = 10, scale = 2)
+	public BigDecimal getValorInicial() {
+		return valorInicial;
 	}
 
-    
-	public void setValor_caixa(BigDecimal valor_caixa) {
-		this.valor_caixa = valor_caixa;
+	public void setValorInicial(BigDecimal valorInicial) {
+		this.valorInicial = valorInicial;
+	}
+	
+	@Column(name = "valor_total",  precision = 10, scale = 2)
+	public BigDecimal getValorTotal() {
+		return valorTotal;
+	}
+
+	public void setValorTotal(BigDecimal valorTotal) {
+		this.valorTotal = valorTotal;
 	}
 
 	@NotNull
@@ -76,44 +84,59 @@ public class Caixa implements Serializable {
 		return data_caixa;
 	}
 
-
 	public void setData_caixa(Date data_caixa) {
 		this.data_caixa = data_caixa;
 	}
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "hora_abertura")
-	public Date getHora_abertura() {
-		return hora_abertura;
+	public Date getHoraAbertura() {
+		return horaAbertura;
 	}
 
-
-	public void setHora_abertura(Date hora_abertura) {
-		this.hora_abertura = hora_abertura;
+	public void setHoraAbertura(Date horaAbertura) {
+		this.horaAbertura = horaAbertura;
 	}
     
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "hora_fechamento")
-	public Date getHora_fechamento() {
-		return hora_fechamento;
+	public Date getHoraFechamento() {
+		return horaFechamento;
 	}
 
-
-	public void setHora_fechamento(Date hora_fechamento) {
-		this.hora_fechamento = hora_fechamento;
+	public void setHoraFechamento(Date horaFechamento) {
+		this.horaFechamento = horaFechamento;
 	}
-	
 	
 	@OneToMany(mappedBy = "caixa", cascade = CascadeType.ALL, orphanRemoval = true)
 	public List<Pagamento> getPagamentos() {
 		return pagamentos;
 	}
 
-
 	public void setPagamentos(List<Pagamento> pagamentos) {
 		this.pagamentos = pagamentos;
 	}
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "status",length = 20)
+	public StatusCaixa getStatus() {
+		return status;
+	}
+	
 
+	public void setStatus(StatusCaixa status) {
+		this.status = status;
+	}
+
+	@Transient
+	public boolean isNovo() {
+		return getId() == null;
+	}
+
+	@Transient
+	public boolean isExistente() {
+		return !isNovo();
+	}
 
 	@Override
 	public int hashCode() {
@@ -122,7 +145,6 @@ public class Caixa implements Serializable {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {

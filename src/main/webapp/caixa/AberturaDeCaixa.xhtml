@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo"></ui:define>
+	<ui:define name="corpo">
+
+		<f:metadata>
+			<f:event listener="#{aberturaDeCaixaBean.inicializar}"
+				type="preRenderView" />
+		</f:metadata>
+
+		<h1>Abertura de Caixa</h1>
+
+		<h:form>
+
+			<p:toolbar style="margin-top: 20px">
+				<p:toolbarGroup>
+					<p:commandButton value="Concluir abertura de caixa " id="botaoSalvar"  icon="fa fa-fw fa-credit-card branco" 
+						process="@form" update="@form" action="#{aberturaDeCaixaBean.salvar}" ajax="false" />
+				</p:toolbarGroup>
+
+				<!-- Pesquisa -->
+				<p:toolbarGroup align="right">
+					<p:button value="Pesquisa" icon="fa fa-fw fa-search" outcome="/produtos/PesquisaProduto" />
+				</p:toolbarGroup>
+			</p:toolbar>
+
+			<p:panelGrid columns="4" style="width: 100%; margin-top: 20px"
+				columnClasses="rotulo, campo, rotulo, campo">
+
+				<p:outputLabel value="numero do caixa" rendered="#{aberturaDeCaixaBean.caixa.existente}"/>
+				<h:outputText value="0001" rendered="#{aberturaDeCaixaBean.caixa.existente}" />
+
+				<p:outputLabel value="Status" />
+				<h:outputText value="Aberto" />
+
+				<p:outputLabel value="operador" for="operador" />
+				<p:selectOneMenu id="operador"
+					value="#{aberturaDeCaixaBean.caixa.funcionario}">
+					<f:selectItem itemLabel="Selecione" />
+					<f:selectItems value="#{aberturaDeCaixaBean.operadores}"
+						var="operador" itemValue="#{operador}"
+						itemLabel="#{operador.nome}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Data" />
+				<h:outputText value="#{aberturaDeCaixaBean.caixa.data_caixa}" >
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+				
+				<p:outputLabel value="Hora de Abertura" />
+				<h:outputText value="#{aberturaDeCaixaBean.caixa.horaAbertura}" >
+					<f:convertDateTime pattern="HH:mm" />
+				</h:outputText>
+
+				<p:outputLabel value="Hora de Fechamento" rendered="#{aberturaDeCaixaBean.caixa.existente}"/>
+				<h:outputText value="11:00" rendered="#{aberturaDeCaixaBean.caixa.existente}"/>
+
+				<p:outputLabel value="Saldo inicial" for="saldoInicial" />
+				<p:inputText id="saldoInicial" size="9" maxlength="10"
+					styleClass="moeda"
+					value="#{aberturaDeCaixaBean.caixa.valorInicial}">
+					<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+				</p:inputText>
+
+				<p:outputLabel value="Valor Total" for="ValorTotal"/>
+				<p:inputText id="ValorTotal" size="9" maxlength="10"
+					styleClass="moeda"
+					value="#{aberturaDeCaixaBean.caixa.valorTotal}">
+					<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+				</p:inputText>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -22,8 +22,6 @@ public class CadastroPedidoService implements Serializable {
 	
 	@Inject
 	private Caixa caixa;
-	
-	
 
 	@Inject
 	EstoqueService estoqueService;

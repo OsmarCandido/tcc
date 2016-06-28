@@ -34,7 +34,11 @@
 				<h:form style="display: inline-block">
 					<p:menubar styleClass="menu-sistema">
 				<p:menuitem value = "Home" outcome="/index.xhtml" icon="fa fa-fw fa-home branco"/>
-				<p:menuitem value = "Caixa" outcome="/caixa/ControleCaixa.xhtml" icon="fa fa-fw fa-credit-card branco"/>
+				<p:submenu label="Caixa" icon="fa fa-fw fa-credit-card branco">
+					<p:menuitem value = "Abertura de Caixa" outcome="/caixa/AberturaDeCaixa.xhtml" />
+					<p:separator/>
+					<p:menuitem value = "Controle de Caixa" outcome="/caixa/ControleCaixa.xhtml" />
+				</p:submenu>
 				<p:submenu label="Cadastros" icon="fa fa-fw fa-edit branco">
 					<p:menuitem value="Funcionarios" outcome="/funcionario/CadastroFuncionario.xhtml"/>
 					<p:separator/>

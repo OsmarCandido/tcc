@@ -32,8 +32,6 @@ public class Produto implements Serializable {
 	private String descricao;
 	private Date dataValidade;
 	private BigDecimal preco;
-//	private BigDecimal valorUnitario;
-//	private BigDecimal valorCusto;
 	private BigDecimal valorVenda;
 	private Categoria categoria;
 	private Integer quantidadeEstoque;
@@ -64,13 +62,7 @@ public class Produto implements Serializable {
 	public Long getIdProduto() {
 		return idProduto;
 	}
-/*
-	@NotNull(message = "é obrigatório")
-	@Column(name = "valor_unitario", nullable = false, precision = 10, scale = 2)
-	public BigDecimal getValorUnitario() {
-		return valorUnitario;
-	}
-	*/
+
 	@NotNull
 	@Min(0)
 	@Max(value = 9999, message = "tem um valor muito alto")
@@ -107,12 +99,6 @@ public class Produto implements Serializable {
 		return valorVenda;
 	}
 	
-	
-    //@NotNull
-//	@Column(precision = 10, scale = 2, nullable = false)
-//	public BigDecimal getValorCusto() {
-//		return valorCusto;
-//	}
 	@NotNull
 	public Integer getQuantidadeMaxima() {
 		return quantidadeMaxima;
@@ -132,12 +118,6 @@ public class Produto implements Serializable {
 		this.idProduto = idProduto;
 	}
 
-	
-
-/*	public void setValorUnitario(BigDecimal valorUnitario) {
-		this.valorUnitario = valorUnitario;
-	}
-*/
 	public void setQuantidadeEstoque(Integer quantidadeEstoque) {
 		this.quantidadeEstoque = quantidadeEstoque;
 	}
@@ -157,10 +137,6 @@ public class Produto implements Serializable {
 	public void setDataValidade(Date dataValidade) {
 		this.dataValidade = dataValidade;
 	}
-
-//	public void setValorCusto(BigDecimal valorCusto) {
-//		this.valorCusto = valorCusto;
-//	}
 
 	public void setValorVenda(BigDecimal valorVenda) {
 		this.valorVenda = valorVenda;
