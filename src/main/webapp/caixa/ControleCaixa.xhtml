@@ -56,7 +56,7 @@
 					<h:outputText value="#{pedido.status.descricao}"/>
 				</p:column>
 
-				<p:column style="width: 50px; text-align:center">
+				<p:column headerText="Ação"  style="width: 50px; text-align:center">
 					<p:button icon="ui-icon-pencil" title="Editar" outcome="/pedidos/CadastroPedido.xhtml">
 						<f:param name="pedido" value="#{pedido.idPedido}" />
 					</p:button>

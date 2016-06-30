@@ -7,7 +7,7 @@
 	<p:panelGrid columns="4" style="width: 100%; margin-top: 20px"
 		columnClasses="rotulo, campo, rotulo, campo">
 
-		<p:outputLabel value="Id Pedido"
+		<p:outputLabel value="Numero do Pedido"
 			rendered="#{cadastroPedidoBean.pedido.existente}" />
 		<h:outputText value="#{cadastroPedidoBean.pedido.idPedido}"
 			rendered="#{cadastroPedidoBean.pedido.existente}" />
@@ -34,7 +34,7 @@
 			<f:convertDateTime pattern="dd/MM/yyyy" />
 		</h:outputText>
 		
-		<p:outputLabel value="Hora Pedido"
+		<p:outputLabel value="Hora de abertura"
 			rendered="#{cadastroPedidoBean.pedido.existente}" />
 		<h:outputText value="#{cadastroPedidoBean.pedido.dataCriacao}"
 			rendered="#{cadastroPedidoBean.pedido.existente}">
@@ -90,6 +90,22 @@
 			<p:ajax event="change" process="@this" update="totalPedido"
 				listener="#{cadastroPedidoBean.recalcularPedido}" />
 		</p:inputText>
+		
+		<p:outputLabel value="Operador" for="operador" />
+		<p:selectOneMenu id="operador"
+			value="#{cadastroPedidoBean.pedido.operador}">
+			<f:selectItem itemLabel="Selecione" />
+			<f:selectItems value="#{cadastroPedidoBean.vendedores}"
+				var="operador" itemvalue="#{operador}" itemLabel="#{operador.nome}" />
+		</p:selectOneMenu>
+		
+		<p:outputLabel value="Caixa" for="caixa" />
+		<p:selectOneMenu id="caixa"
+			value="#{cadastroPedidoBean.pedido.caixa}">
+			<f:selectItem itemLabel="Selecione" />
+			<f:selectItems value="#{cadastroPedidoBean.caixas}"
+				var="caixa" itemvalue="#{caixa}" itemLabel="#{caixa.id}" />
+		</p:selectOneMenu>
 
 		<p:outputLabel value="Subtotal" style="font-weigth: bold" />
 		<h:outputText id="subTotal" size="10" maxlength="10"

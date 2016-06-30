@@ -39,7 +39,9 @@ public class CadastroPedidoService implements Serializable {
 			pedido.setStatus(StatusPedido.ABERTO);
 		}
 		
-		caixa = new Caixa();
+		System.out.println("caixa no pedido = " + pedido.getCaixa());
+		System.out.println("operador no pedido = " + pedido.getOperador().getNome());
+		
 		pedido.recalcularValorTotal();
 
 		if (pedido.isNaoAlteravel() && pedido.isNaoAguardandoPagamento()) {
@@ -57,15 +59,11 @@ public class CadastroPedidoService implements Serializable {
 
 		if (pedido.isFechado()) {
 			Pagamento pagamento = new Pagamento();
-			this.caixa.setData_caixa(pedido.getDataCriacao());
-			this.caixa.setFuncionario(pedido.getFuncionario());
-			
-			caixa = cadastroCaixaService.salvar(this.caixa);
 			
 			pagamento.setPedido(pedido);
 			pagamento.setForma(pedido.getPagamento());
 			pagamento.setValor(pedido.getValorTotal());
-			pagamento.setCaixa(caixa);
+			pagamento.setCaixa(pedido.getCaixa());
 			
 			registraPagamentoService.salvar(pagamento);
 			

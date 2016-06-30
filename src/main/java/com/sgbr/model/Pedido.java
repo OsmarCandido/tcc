@@ -40,7 +40,10 @@ public class Pedido implements Serializable {
 	private StatusPedido status = StatusPedido.ABERTO;
 	private FormaPagamento pagamento;
 	private Funcionario funcionario;
+	private Funcionario operador;;
+	private Caixa caixa;
 	private Mesa mesa;
+	
 	private List<ItemPedido> itens = new ArrayList<>();
 
 	@Id
@@ -134,6 +137,28 @@ public class Pedido implements Serializable {
 
 	public void setMesa(Mesa mesa) {
 		this.mesa = mesa;
+	}
+	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "operador", nullable = false)
+	public Funcionario getOperador() {
+		return operador;
+	}
+
+	public void setOperador(Funcionario operador) {
+		this.operador = operador;
+	}
+	
+	@NotNull
+	@ManyToOne
+	@JoinColumn(name = "caixa", nullable = false)
+	public Caixa getCaixa() {
+		return caixa;
+	}
+
+	public void setCaixa(Caixa caixa) {
+		this.caixa = caixa;
 	}
 
 	@NotNull

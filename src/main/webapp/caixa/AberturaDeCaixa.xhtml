@@ -34,10 +34,10 @@
 				columnClasses="rotulo, campo, rotulo, campo">
 
 				<p:outputLabel value="numero do caixa" rendered="#{aberturaDeCaixaBean.caixa.existente}"/>
-				<h:outputText value="0001" rendered="#{aberturaDeCaixaBean.caixa.existente}" />
+				<h:outputText value="#{aberturaDeCaixaBean.caixa.id}" rendered="#{aberturaDeCaixaBean.caixa.existente}" />
 
 				<p:outputLabel value="Status" />
-				<h:outputText value="Aberto" />
+				<h:outputText value="#{aberturaDeCaixaBean.caixa.status}" />
 
 				<p:outputLabel value="operador" for="operador" />
 				<p:selectOneMenu id="operador"
@@ -68,12 +68,12 @@
 					<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
 				</p:inputText>
 
-				<p:outputLabel value="Valor Total" for="ValorTotal"/>
-				<p:inputText id="ValorTotal" size="9" maxlength="10"
+				<p:outputLabel value="Valor Total" for="ValorTotal" />
+				<h:outputText id="ValorTotal" size="9" maxlength="10"
 					styleClass="moeda"
-					value="#{aberturaDeCaixaBean.caixa.valorTotal}">
+					value="#{aberturaDeCaixaBean.caixa.valorTotal}" >
 					<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
-				</p:inputText>
+				</h:outputText>
 			</p:panelGrid>
 		</h:form>
 	</ui:define>

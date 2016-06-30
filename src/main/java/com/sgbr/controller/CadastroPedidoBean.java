@@ -10,6 +10,7 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import com.sgbr.model.Caixa;
 import com.sgbr.model.FormaPagamento;
 import com.sgbr.model.Funcionario;
 import com.sgbr.model.ItemPedido;
@@ -17,6 +18,7 @@ import com.sgbr.model.Mesa;
 import com.sgbr.model.Pedido;
 import com.sgbr.model.Produto;
 import com.sgbr.model.StatusMesa;
+import com.sgbr.repository.Caixas;
 import com.sgbr.repository.Funcionarios;
 import com.sgbr.repository.Mesas;
 import com.sgbr.repository.Produtos;
@@ -32,6 +34,7 @@ public class CadastroPedidoBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private List<Mesa> mesas;
+	private List<Caixa> caixas;
 	private List<Funcionario> vendedores;
 
 	private Long idProduto;
@@ -43,6 +46,9 @@ public class CadastroPedidoBean implements Serializable {
 
 	@Inject
 	private Mesas mesas_repository;
+	
+	@Inject
+	private Caixas caixas_repository;
 
 	@Inject
 	private Produtos produtos;
@@ -55,7 +61,9 @@ public class CadastroPedidoBean implements Serializable {
 
 	@Inject
 	EstoqueService estoqueService;
-
+	
+	private Caixa caixa;
+	
 	@Produces
 	@PedidoEdicao
 	private Pedido pedido;
@@ -71,6 +79,8 @@ public class CadastroPedidoBean implements Serializable {
 		if (FacesUtil.isNotPostback()) {
 			this.vendedores = this.funcionarios.vendedores();
 			this.mesas = this.mesas_repository.mesasDisponiveis();
+			this.caixas = this.caixas_repository.caixas();
+					
 
 			this.pedido.adicionarItemVazio();
 			this.recalcularPedido();
@@ -185,6 +195,10 @@ public class CadastroPedidoBean implements Serializable {
 		return vendedores;
 	}
 
+	public List<Caixa> getCaixas() {
+		return caixas;
+	}
+
 	public Produto getProdutoLinhaEditavel() {
 		return produtoLinhaEditavel;
 	}
@@ -204,5 +218,12 @@ public class CadastroPedidoBean implements Serializable {
 	public boolean isEditando() {
 		return this.pedido.getIdPedido() != null;
 	}
-	
+
+	public Caixa getCaixa() {
+		return caixa;
+	}
+
+	public void setCaixa(Caixa caixa) {
+		this.caixa = caixa;
+	}
 }

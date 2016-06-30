@@ -47,18 +47,16 @@ public class Caixas implements Serializable {
 		if (StringUtils.isNotBlank(filtro.getIdCaixa())) {
 			criteria.add(Restrictions.eq("id", filtro.getIdCaixa()));
 		}
-
+		
 		return criteria.list();
 	}
 
-	public Caixa porIdCaixa(Long idCaixa) {
-		System.out.println(idCaixa);
-		return manager.find(Caixa.class, idCaixa);
+	public Caixa porIdCaixa(Long id) {
+		System.out.println("caixa id = " + id);
+		return manager.find(Caixa.class, id);
 	}
 	
 	public List<Caixa> caixas(){
 		return this.manager.createQuery("From Caixa",Caixa.class).getResultList();
 	}
-	
-
 }
