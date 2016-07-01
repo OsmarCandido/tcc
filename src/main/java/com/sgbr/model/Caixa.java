@@ -137,6 +137,17 @@ public class Caixa implements Serializable {
 	public boolean isExistente() {
 		return !isNovo();
 	}
+	
+	@Transient
+	public BigDecimal calcularTotal(){
+		BigDecimal total = BigDecimal.ZERO;
+		for (Pagamento pagamento : this.getPagamentos()) {
+			if ( pagamento.getCaixa().getId()!= null) {
+				total = total.add(pagamento.getValor());
+			}
+		}
+		return total;
+	}
 
 	@Override
 	public int hashCode() {

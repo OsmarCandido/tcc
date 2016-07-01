@@ -17,6 +17,7 @@ public class PedidoFilter implements Serializable {
 	private Date horaCriacaoAte;
 	private String nomeFuncionario;
 	private StatusPedido[] statuses;
+	private Long numCaixa;
 
 	public Long getNumeroDe() {
 		return numeroDe;
@@ -86,6 +87,12 @@ public class PedidoFilter implements Serializable {
 	public Date getHoraCriacaoDe() {
 		return horaCriacaoDe;
 	}
-	
-	
+
+	public Long getNumCaixa() {
+		return numCaixa;
+	}
+
+	public void setNumCaixa(Long numCaixa) {
+		this.numCaixa = numCaixa;
+	}
 }

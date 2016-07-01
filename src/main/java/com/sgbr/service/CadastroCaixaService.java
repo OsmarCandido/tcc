@@ -17,12 +17,7 @@ public class CadastroCaixaService implements Serializable {
 	
 	@Transactional
 	public Caixa salvar(Caixa caixa) {
-/*		System.out.println("caixa: " + caixa.getId());
-		Caixa caixaExistente = caixas.porIdCaixa(caixa.getId());
-		if (caixaExistente != null && !caixaExistente.equals(caixa)) {
-			throw new NegocioException("Existe uma caixa com esse Id.");
-		}
-*/	
+
 		return caixas.guardar(caixa);
 	}
 }

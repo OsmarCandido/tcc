@@ -59,6 +59,11 @@ public class Pedidos implements Serializable {
 			criteria.add(Restrictions.in("status", filtro.getStatuses()));
 		}
 		
+		if (filtro.getNumCaixa() != null) {
+			// id deve ser maior ou igual (ge = greater or equals) a filtro.numeroDe
+			criteria.add(Restrictions.ge("c.id", filtro.getNumCaixa()));
+		}
+		
 		return criteria.addOrder(Order.asc("idPedido")).list();
 	}
 

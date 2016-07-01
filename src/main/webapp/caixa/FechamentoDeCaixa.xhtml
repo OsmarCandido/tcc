@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo"> Fechamento de Caixa </ui:define>
+	<ui:define name="corpo">
+		
+		<f:metadata>
+			<f:event listener="#{fechamentoDeCaixaBean.inicializar}"	type="preRenderView" />
+		</f:metadata>
+		
+		<h1>Fechamento de Caixa</h1>
+		
+				<h:form>
+			<p:toolbar style="margin-top: 20px">
+			</p:toolbar>
+
+			<p:dataTable id="caixasTable"
+				value="#{fechamentoDeCaixaBean.caixasFiltrados}" var="caixa"
+				style="margin-top: 20px" emptyMessage="Nenhum caixa encontrado."
+				rows="15" paginator="true" paginatorAlwaysVisible="false"
+				paginatorPosition="bottom">
+
+				<p:column headerText="numero de caixa" style="text-align: center; width: 20px">
+					<h:outputText value="#{caixa.id}"/>
+				</p:column>
+				
+				<p:column headerText="operador" style="text-align: center; width: 20px">
+					<h:outputText value="#{caixa.funcionario.nome}"/>
+				</p:column>
+				
+				<p:column headerText="Status" style="text-align: center; width: 20px">
+					<h:outputText value="#{caixa.status}"/>
+				</p:column>
+				
+				<p:column headerText="Data do caixa" style="text-align: center; width: 20px">
+					<h:outputText value="#{caixa.data_caixa}">
+					    <f:convertDateTime pattern="dd/MM/yyyy" />
+	    			</h:outputText>
+				</p:column>
+				
+				<p:column headerText="hora de abertura" style="text-align: center; width: 20px">
+					<h:outputText value="#{caixa.horaAbertura}">
+					    <f:convertDateTime pattern="HH:mm" />
+	    			</h:outputText>
+				</p:column>
+				
+				<p:column headerText="hora de fechamento" style="text-align: center; width: 20px">
+					<h:outputText value="#{caixa.horaFechamento}">
+					    <f:convertDateTime pattern="HH:mm" />
+	    			</h:outputText>
+				</p:column>
+				
+				<p:column headerText="Total" style="text-align: center; width: 20px">
+					<h:outputText value="#{caixa.valorTotal}">
+					    <f:convertNumber type="currency"/>
+	    			</h:outputText>
+				</p:column>
+				
+				<p:column headerText="Ação"  style="width: 5px; text-align:center">
+					<p:button icon="ui-icon-pencil" title="Fechar o caixa" outcome="/caixa/relatorioDeCaixa.xhtml">
+						<f:param name="caixa" value="#{caixa.id}" />
+					</p:button>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+	
