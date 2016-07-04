@@ -20,12 +20,15 @@
 
 			<p:toolbar style="margin-top: 20px">
 				<p:toolbarGroup>
-					<p:commandButton value="Concluir abertura de caixa " id="botaoSalvar"  icon="fa fa-fw fa-credit-card branco" 
-						process="@form" update="@form" action="#{aberturaDeCaixaBean.salvar}" ajax="false" />
+					<p:commandButton value="Concluir abertura de caixa "
+						id="botaoSalvar" icon="fa fa-fw fa-credit-card branco"
+						process="@form" update="@form"
+						action="#{aberturaDeCaixaBean.salvar}" ajax="false" />
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
-					<p:button value="Pedidos a faturar" icon="fa fa-fw fa-search" outcome="/caixa/ControleCaixa" />
+					<p:button value="Pedidos a faturar" icon="fa fa-fw fa-search"
+						outcome="/caixa/ControleCaixa" />
 				</p:toolbarGroup>
 
 			</p:toolbar>
@@ -33,11 +36,15 @@
 			<p:panelGrid columns="4" style="width: 100%; margin-top: 20px"
 				columnClasses="rotulo, campo, rotulo, campo">
 
-				<p:outputLabel value="numero do caixa" rendered="#{aberturaDeCaixaBean.caixa.existente}"/>
-				<h:outputText value="#{aberturaDeCaixaBean.caixa.id}" rendered="#{aberturaDeCaixaBean.caixa.existente}" />
+				<p:outputLabel value="numero do caixa"
+					rendered="#{aberturaDeCaixaBean.caixa.existente}" />
+				<h:outputText value="#{aberturaDeCaixaBean.caixa.id}"
+					rendered="#{aberturaDeCaixaBean.caixa.existente}" />
 
-				<p:outputLabel value="Status" />
-				<h:outputText value="#{aberturaDeCaixaBean.caixa.status}" />
+				<p:outputLabel value="Status"
+					rendered="#{aberturaDeCaixaBean.caixa.existente}" />
+				<h:outputText value="#{aberturaDeCaixaBean.caixa.status}"
+					rendered="#{aberturaDeCaixaBean.caixa.existente}" />
 
 				<p:outputLabel value="operador" for="operador" />
 				<p:selectOneMenu id="operador"
@@ -49,21 +56,25 @@
 				</p:selectOneMenu>
 
 				<p:outputLabel value="Data" />
-				<h:outputText value="#{aberturaDeCaixaBean.caixa.data_caixa}" >
-				<f:convertDateTime pattern="dd/MM/yyyy" />
+				<h:outputText value="#{aberturaDeCaixaBean.caixa.data_caixa}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
 				</h:outputText>
-				
-				<p:outputLabel value="Hora de Abertura" />
-				<h:outputText value="#{aberturaDeCaixaBean.caixa.horaAbertura}" >
+
+				<p:outputLabel value="Hora de Abertura"
+					rendered="#{aberturaDeCaixaBean.caixa.existente}" />
+				<h:outputText value="#{aberturaDeCaixaBean.caixa.horaAbertura}"
+					rendered="#{aberturaDeCaixaBean.caixa.existente}">
 					<f:convertDateTime pattern="HH:mm" />
 				</h:outputText>
 
-				<p:outputLabel value="Hora de Fechamento" rendered="#{aberturaDeCaixaBean.caixa.existente}"/>
-				<h:outputText value="#{aberturaDeCaixaBean.caixa.horaFechamento}" rendered="#{aberturaDeCaixaBean.caixa.existente}" >
+				<p:outputLabel value="Hora de Fechamento"
+					rendered="#{aberturaDeCaixaBean.caixa.existente}" />
+				<h:outputText value="#{aberturaDeCaixaBean.caixa.horaFechamento}"
+					rendered="#{aberturaDeCaixaBean.caixa.existente}">
 					<f:convertDateTime pattern="HH:mm" />
 				</h:outputText>
 
-				<p:outputLabel value="Saldo inicial" for="saldoInicial" />
+				<p:outputLabel value="Valor inicial para troco" for="saldoInicial" />
 				<p:inputText id="saldoInicial" size="9" maxlength="10"
 					styleClass="moeda"
 					value="#{aberturaDeCaixaBean.caixa.valorInicial}">
@@ -72,8 +83,7 @@
 
 				<p:outputLabel value="Valor Total" for="ValorTotal" />
 				<h:outputText id="ValorTotal" size="9" maxlength="10"
-					styleClass="moeda"
-					value="#{aberturaDeCaixaBean.caixa.valorTotal}" >
+					styleClass="moeda" value="#{aberturaDeCaixaBean.caixa.valorTotal}">
 					<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
 				</h:outputText>
 			</p:panelGrid>

@@ -107,9 +107,14 @@ public class Funcionarios implements Serializable {
 //  Fim Controle de acesso (11/05/2016)	
 	
 	public List<Funcionario> vendedores(){
-		//TODO filtrar apenas vendedores por um grupo específico
-		return this.manager.createQuery("From Funcionario",Funcionario.class).getResultList();
-	}	
+		//Garçons
+		return this.manager.createQuery("From Funcionario where perfil_id = 3 ",Funcionario.class).getResultList();
+	}
+	
+	public List<Funcionario> operadores(){
+		//Operadores de pdv
+		return this.manager.createQuery("From Funcionario where perfil_id = 2 ",Funcionario.class).getResultList();
+	}
 	
 }
 

@@ -36,6 +36,7 @@ public class CadastroPedidoBean implements Serializable {
 	private List<Mesa> mesas;
 	private List<Caixa> caixas;
 	private List<Funcionario> vendedores;
+	private List<Funcionario> operadores;
 
 	private Long idProduto;
 
@@ -78,10 +79,9 @@ public class CadastroPedidoBean implements Serializable {
 	public void inicializar() {
 		if (FacesUtil.isNotPostback()) {
 			this.vendedores = this.funcionarios.vendedores();
+			this.operadores = this.funcionarios.operadores();
 			this.mesas = this.mesas_repository.mesasDisponiveis();
 			this.caixas = this.caixas_repository.caixas();
-					
-
 			this.pedido.adicionarItemVazio();
 			this.recalcularPedido();
 		}
@@ -193,6 +193,10 @@ public class CadastroPedidoBean implements Serializable {
 
 	public List<Funcionario> getVendedores() {
 		return vendedores;
+	}
+	
+	public List<Funcionario> getOperadores() {
+		return operadores;
 	}
 
 	public List<Caixa> getCaixas() {

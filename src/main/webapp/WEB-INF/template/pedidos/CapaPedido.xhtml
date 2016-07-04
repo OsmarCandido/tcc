@@ -95,7 +95,7 @@
 		<p:selectOneMenu id="operador"
 			value="#{cadastroPedidoBean.pedido.operador}">
 			<f:selectItem itemLabel="Selecione" />
-			<f:selectItems value="#{cadastroPedidoBean.vendedores}"
+			<f:selectItems value="#{cadastroPedidoBean.operadores}"
 				var="operador" itemvalue="#{operador}" itemLabel="#{operador.nome}" />
 		</p:selectOneMenu>
 		

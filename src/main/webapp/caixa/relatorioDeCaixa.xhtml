@@ -4,26 +4,126 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:o="http://omnifaces.org/ui">
-	
-	
-	
-	<ui:define name="titulo">#{cadastroPedidoBean.editando ? "Edição de pedido" : "Novo Pedido"}</ui:define>
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+
+
+	<ui:define name="titulo">#{relatorioDeCaixaBean.editando ? "Edição de caixa" : "Novo Pedido"}</ui:define>
 	<ui:define name="corpo">
-	
-	<f:metadata>
-		<o:viewParam name="caixa" value="#{relatorioDeCaixaBean.caixa}"/>
-		<f:event listener="#{relatorioDeCaixaBean.inicializar}" type="preRenderView" />
-	</f:metadata>
-	
-	<h:form>
-		<h1>relatorioDeCaixa"</h1>
-		
-		<p:column headerText="Id Pedido" style="text-align: center; width: 20px">
-			<h:outputText value="#{pedido.idPedido}"/>
-		</p:column>
-	
+
+		<f:metadata>
+			<o:viewParam name="caixa" value="#{relatorioDeCaixaBean.caixa}" />
+			<f:event listener="#{relatorioDeCaixaBean.inicializar}"
+				type="preRenderView" />
+		</f:metadata>
+
+		<h1>#{relatorioDeCaixaBean.editando ? "Edição de caixa" : "Novo
+			Pedido"}</h1>
+
+		<h:form id="frmCaixa">
+			<p:toolbar style="margin-top: 20px">
+
+				<p:toolbarGroup>
+					<p:button value="Pedidos a faturar" icon="fa fa-fw fa-search"
+						outcome="/caixa/FechamentoDeCaixa" />
+				</p:toolbarGroup>
+
+				<p:toolbarGroup align="right" disabled="#{relatorioDeCaixaBean.caixa.fechado}">
+					<p:commandButton value="Realizar Fechamento de caixa "
+						id="botaoSalvar" icon="fa fa-fw fa-credit-card branco"
+						process="@form" update="@form"
+						action="#{relatorioDeCaixaBean.fecharCaixa}" ajax="false" 
+							/>
+				</p:toolbarGroup>
+
+			</p:toolbar>
+
+			<p:panelGrid columns="4" style="width: 100%; margin-top: 20px"
+				columnClasses="rotulo, campo, rotulo, campo">
+
+				<p:outputLabel value="numero do caixa" />
+				<h:outputText value="#{relatorioDeCaixaBean.caixa.id}" />
+
+				<p:outputLabel value="Status" />
+				<h:outputText value="#{relatorioDeCaixaBean.caixa.status}" />
+
+				<p:outputLabel value="operador" for="operador" />
+				<h:outputText id="operador"
+					value="#{relatorioDeCaixaBean.caixa.funcionario.nome}" />
+
+				<p:outputLabel value="Data" />
+				<h:outputText value="#{relatorioDeCaixaBean.caixa.data_caixa}">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</h:outputText>
+
+				<p:outputLabel value="Hora de Abertura"
+					rendered="#{relatorioDeCaixaBean.caixa.existente}" />
+				<h:outputText value="#{relatorioDeCaixaBean.caixa.horaAbertura}"
+					rendered="#{relatorioDeCaixaBean.caixa.existente}">
+					<f:convertDateTime pattern="HH:mm" />
+				</h:outputText>
+
+				<p:outputLabel value="Hora de Fechamento"
+					rendered="#{relatorioDeCaixaBean.caixa.existente}" />
+				<h:outputText value="#{relatorioDeCaixaBean.caixa.horaFechamento}"
+					rendered="#{relatorioDeCaixaBean.caixa.existente}">
+					<f:convertDateTime pattern="HH:mm" />
+				</h:outputText>
+
+				<p:outputLabel value="Saldo inicial" for="saldoInicial" />
+				<h:outputText id="saldoInicial" size="9" maxlength="10"
+					styleClass="moeda"
+					value="#{relatorioDeCaixaBean.caixa.valorInicial}">
+					<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+				</h:outputText>
+
+				<p:outputLabel value="Valor Total" for="ValorTotal" />
+				<h:outputText id="ValorTotal" size="9" maxlength="10"
+					styleClass="moeda" value="#{relatorioDeCaixaBean.caixa.valorTotal}">
+					<f:convertNumber maxFractionDigits="2" minFractionDigits="2" />
+				</h:outputText>
+			</p:panelGrid>
+
+			<p:dataTable value="#{relatorioDeCaixaBean.caixa.pagamentos}"
+				var="pagamento" rowIndexVar="linha" id="tabelaPagamentos"
+				style="margin-top: 20px">
+				<p:column headerText="Código de Pagamento"
+					style="text-align: center; width: 100px">
+					<h:outputText value="#{pagamento.id}" />
+				</p:column>
+
+				<p:column headerText="Numero do pedido"
+					style="text-align: center; width: 100px">
+					<h:outputText value="#{pagamento.pedido.idPedido}" />
+				</p:column>
+
+				<p:column headerText="Mesa" style="text-align: center; width: 100px">
+					<h:outputText value="#{pagamento.pedido.mesa.nome}" />
+				</p:column>
+
+				<p:column headerText="Garçom"
+					style="text-align: center; width: 100px">
+					<h:outputText value="#{pagamento.pedido.funcionario.nome}" />
+				</p:column>
+
+				<p:column headerText="Forma de pagamento"
+					style="text-align: center; width: 100px">
+					<h:outputText value="#{pagamento.forma.descricao}" />
+				</p:column>
+
+				<p:column headerText="Valor"
+					style="text-align: center; width: 100px">
+					<h:outputText value="#{pagamento.valor}" />
+				</p:column>
+
+				<p:columnGroup type="footer">
+					<p:row>
+						<p:column colspan="5" footerText="Total" style="text-align: right" />
+						<p:column footerText="#{relatorioDeCaixaBean.caixa.valorTotal}" />
+					</p:row>
+					<h:outputText />
+				</p:columnGroup>
+			</p:dataTable>
 		</h:form>
 	</ui:define>
 </ui:composition>

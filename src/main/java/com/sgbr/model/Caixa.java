@@ -32,7 +32,7 @@ public class Caixa implements Serializable {
 	private Funcionario funcionario;
 	private Date data_caixa = new Date();
 	private StatusCaixa status = StatusCaixa.ABERTO;
-	private Date horaAbertura = new Date();
+	private Date horaAbertura;
 	private Date horaFechamento;
 	private List<Pagamento> pagamentos = new ArrayList<>();
 	private BigDecimal valorInicial = BigDecimal.ZERO;
@@ -58,7 +58,7 @@ public class Caixa implements Serializable {
 	public void setFuncionario(Funcionario funcionario) {
 		this.funcionario = funcionario;
 	}
-
+	
 	@Column(name = "valor_inicial", precision = 10, scale = 2)
 	public BigDecimal getValorInicial() {
 		return valorInicial;
@@ -76,7 +76,18 @@ public class Caixa implements Serializable {
 	public void setValorTotal(BigDecimal valorTotal) {
 		this.valorTotal = valorTotal;
 	}
-
+	
+	@Transient
+	public BigDecimal calcularTotal(){
+		BigDecimal total = this.valorInicial;
+		for (Pagamento pagamento : this.getPagamentos()) {
+			if ( pagamento != null) {
+				total = total.add(pagamento.getValor());
+			}
+		}
+		return total;
+	}
+	
 	@NotNull
 	@Temporal(TemporalType.DATE)
 	@Column(name = "data_caixa", nullable = false)
@@ -139,14 +150,8 @@ public class Caixa implements Serializable {
 	}
 	
 	@Transient
-	public BigDecimal calcularTotal(){
-		BigDecimal total = BigDecimal.ZERO;
-		for (Pagamento pagamento : this.getPagamentos()) {
-			if ( pagamento.getCaixa().getId()!= null) {
-				total = total.add(pagamento.getValor());
-			}
-		}
-		return total;
+	public Boolean isFechado(){
+		return getStatus() == StatusCaixa.FECHADO;
 	}
 
 	@Override

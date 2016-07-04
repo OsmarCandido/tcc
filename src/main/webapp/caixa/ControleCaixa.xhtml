@@ -6,18 +6,29 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-	<ui:define name="titulo"> Controle de Caixa </ui:define>
+	<ui:define name="titulo"> Pedidos a faturar </ui:define>
 	<ui:define name="corpo">
 		
 		<f:metadata>
 			<f:event listener="#{controleCaixaBean.inicializar}"	type="preRenderView" />
 		</f:metadata>
 		
-		<h1>Controle de Caixa</h1>
+		<h1>Pedidos a faturar</h1>
 		
-				<h:form>
+			<h:form>
+			
+				<p:toolbar style="margin-top: 20px">
+				
+				<p:toolbarGroup >
+					<p:button value="Abrir novo caixa" icon="fa fa-fw fa-credit-card branco"
+						outcome="/caixa/AberturaDeCaixa" />
+				</p:toolbarGroup>
+				
+				<p:toolbarGroup align="right">
+					<p:button value="Fechamento de caixa" icon="fa fa-fw fa-credit-card branco"
+						outcome="/caixa/FechamentoDeCaixa" />
+				</p:toolbarGroup>
 
-			<p:toolbar style="margin-top: 20px">
 			</p:toolbar>
 
 			<p:dataTable id="pedidosTable"

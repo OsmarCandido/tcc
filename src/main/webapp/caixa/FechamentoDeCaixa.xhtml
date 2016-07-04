@@ -16,7 +16,13 @@
 		<h1>Fechamento de Caixa</h1>
 		
 				<h:form>
-			<p:toolbar style="margin-top: 20px">
+				<p:toolbar style="margin-top: 20px">
+				
+				<p:toolbarGroup >
+					<p:button value="Pedidos a faturar" icon="fa fa-fw fa-search"
+						outcome="/caixa/ControleCaixa" />
+				</p:toolbarGroup>
+
 			</p:toolbar>
 
 			<p:dataTable id="caixasTable"

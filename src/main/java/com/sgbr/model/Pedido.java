@@ -40,7 +40,7 @@ public class Pedido implements Serializable {
 	private StatusPedido status = StatusPedido.ABERTO;
 	private FormaPagamento pagamento;
 	private Funcionario funcionario;
-	private Funcionario operador;;
+	private Funcionario operador;
 	private Caixa caixa;
 	private Mesa mesa;
 	

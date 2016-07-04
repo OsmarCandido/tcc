@@ -1,20 +1,24 @@
 package com.sgbr.controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.Transient;
 
 import com.sgbr.model.Caixa;
 import com.sgbr.model.Pedido;
+import com.sgbr.model.StatusCaixa;
 import com.sgbr.model.StatusPedido;
 import com.sgbr.repository.Caixas;
 import com.sgbr.repository.Pedidos;
 import com.sgbr.repository.filter.CaixaFilter;
 import com.sgbr.repository.filter.PedidoFilter;
+import com.sgbr.service.CadastroCaixaService;
+import com.sgbr.util.jsf.FacesUtil;
 
 @Named
 @ViewScoped
@@ -28,8 +32,6 @@ public class RelatorioDeCaixaBean implements Serializable{
 	@Inject
 	private Caixas caixas;
 	
-	private long numCaixa;
-	
 	@Inject
 	private Caixa caixa;
 	
@@ -39,20 +41,14 @@ public class RelatorioDeCaixaBean implements Serializable{
 	private List<Pedido> pedidosFiltrados;
 	private List<Caixa> caixasFiltrados;
 	
-	private StatusPedido[] status= {StatusPedido.FECHADO};
+	@Inject
+	private CadastroCaixaService cadastroCaixaService;
 	
 	public RelatorioDeCaixaBean() {
 		filtro = new PedidoFilter();
-	//	filtro.setStatuses(status);
-		filtro.setNumCaixa(numCaixa);
-		pedidosFiltrados = new ArrayList<>();
-
 	}
 	
 	public void inicializar(){
-		System.out.println("inicializar" + caixa.getId());
-		numCaixa = caixa.getId();
-		pesquisar();
 	}
 	
 	public void pesquisar() {
@@ -95,5 +91,23 @@ public class RelatorioDeCaixaBean implements Serializable{
 		return caixasFiltrados;
 	}
 	
+	public boolean isEditando() {
+		return this.caixa.getId() != null;
+	}
+	
+	public void salvar() {
+		try {
+			this.caixa = this.cadastroCaixaService.salvar(this.caixa);
+			FacesUtil.addInfoMessage("Fechamento realizado com sucesso!");
+		} finally {
+		}
+	}
+	
+	public void fecharCaixa() {
+		this.caixa.setHoraFechamento(new Date());
+		this.caixa.setStatus(StatusCaixa.FECHADO);
+		this.caixa.setValorTotal(caixa.calcularTotal());
+		this.salvar();
+	}
 	
 }

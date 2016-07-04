@@ -1,6 +1,7 @@
 package com.sgbr.service;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.inject.Inject;
 
@@ -17,6 +18,10 @@ public class CadastroCaixaService implements Serializable {
 	
 	@Transactional
 	public Caixa salvar(Caixa caixa) {
+		
+		if(caixa.isNovo()){
+			caixa.setHoraAbertura(new Date());
+		}
 
 		return caixas.guardar(caixa);
 	}

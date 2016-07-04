@@ -23,12 +23,8 @@ public class CaixaConverter implements Converter{
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
 		Caixa retorno = null;
-		Caixa res;
 		if(value != null){
 			Long id = new Long(value);
-			System.out.println("getAsObj = " + id);
-			res = caixas.porIdCaixa(id);
-			System.out.println("getAsObj2 = " + res.getFuncionario().getNome());
 			retorno = caixas.porIdCaixa(id);
 		}
 		return retorno;
@@ -39,7 +35,6 @@ public class CaixaConverter implements Converter{
 		
 		if(value != null){
 			Caixa caixa = (Caixa) value;
-			System.out.println("getAsString = " + caixa.getId().toString());
 			return caixa.getId() == null ? null : caixa.getId().toString();		
 		}
 		return " ";
